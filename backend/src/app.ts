@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { authMiddleware } from "./middleware/auth.middleware";
+import { validate } from "./middleware/validate.middleware";
 
 import {
   register,
@@ -24,6 +25,11 @@ import {
   verifyPayment
 } from "./modules/payments/payments.controller";
 
+import {
+  registerSchema,
+  loginSchema
+} from "./validators/auth.validator";
+
 dotenv.config();
 
 const app = express();
@@ -37,9 +43,17 @@ app.get("/", (_req, res) => {
   });
 });
 
-app.post("/auth/register", register);
+app.post(
+  "/auth/register",
+  validate(registerSchema),
+  register
+);
 
-app.post("/auth/login", login);
+app.post(
+  "/auth/login",
+  validate(loginSchema),
+  login
+);
 
 app.get("/profile", authMiddleware, (_req, res) => {
   res.json({
