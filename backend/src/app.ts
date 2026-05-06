@@ -19,6 +19,11 @@ import {
   getAlerts
 } from "./modules/alerts/alerts.controller";
 
+import {
+  createOrder,
+  verifyPayment
+} from "./modules/payments/payments.controller";
+
 dotenv.config();
 
 const app = express();
@@ -64,6 +69,18 @@ app.get(
   "/alerts",
   authMiddleware,
   getAlerts
+);
+
+app.post(
+  "/payments/create-order",
+  authMiddleware,
+  createOrder
+);
+
+app.post(
+  "/payments/verify",
+  authMiddleware,
+  verifyPayment
 );
 
 const PORT = process.env.PORT || 5000;
