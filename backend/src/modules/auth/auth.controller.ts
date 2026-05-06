@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import prisma from "../../config/db";
+import env from "../../config/env";
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -70,7 +71,7 @@ export const login = async (req: Request, res: Response) => {
         id: user.id,
         email: user.email
       },
-      process.env.JWT_SECRET as string,
+      env.JWT_SECRET,
       {
         algorithm: "HS256",
         expiresIn: "7d"

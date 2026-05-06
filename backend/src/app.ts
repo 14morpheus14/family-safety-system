@@ -1,9 +1,14 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import dotenv from "dotenv";
+import env from "./config/env";
 
 import { authMiddleware } from "./middleware/auth.middleware";
 import { validate } from "./middleware/validate.middleware";
+import { errorMiddleware } from "./middleware/error.middleware";
+import { apiLimiter } from "./middleware/rateLimit.middleware";
+import { loggerMiddleware } from "./middleware/logger.middleware";
 
 import {
   register,
@@ -35,7 +40,12 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(helmet());
+app.use(apiLimiter);
+app.use(loggerMiddleware);
+app.use(express.json({
+  limit: "10kb"
+}));
 
 app.get("/", (_req, res) => {
   res.json({
@@ -97,7 +107,9 @@ app.post(
   verifyPayment
 );
 
-const PORT = process.env.PORT || 5000;
+const PORT = env.PORT;
+
+app.use(errorMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
