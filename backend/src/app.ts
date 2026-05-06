@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import { authMiddleware } from "./middleware/auth.middleware";
 import { register, login } from "./modules/auth/auth.controller";
 
 dotenv.config();
@@ -19,6 +20,12 @@ app.get("/", (_req, res) => {
 
 app.post("/auth/register", register);
 app.post("/auth/login", login);
+
+app.get("/profile", authMiddleware, (req, res) => {
+  res.json({
+    message: "Protected profile route accessed"
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
