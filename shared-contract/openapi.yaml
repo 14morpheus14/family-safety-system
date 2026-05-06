@@ -101,7 +101,6 @@ paths:
                     created_at:
                       type: string
 
-  /alerts:
     post:
       summary: Create alert (internal use)
       security:
