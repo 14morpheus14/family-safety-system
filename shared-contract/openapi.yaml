@@ -1,0 +1,171 @@
+openapi: 3.0.0
+
+info:
+  title: Family Safety API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+
+  /auth/login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /family/create:
+    post:
+      summary: Create a new family
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Family created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  family_id:
+                    type: string
+                  invite_token:
+                    type: string
+
+  /family/join:
+    post:
+      summary: Join family using token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: Joined family
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  family_id:
+                    type: string
+
+  /alerts:
+    get:
+      summary: Get alerts for user
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    type:
+                      type: string
+                    message:
+                      type: string
+                    created_at:
+                      type: string
+
+  /alerts:
+    post:
+      summary: Create alert (internal use)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type, message]
+              properties:
+                type:
+                  type: string
+                message:
+                  type: string
+      responses:
+        "200":
+          description: Alert created
+
+  /payments/create-order:
+    post:
+      summary: Create Razorpay order
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Order created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_id:
+                    type: string
+                  amount:
+                    type: number
+
+  /payments/verify:
+    post:
+      summary: Verify Razorpay payment
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [order_id, payment_id, signature]
+              properties:
+                order_id:
+                  type: string
+                payment_id:
+                  type: string
+                signature:
+                  type: string
+      responses:
+        "200":
+          description: Payment verified
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
