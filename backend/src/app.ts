@@ -3,12 +3,21 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { authMiddleware } from "./middleware/auth.middleware";
-import { register, login } from "./modules/auth/auth.controller";
+
+import {
+  register,
+  login
+} from "./modules/auth/auth.controller";
 
 import {
   createFamily,
   getFamily
 } from "./modules/family/family.controller";
+
+import {
+  createAlert,
+  getAlerts
+} from "./modules/alerts/alerts.controller";
 
 dotenv.config();
 
@@ -43,6 +52,18 @@ app.get(
   "/family",
   authMiddleware,
   getFamily
+);
+
+app.post(
+  "/alerts/create",
+  authMiddleware,
+  createAlert
+);
+
+app.get(
+  "/alerts",
+  authMiddleware,
+  getAlerts
 );
 
 const PORT = process.env.PORT || 5000;
