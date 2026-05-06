@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import { register, login } from "./modules/auth/auth.controller";
+
 dotenv.config();
 
 const app = express();
@@ -14,6 +16,9 @@ app.get("/", (_req, res) => {
     message: "Family Safety System API Running"
   });
 });
+
+app.post("/auth/register", register);
+app.post("/auth/login", login);
 
 const PORT = process.env.PORT || 5000;
 
