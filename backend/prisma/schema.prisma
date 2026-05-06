@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  familyId  Int?
+  family    Family?  @relation(fields: [familyId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Family {
+  id        Int      @id @default(autoincrement())
+  name      String
+  users     User[]
+  alerts    Alert[]
+  createdAt DateTime @default(now())
+}
+
+model Alert {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  familyId    Int
+  family      Family   @relation(fields: [familyId], references: [id])
+  createdAt   DateTime @default(now())
+}
