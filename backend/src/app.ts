@@ -5,6 +5,11 @@ import dotenv from "dotenv";
 import { authMiddleware } from "./middleware/auth.middleware";
 import { register, login } from "./modules/auth/auth.controller";
 
+import {
+  createFamily,
+  getFamily
+} from "./modules/family/family.controller";
+
 dotenv.config();
 
 const app = express();
@@ -19,13 +24,26 @@ app.get("/", (_req, res) => {
 });
 
 app.post("/auth/register", register);
+
 app.post("/auth/login", login);
 
-app.get("/profile", authMiddleware, (req, res) => {
+app.get("/profile", authMiddleware, (_req, res) => {
   res.json({
     message: "Protected profile route accessed"
   });
 });
+
+app.post(
+  "/family/create",
+  authMiddleware,
+  createFamily
+);
+
+app.get(
+  "/family",
+  authMiddleware,
+  getFamily
+);
 
 const PORT = process.env.PORT || 5000;
 
