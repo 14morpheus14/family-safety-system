@@ -1,120 +1,292 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, {
+  useState,
+} from 'react';
 
-export default function PaymentScreen({ navigation }: any) {
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+
+import {
+  Ionicons,
+  MaterialIcons,
+} from '@expo/vector-icons';
+
+export default function PaymentScreen({
+  navigation,
+  route,
+}: any) {
+  const amount =
+    route?.params?.amount || 249;
+
+  const plan =
+    route?.params?.plan ||
+    'Family Shield Premium';
+
+  const billingType =
+    route?.params?.billingType ||
+    'monthly';
+
+  const [method, setMethod] =
+    useState('UPI');
+
+  const methods = [
+    {
+      name: 'UPI',
+      subtitle: 'Pay using any UPI app',
+      icon: 'account-balance-wallet',
+    },
+
+    {
+      name: 'Card',
+      subtitle: 'Debit / Credit Card',
+      icon: 'credit-card',
+    },
+
+    {
+      name: 'Net Banking',
+      subtitle: 'All major banks',
+      icon: 'account-balance',
+    },
+
+    {
+      name: 'Wallet',
+      subtitle: 'Paytm, PhonePe & more',
+      icon: 'wallet',
+    },
+  ];
+
   return (
-    <View style={styles.root}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.header}>
-          <Ionicons name="arrow-back" size={24} color="#111827" />
-          <Text style={styles.title}>Payment</Text>
-          <View style={{ width: 24 }} />
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+      }}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingTop: 58,
+          paddingHorizontal: 22,
+          paddingBottom: 40,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom: 28,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() =>
+              navigation.goBack()
+            }
+          >
+            <Ionicons
+              name="arrow-back"
+              size={24}
+              color="black"
+            />
+          </TouchableOpacity>
+
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              fontSize: 24,
+              fontWeight: '700',
+              marginRight: 24,
+            }}
+          >
+            Payment
+          </Text>
         </View>
 
-        <View style={styles.planCard}>
-          <View style={styles.planRow}>
-            <View style={styles.planIcon}>
-              <Ionicons name="shield-checkmark" size={20} color="#fff" />
-            </View>
-            <View>
-              <Text style={styles.planTitle}>Family Shield Premium</Text>
-              <Text style={styles.planSub}>₹249/month</Text>
-            </View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 22,
+            padding: 22,
+            marginBottom: 28,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: '700',
+            }}
+          >
+            {plan}
+          </Text>
+
+          <Text
+            style={{
+              fontSize: 38,
+              fontWeight: '700',
+              marginTop: 14,
+            }}
+          >
+            ₹{amount}
+
+            <Text
+              style={{
+                fontSize: 18,
+                color: '#666',
+              }}
+            >
+              {billingType === 'monthly'
+                ? '/month'
+                : '/year'}
+            </Text>
+          </Text>
+
+          <View
+            style={{
+              marginTop: 16,
+              backgroundColor: '#e8f8ef',
+              alignSelf: 'flex-start',
+              paddingHorizontal: 12,
+              paddingVertical: 7,
+              borderRadius: 12,
+            }}
+          >
+            <Text
+              style={{
+                color: '#1c8c5e',
+                fontWeight: '700',
+              }}
+            >
+              {billingType === 'monthly'
+                ? 'Monthly Billing'
+                : 'Yearly Billing'}
+            </Text>
           </View>
         </View>
 
-        <Text style={styles.sectionTitle}>Payment Method</Text>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: '700',
+            marginBottom: 16,
+          }}
+        >
+          Payment Method
+        </Text>
 
-        <View style={styles.methodCard}>
-          <View style={styles.methodRow}>
-            <Text style={styles.methodLabel}>UPI</Text>
-            <View style={styles.selectedDot} />
-          </View>
-          <Text style={styles.methodSub}>Pay using any UPI app</Text>
-        </View>
+        {methods.map((item) => (
+          <TouchableOpacity
+            key={item.name}
+            onPress={() =>
+              setMethod(item.name)
+            }
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 18,
+              padding: 18,
+              marginBottom: 16,
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderWidth:
+                method === item.name
+                  ? 2
+                  : 1,
+              borderColor:
+                method === item.name
+                  ? '#1c8c5e'
+                  : '#ececec',
+            }}
+          >
+            <View
+              style={{
+                width: 54,
+                height: 54,
+                borderRadius: 16,
+                backgroundColor: '#e8f8ef',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <MaterialIcons
+                name={item.icon as any}
+                size={26}
+                color="#1c8c5e"
+              />
+            </View>
 
-        <View style={styles.methodCard}>
-          <Text style={styles.methodLabel}>Card</Text>
-          <Text style={styles.methodSub}>Debit / Credit Card</Text>
-        </View>
+            <View
+              style={{
+                flex: 1,
+                marginLeft: 16,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: '700',
+                }}
+              >
+                {item.name}
+              </Text>
 
-        <View style={styles.methodCard}>
-          <Text style={styles.methodLabel}>Net Banking</Text>
-          <Text style={styles.methodSub}>All major banks</Text>
-        </View>
+              <Text
+                style={{
+                  marginTop: 5,
+                  color: '#666',
+                }}
+              >
+                {item.subtitle}
+              </Text>
+            </View>
 
-        <View style={styles.methodCard}>
-          <Text style={styles.methodLabel}>Wallet</Text>
-          <Text style={styles.methodSub}>Paytm, PhonePe & more</Text>
-        </View>
+            <View
+              style={{
+                width: 24,
+                height: 24,
+                borderRadius: 12,
+                borderWidth: 2,
+                borderColor: '#1c8c5e',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {method === item.name && (
+                <View
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: 6,
+                    backgroundColor:
+                      '#1c8c5e',
+                  }}
+                />
+              )}
+            </View>
+          </TouchableOpacity>
+        ))}
 
-        <Text style={[styles.sectionTitle, { marginTop: 18 }]}>Amount Payable</Text>
-        <Text style={styles.amount}>₹249 <Text style={styles.amountSub}>/month</Text></Text>
-
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Pay Securely</Text>
-        </Pressable>
-
-        <View style={styles.secureRow}>
-          <Ionicons name="shield-checkmark-outline" size={16} color="#2F855A" />
-          <Text style={styles.secureText}>100% Secure Payments</Text>
-        </View>
+        <TouchableOpacity
+          style={{
+            marginTop: 26,
+            backgroundColor: '#1c8c5e',
+            borderRadius: 18,
+            paddingVertical: 18,
+            alignItems: 'center',
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 18,
+              fontWeight: '700',
+            }}
+          >
+            Pay Securely
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
-
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Home</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Family')}>
-          <Ionicons name="people-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Family</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Alerts')}>
-          <Ionicons name="alert-circle-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Alerts</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Protection')}>
-          <Ionicons name="shield-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Protection</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('SafeMode')}>
-          <Ionicons name="person-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Account</Text>
-        </Pressable>
-      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#F5F7F8' },
-  content: { paddingHorizontal: 16, paddingTop: 52, paddingBottom: 110 },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  title: { fontSize: 18, fontWeight: '800', color: '#111827' },
-  planCard: { backgroundColor: '#fff', borderRadius: 22, borderWidth: 1, borderColor: '#E5E7EB', padding: 16, marginTop: 18 },
-  planRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  planIcon: { width: 42, height: 42, borderRadius: 12, backgroundColor: '#2F855A', alignItems: 'center', justifyContent: 'center' },
-  planTitle: { fontSize: 14, fontWeight: '800', color: '#111827' },
-  planSub: { fontSize: 12, color: '#6B7280', marginTop: 3 },
-  sectionTitle: { fontSize: 14, fontWeight: '800', color: '#111827', marginTop: 14, marginBottom: 10 },
-  methodCard: { backgroundColor: '#fff', borderRadius: 16, borderWidth: 1, borderColor: '#E5E7EB', padding: 14, marginBottom: 10 },
-  methodRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  methodLabel: { fontSize: 14, fontWeight: '700', color: '#111827' },
-  methodSub: { fontSize: 12, color: '#6B7280', marginTop: 4 },
-  selectedDot: { width: 14, height: 14, borderRadius: 7, backgroundColor: '#2F855A' },
-  amount: { fontSize: 26, fontWeight: '800', color: '#111827', marginBottom: 14 },
-  amountSub: { fontSize: 12, fontWeight: '600', color: '#6B7280' },
-  button: { backgroundColor: '#2F855A', borderRadius: 14, paddingVertical: 14, alignItems: 'center' },
-  buttonText: { color: '#fff', fontSize: 14, fontWeight: '800' },
-  secureRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 12 },
-  secureText: { fontSize: 12, color: '#2F855A', fontWeight: '700' },
-  bottomNav: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 84, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#E5E7EB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingBottom: 10 },
-  navItem: { alignItems: 'center' },
-  navText: { marginTop: 4, fontSize: 11, color: '#6B7280' },
-});

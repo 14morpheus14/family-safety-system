@@ -1,111 +1,257 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-const calls = [
-  { number: '+91 98765 43210', status: 'Scam Call Blocked', who: "Mom's phone", time: '10:30 AM', level: 'high' as const },
-  { number: '+91 91234 56789', status: 'Safe Call', who: "Dad's phone", time: '9:15 AM', level: 'safe' as const },
-  { number: '+91 99887 66554', status: 'Scam Call Blocked', who: 'Riya (iPhone)', time: 'Yesterday', level: 'high' as const },
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+
+import {
+  MaterialIcons,
+  Ionicons,
+} from '@expo/vector-icons';
+
+import Header from '../components/Header';
+
+const blockedCalls = [
+  {
+    id: 1,
+    number: '+91 98765 43210',
+    type: 'Bank Scam',
+    time: '2 mins ago',
+    risk: 'High Risk',
+  },
+
+  {
+    id: 2,
+    number: '+91 90123 45678',
+    type: 'Lottery Scam',
+    time: '15 mins ago',
+    risk: 'High Risk',
+  },
+
+  {
+    id: 3,
+    number: '+91 88991 22334',
+    type: 'Spam Promotion',
+    time: '1 hour ago',
+    risk: 'Low Risk',
+  },
 ];
 
-export default function ScamCallScreen({ navigation }: any) {
+export default function ScamCallScreen() {
   return (
-    <View style={styles.root}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.header}>
-          <Pressable onPress={() => navigation.navigate('Protection')}>
-            <Ionicons name="arrow-back" size={24} color="#111827" />
-          </Pressable>
-          <Ionicons name="settings-outline" size={22} color="#111827" />
-        </View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+      }}
+    >
+      <Header
+        title="Scam Call Protection"
+        showBack
+      />
 
-        <View style={styles.hero}>
-          <View style={styles.iconCircle}>
-            <Ionicons name="call" size={36} color="#fff" />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <View
+          style={{
+            paddingHorizontal: 20,
+            paddingBottom: 40,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: '#1c8c5e',
+              borderRadius: 24,
+              padding: 24,
+            }}
+          >
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 16,
+              }}
+            >
+              Protection Status
+            </Text>
+
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 34,
+                fontWeight: '700',
+                marginTop: 10,
+              }}
+            >
+              Active
+            </Text>
+
+            <Text
+              style={{
+                color: 'white',
+                marginTop: 10,
+                opacity: 0.9,
+              }}
+            >
+              Scam calls are being blocked
+            </Text>
           </View>
-          <Text style={styles.title}>We block dangerous calls</Text>
-          <Text style={styles.subtitle}>Known scam numbers are blocked automatically.</Text>
-        </View>
 
-        <View style={styles.card}>
-          <View style={styles.sectionRow}>
-            <Text style={styles.sectionTitle}>Recent Call Activity</Text>
-            <Text style={styles.sectionAction}>View all</Text>
-          </View>
+          <Text
+            style={{
+              fontSize: 22,
+              fontWeight: '700',
+              marginTop: 30,
+              marginBottom: 18,
+            }}
+          >
+            Recent Blocked Calls
+          </Text>
 
-          {calls.map((item, index) => (
-            <View key={item.number} style={[styles.row, index !== calls.length - 1 && styles.rowBorder]}>
-              <View style={[styles.dot, item.level === 'high' ? styles.redSoft : styles.greenSoft]}>
-                <Ionicons name="call" size={18} color={item.level === 'high' ? '#DC2626' : '#2F855A'} />
+          {blockedCalls.map((call) => (
+            <TouchableOpacity
+              key={call.id}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 20,
+                padding: 18,
+                marginBottom: 18,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 16,
+                  backgroundColor:
+                    call.risk === 'High Risk'
+                      ? '#ffebee'
+                      : '#fff3e0',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <MaterialIcons
+                  name="phone-in-talk"
+                  size={26}
+                  color={
+                    call.risk === 'High Risk'
+                      ? '#e53935'
+                      : '#f39c12'
+                  }
+                />
               </View>
-              <View style={{ flex: 1 }}>
-                <View style={styles.rowTop}>
-                  <Text style={styles.rowTitle}>{item.number}</Text>
-                  <Text style={[styles.statusText, item.level === 'high' ? styles.red : styles.green]}>{item.status}</Text>
-                </View>
-                <Text style={styles.rowWho}>{item.who}</Text>
-                <Text style={styles.rowTime}>{item.time}</Text>
+
+              <View
+                style={{
+                  flex: 1,
+                  marginLeft: 16,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 17,
+                    fontWeight: '700',
+                  }}
+                >
+                  {call.number}
+                </Text>
+
+                <Text
+                  style={{
+                    marginTop: 5,
+                    color: '#666',
+                  }}
+                >
+                  {call.type}
+                </Text>
+
+                <Text
+                  style={{
+                    marginTop: 5,
+                    color: '#999',
+                  }}
+                >
+                  {call.time}
+                </Text>
               </View>
-            </View>
+
+              <View
+                style={{
+                  backgroundColor:
+                    call.risk === 'High Risk'
+                      ? '#ffebee'
+                      : '#fff3e0',
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  borderRadius: 20,
+                }}
+              >
+                <Text
+                  style={{
+                    color:
+                      call.risk === 'High Risk'
+                        ? '#e53935'
+                        : '#f39c12',
+                    fontWeight: '700',
+                  }}
+                >
+                  {call.risk}
+                </Text>
+              </View>
+            </TouchableOpacity>
           ))}
+
+          <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 20,
+              padding: 20,
+              marginTop: 10,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <Ionicons
+                name="shield-checkmark"
+                size={24}
+                color="#1c8c5e"
+              />
+
+              <Text
+                style={{
+                  marginLeft: 10,
+                  fontSize: 18,
+                  fontWeight: '700',
+                }}
+              >
+                Smart Detection Enabled
+              </Text>
+            </View>
+
+            <Text
+              style={{
+                marginTop: 10,
+                color: '#666',
+                lineHeight: 22,
+              }}
+            >
+              AI automatically detects fraud,
+              spam and scam callers before
+              they reach family members.
+            </Text>
+          </View>
         </View>
       </ScrollView>
-
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Home</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Family')}>
-          <Ionicons name="people-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Family</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Alerts')}>
-          <Ionicons name="alert-circle-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Alerts</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Protection')}>
-          <Ionicons name="shield-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Protection</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Account')}>
-          <Ionicons name="person-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Account</Text>
-        </Pressable>
-      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#F5F7F8' },
-  content: { paddingHorizontal: 16, paddingTop: 52, paddingBottom: 110 },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  hero: { alignItems: 'center', marginTop: 18, marginBottom: 16 },
-  iconCircle: { width: 110, height: 110, borderRadius: 55, backgroundColor: '#2F855A', alignItems: 'center', justifyContent: 'center', marginBottom: 14 },
-  title: { fontSize: 20, fontWeight: '800', color: '#111827', textAlign: 'center' },
-  subtitle: { fontSize: 13, color: '#6B7280', marginTop: 6, textAlign: 'center' },
-  card: { backgroundColor: '#fff', borderRadius: 22, borderWidth: 1, borderColor: '#E5E7EB', paddingHorizontal: 16 },
-  sectionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 16, marginBottom: 8 },
-  sectionTitle: { fontSize: 16, fontWeight: '800', color: '#111827' },
-  sectionAction: { fontSize: 12, color: '#6B7280' },
-  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 14 },
-  rowBorder: { borderBottomWidth: 1, borderBottomColor: '#F1F5F9' },
-  dot: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginRight: 10 },
-  greenSoft: { backgroundColor: '#ECFDF5' },
-  redSoft: { backgroundColor: '#FEF2F2' },
-  rowTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
-  rowTitle: { fontSize: 14, fontWeight: '700', color: '#111827', flex: 1, paddingRight: 8 },
-  statusText: { fontSize: 12, fontWeight: '700' },
-  green: { color: '#2F855A' },
-  red: { color: '#DC2626' },
-  rowWho: { fontSize: 12, color: '#6B7280', marginTop: 2 },
-  rowTime: { fontSize: 12, color: '#6B7280', marginTop: 2 },
-  bottomNav: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 84, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#E5E7EB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingBottom: 10 },
-  navItem: { alignItems: 'center' },
-  navText: { marginTop: 4, fontSize: 11, color: '#6B7280' },
-});

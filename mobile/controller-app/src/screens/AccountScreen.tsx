@@ -1,95 +1,220 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-const items = [
-  'Account Settings',
-  'Notification Preferences',
-  'Payment & Subscription',
-  'Help & Support',
-  'About Family Cyber Shield',
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+
+import {
+  Ionicons,
+  Feather,
+  MaterialIcons,
+} from '@expo/vector-icons';
+
+import Header from '../components/Header';
+
+const menuItems = [
+  {
+    id: 1,
+    title: 'Account Settings',
+    icon: 'person-outline',
+  },
+
+  {
+    id: 2,
+    title: 'Notification Preferences',
+    icon: 'notifications-outline',
+  },
+
+  {
+    id: 3,
+    title: 'Payment & Subscription',
+    icon: 'card-outline',
+    screen: 'PaymentsMenu',
+  },
+
+  {
+    id: 4,
+    title: 'Help & Support',
+    icon: 'help-circle-outline',
+  },
+
+  {
+    id: 5,
+    title: 'About Family Cyber Shield',
+    icon: 'information-circle-outline',
+  },
 ];
 
 export default function AccountScreen({ navigation }: any) {
   return (
-    <View style={styles.root}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Account</Text>
-          <Ionicons name="person-circle-outline" size={28} color="#111827" />
-        </View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+      }}
+    >
+      <Header title="Account" />
 
-        <View style={styles.profileCard}>
-          <View style={styles.avatar}>
-            <Ionicons name="person" size={26} color="#fff" />
-          </View>
-          <View>
-            <Text style={styles.name}>Ankit Sharma</Text>
-            <Text style={styles.email}>ankit.sharma@email.com</Text>
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          {items.map((item, index) => (
-            <View key={item} style={[styles.row, index !== items.length - 1 && styles.rowBorder]}>
-              <Text style={styles.rowText}>{item}</Text>
-              <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <View
+          style={{
+            paddingHorizontal: 20,
+            paddingBottom: 40,
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 22,
+              padding: 20,
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <View
+              style={{
+                width: 70,
+                height: 70,
+                borderRadius: 35,
+                backgroundColor: '#ddd',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Ionicons
+                name="person"
+                size={34}
+                color="#666"
+              />
             </View>
-          ))}
+
+            <View
+              style={{
+                flex: 1,
+                marginLeft: 16,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: '700',
+                }}
+              >
+                Ankit Sharma
+              </Text>
+
+              <Text
+                style={{
+                  marginTop: 5,
+                  color: '#777',
+                  fontSize: 15,
+                }}
+              >
+                ankit.sharma@email.com
+              </Text>
+            </View>
+
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color="#999"
+            />
+          </TouchableOpacity>
+
+          <Text
+            style={{
+              marginTop: 30,
+              marginBottom: 14,
+              color: '#777',
+              fontSize: 16,
+              fontWeight: '600',
+            }}
+          >
+            Manage
+          </Text>
+
+          <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 22,
+              overflow: 'hidden',
+            }}
+          >
+            {menuItems.map((item, index) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => {
+                  if (item.screen) {
+                    navigation.navigate(item.screen);
+                  }
+                }}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  padding: 20,
+                  borderBottomWidth:
+                    index !== menuItems.length - 1
+                      ? 1
+                      : 0,
+                  borderBottomColor: '#f0f0f0',
+                }}
+              >
+                <Ionicons
+                  name={item.icon as any}
+                  size={24}
+                  color="#666"
+                />
+
+                <Text
+                  style={{
+                    flex: 1,
+                    marginLeft: 16,
+                    fontSize: 17,
+                    fontWeight: '500',
+                  }}
+                >
+                  {item.title}
+                </Text>
+
+                <Ionicons
+                  name="chevron-forward"
+                  size={20}
+                  color="#999"
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <TouchableOpacity
+            style={{
+              marginTop: 30,
+              borderWidth: 1.5,
+              borderColor: '#f5b7b1',
+              borderRadius: 18,
+              paddingVertical: 18,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+            }}
+          >
+            <Text
+              style={{
+                color: '#e53935',
+                fontSize: 18,
+                fontWeight: '700',
+              }}
+            >
+              Log Out
+            </Text>
+          </TouchableOpacity>
         </View>
-
-        <Pressable style={styles.logout}>
-          <Text style={styles.logoutText}>Log Out</Text>
-        </Pressable>
       </ScrollView>
-
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Home</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Family')}>
-          <Ionicons name="people-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Family</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Alerts')}>
-          <Ionicons name="alert-circle-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Alerts</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Protection')}>
-          <Ionicons name="shield-outline" size={22} color="#6B7280" />
-          <Text style={styles.navText}>Protection</Text>
-        </Pressable>
-
-        <Pressable style={styles.navItem} onPress={() => navigation.navigate('Account')}>
-          <Ionicons name="person" size={22} color="#2F855A" />
-          <Text style={[styles.navText, styles.navActive]}>Account</Text>
-        </Pressable>
-      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#F5F7F8' },
-  content: { paddingHorizontal: 16, paddingTop: 52, paddingBottom: 110 },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  title: { fontSize: 22, fontWeight: '800', color: '#111827' },
-  profileCard: { marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: '#fff', borderRadius: 18, borderWidth: 1, borderColor: '#E5E7EB', padding: 16 },
-  avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: '#2F855A', alignItems: 'center', justifyContent: 'center' },
-  name: { fontSize: 16, fontWeight: '800', color: '#111827' },
-  email: { fontSize: 12, color: '#6B7280', marginTop: 4 },
-  card: { marginTop: 16, backgroundColor: '#fff', borderRadius: 22, borderWidth: 1, borderColor: '#E5E7EB', paddingHorizontal: 16 },
-  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 14 },
-  rowBorder: { borderBottomWidth: 1, borderBottomColor: '#F1F5F9' },
-  rowText: { fontSize: 14, color: '#111827', fontWeight: '600' },
-  logout: { marginTop: 18, borderWidth: 1, borderColor: '#DC2626', borderRadius: 14, paddingVertical: 14, alignItems: 'center', backgroundColor: '#fff' },
-  logoutText: { color: '#DC2626', fontWeight: '800' },
-  bottomNav: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 84, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#E5E7EB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingBottom: 10 },
-  navItem: { alignItems: 'center' },
-  navText: { marginTop: 4, fontSize: 11, color: '#6B7280' },
-  navActive: { color: '#2F855A', fontWeight: '700' },
-});
