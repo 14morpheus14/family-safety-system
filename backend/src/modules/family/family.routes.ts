@@ -8,15 +8,21 @@ import {
   getFamilySyncState
 } from "./family.retrieve.controller";
 
+import {
+  authMiddleware
+} from "../../middleware/auth.middleware";
+
 const router = Router();
 
 router.post(
   "/sync",
+  authMiddleware,
   syncFamilyState
 );
 
 router.get(
   "/sync",
+  authMiddleware,
   getFamilySyncState
 );
 
