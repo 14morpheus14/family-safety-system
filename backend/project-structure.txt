@@ -1,0 +1,37 @@
+.
+├── Dockerfile
+├── package-lock.json
+├── package.json
+├── prisma
+│   ├── migrations
+│   │   ├── 20260506131432_init
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── prisma.config.ts
+├── project-structure.txt
+├── src
+│   ├── app.ts
+│   ├── config
+│   │   ├── db.ts
+│   │   └── env.ts
+│   ├── middleware
+│   │   ├── auth.middleware.ts
+│   │   ├── error.middleware.ts
+│   │   ├── logger.middleware.ts
+│   │   ├── rateLimit.middleware.ts
+│   │   └── validate.middleware.ts
+│   ├── modules
+│   │   ├── alerts
+│   │   ├── auth
+│   │   ├── family
+│   │   ├── payment
+│   │   ├── payments
+│   │   └── protection
+│   ├── services
+│   │   ├── protection.service.ts
+│   │   └── razorpay.service.ts
+│   └── validators
+│       └── auth.validator.ts
+└── tsconfig.json
+
+16 directories, 19 files
