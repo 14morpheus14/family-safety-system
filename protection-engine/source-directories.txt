@@ -1,0 +1,8 @@
+src
+src/utils
+src/rules
+src/scanners
+src/calls
+src/crypto
+src/events
+src/engine

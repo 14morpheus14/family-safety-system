@@ -2,10 +2,9 @@
   "name": "protection-engine",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "build": "tsc"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +20,5 @@
     "jest": "^30.2.0",
     "ts-jest": "^29.4.5",
     "typescript": "^5.9.3"
-  },
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ]
+  }
 }

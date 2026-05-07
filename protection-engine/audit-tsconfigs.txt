@@ -1,0 +1,203 @@
+
+===== ./node_modules/@bcoe/v8-coverage/dist/lib/tsconfig.json =====
+
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "charset": "utf8",
+    "checkJs": false,
+    "declaration": true,
+    "disableSizeLimit": false,
+    "downlevelIteration": false,
+    "emitBOM": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "isolatedModules": false,
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "locale": "en-us",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmit": false,
+    "noEmitHelpers": false,
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitUseStrict": false,
+    "noLib": false,
+    "noResolve": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "target": "es2017",
+    "traceResolution": false,
+    "rootDir": "",
+    "outDir": "../../build/lib",
+    "typeRoots": []
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": []
+}
+
+===== ./node_modules/@bcoe/v8-coverage/tsconfig.json =====
+
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "charset": "utf8",
+    "checkJs": false,
+    "declaration": false,
+    "disableSizeLimit": false,
+    "downlevelIteration": false,
+    "emitBOM": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "isolatedModules": false,
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "locale": "en-us",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmit": false,
+    "noEmitHelpers": false,
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitUseStrict": false,
+    "noLib": false,
+    "noResolve": false,
+    "preserveConstEnums": false,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "target": "es2017",
+    "traceResolution": false,
+    "typeRoots": [
+      "src/lib/custom-typings",
+      "node_modules/@types"
+    ]
+  }
+}
+
+===== ./node_modules/@jest/pattern/tsconfig.json =====
+
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./**/__tests__/**/*"],
+  "references": [{"path": "../jest-regex-util"}]
+}
+
+===== ./node_modules/@jest/snapshot-utils/tsconfig.json =====
+
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./**/__mocks__/**/*", "./**/__tests__/**/*"],
+  "references": [{"path": "../jest-types"}]
+}
+
+===== ./node_modules/@babel/traverse/tsconfig.overrides.json =====
+
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true
+  }
+}
+===== ./node_modules/ts-jest/tsconfig.base.json =====
+
+{
+  "compilerOptions": {
+    "strict": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "checkJs": false,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ESNext"]
+  }
+}
+
+===== ./tsconfig.json =====
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": ".",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "types": ["node", "jest"]
+  },
+  "include": [
+    "src",
+    "tests"
+  ]
+}

@@ -1,0 +1,41 @@
+.
+├── jest.config.js
+├── package-lock.json
+├── package.json
+├── repository-tree.txt
+├── src
+│   ├── calls
+│   │   ├── behavioralCallMemory.ts
+│   │   ├── callAnalyzer.ts
+│   │   ├── callerReputation.ts
+│   │   ├── coercionDetector.ts
+│   │   ├── robocallDetector.ts
+│   │   └── telecomFraudRules.ts
+│   ├── crypto
+│   │   └── jwt.ts
+│   ├── engine
+│   │   └── detectionEngine.ts
+│   ├── events
+│   │   └── eventBus.ts
+│   ├── rules
+│   │   └── basicRules.ts
+│   ├── scanners
+│   │   └── urlScanner.ts
+│   ├── tree.log
+│   └── utils
+│       └── logger.ts
+├── test-results.log
+├── tests
+│   ├── calls
+│   │   ├── behavioralCallPatterns.test.ts
+│   │   ├── callAnalyzer.test.ts
+│   │   ├── robocallCorpus.test.ts
+│   │   └── telecomFraudCorpus.test.ts
+│   ├── corpus
+│   │   └── largeCorpus.test.ts
+│   ├── engine.test.ts
+│   └── output.txt
+├── tree.log
+└── tsconfig.json
+
+12 directories, 27 files

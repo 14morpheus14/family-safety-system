@@ -1,0 +1,5524 @@
+
+===== ./src/utils/logger.ts =====
+
+export class Logger {
+  public info(message: string): void {
+    console.log(`[INFO] ${message}`);
+  }
+
+  public error(message: string): void {
+    console.error(`[ERROR] ${message}`);
+  }
+}
+
+===== ./src/rules/basicRules.ts =====
+
+export type EvidenceConfidence =
+  | "low-confidence"
+  | "medium-confidence"
+  | "high-confidence"
+  | "critical-confidence";
+
+export interface RuleMatch {
+  ruleId: string;
+  category: string;
+  severity: string;
+  score: number;
+  confidence: EvidenceConfidence;
+  matchedText: string;
+}
+
+interface DetectionRule {
+  ruleId: string;
+  category: string;
+  severity: string;
+  score: number;
+  confidence: EvidenceConfidence;
+  pattern: RegExp;
+}
+
+interface AllowlistRule {
+  ruleId: string;
+  pattern: RegExp;
+}
+
+export class BasicRules {
+  private readonly rules: DetectionRule[] = [
+    {
+      ruleId: "FINANCIAL_001",
+      category: "financial",
+      severity: "high",
+      score: 25,
+      confidence: "medium-confidence",
+      pattern: /\bloan\b/i
+    },
+    {
+      ruleId: "FINANCIAL_002",
+      category: "financial",
+      severity: "medium",
+      score: 20,
+      confidence: "low-confidence",
+      pattern: /\bcredit\b/i
+    },
+    {
+      ruleId: "PHISHING_001",
+      category: "phishing",
+      severity: "high",
+      score: 30,
+      confidence: "medium-confidence",
+      pattern: /\bverify\b/i
+    },
+    {
+      ruleId: "PHISHING_002",
+      category: "phishing",
+      severity: "high",
+      score: 40,
+      confidence: "high-confidence",
+      pattern: /\botp\b/i
+    },
+    {
+      ruleId: "PHISHING_003",
+      category: "phishing",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern: /\bpassword\b/i
+    },
+    {
+      ruleId: "PHISHING_004",
+      category: "phishing",
+      severity: "critical",
+      score: 50,
+      confidence: "critical-confidence",
+      pattern:
+        /\bshare\s+otp\b/i
+    },
+    {
+      ruleId: "PHISHING_005",
+      category: "phishing",
+      severity: "critical",
+      score: 50,
+      confidence: "critical-confidence",
+      pattern:
+        /\bverify\s+otp\b/i
+    },
+    {
+      ruleId: "SCAM_001",
+      category: "scam",
+      severity: "high",
+      score: 30,
+      confidence: "medium-confidence",
+      pattern: /\bwin(?:ner|nings)?\b/i
+    },
+    {
+      ruleId: "SCAM_002",
+      category: "scam",
+      severity: "medium",
+      score: 20,
+      confidence: "low-confidence",
+      pattern: /\bprize\b/i
+    },
+    {
+      ruleId: "SCAM_003",
+      category: "scam",
+      severity: "medium",
+      score: 25,
+      confidence: "medium-confidence",
+      pattern: /\bfree\b/i
+    },
+    {
+      ruleId: "SCAM_004",
+      category: "scam",
+      severity: "high",
+      score: 25,
+      confidence: "medium-confidence",
+      pattern: /\burgent\b/i
+    },
+    {
+      ruleId: "SCAM_005",
+      category: "scam",
+      severity: "high",
+      score: 25,
+      confidence: "medium-confidence",
+      pattern: /\bclick\b/i
+    },
+    {
+      ruleId: "SCAM_008",
+      category: "scam",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\bgiveaway\b/i
+    },
+    {
+      ruleId: "BANKING_001",
+      category: "banking",
+      severity: "high",
+      score: 25,
+      confidence: "medium-confidence",
+      pattern: /\baccount\b/i
+    },
+    {
+      ruleId: "BANKING_002",
+      category: "banking",
+      severity: "high",
+      score: 25,
+      confidence: "high-confidence",
+      pattern: /\bsuspended\b/i
+    },
+    {
+      ruleId: "BANKING_003",
+      category: "banking",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\bverify\s+your\s+account\b/i
+    },
+    {
+      ruleId: "BANKING_004",
+      category: "banking",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\baccount\s+password\b/i
+    },
+    {
+      ruleId: "CRYPTO_001",
+      category: "crypto",
+      severity: "medium",
+      score: 20,
+      confidence: "medium-confidence",
+      pattern: /\bcrypto\b/i
+    },
+    {
+      ruleId: "CRYPTO_002",
+      category: "crypto",
+      severity: "medium",
+      score: 20,
+      confidence: "medium-confidence",
+      pattern: /\bbtc\b/i
+    },
+    {
+      ruleId: "SOCIAL_001",
+      category: "social-engineering",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\bimmediately\b/i
+    },
+    {
+      ruleId: "SOCIAL_002",
+      category: "social-engineering",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\baction\s+required\b/i
+    },
+    {
+      ruleId: "SOCIAL_003",
+      category: "social-engineering",
+      severity: "high",
+      score: 30,
+      confidence: "medium-confidence",
+      pattern:
+        /\bwithin\s+24\s+hours\b/i
+    },
+    {
+      ruleId: "SOCIAL_004",
+      category: "social-engineering",
+      severity: "high",
+      score: 30,
+      confidence: "medium-confidence",
+      pattern:
+        /\bact\s+now\b/i
+    },
+    {
+      ruleId: "APK_001",
+      category: "apk-threat",
+      severity: "critical",
+      score: 60,
+      confidence: "critical-confidence",
+      pattern:
+        /\binstall\s+apk\b/i
+    },
+    {
+      ruleId: "APK_002",
+      category: "apk-threat",
+      severity: "critical",
+      score: 60,
+      confidence: "critical-confidence",
+      pattern:
+        /\bunknown\s+sources\b/i
+    },
+    {
+      ruleId: "APK_003",
+      category: "apk-threat",
+      severity: "critical",
+      score: 50,
+      confidence: "high-confidence",
+      pattern:
+        /\bsideload\b/i
+    },
+    {
+      ruleId: "PHONE_001",
+      category: "phone-scam",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\bcall\s+now\b/i
+    },
+    {
+      ruleId: "PHONE_002",
+      category: "phone-scam",
+      severity: "high",
+      score: 35,
+      confidence: "high-confidence",
+      pattern:
+        /\bwhatsapp\s+now\b/i
+    },
+    {
+      ruleId: "PHONE_003",
+      category: "phone-scam",
+      severity: "high",
+      score: 40,
+      confidence: "high-confidence",
+      pattern:
+        /\bcontact\s+immediately\b/i
+    },
+{
+  ruleId: "LOGISTICS_001",
+  category: "logistics",
+  severity: "high",
+  score: 25,
+  confidence: "medium-confidence",
+  pattern: /\bparcel\b/i
+},
+{
+  ruleId: "LOGISTICS_002",
+  category: "logistics",
+  severity: "high",
+  score: 25,
+  confidence: "medium-confidence",
+  pattern: /\bshipment\b/i
+},
+{
+  ruleId: "LOGISTICS_003",
+  category: "logistics",
+  severity: "high",
+  score: 25,
+  confidence: "medium-confidence",
+  pattern: /\bdelivery\b/i
+},
+{
+  ruleId: "REFUND_001",
+  category: "refund",
+  severity: "high",
+  score: 30,
+  confidence: "medium-confidence",
+  pattern: /\brefund\b/i
+},
+{
+  ruleId: "REFUND_002",
+  category: "refund",
+  severity: "medium",
+  score: 20,
+  confidence: "low-confidence",
+  pattern: /\bcashback\b/i
+},
+{
+  ruleId: "REFUND_003",
+  category: "refund",
+  severity: "medium",
+  score: 20,
+  confidence: "low-confidence",
+  pattern: /\breimbursement\b/i
+},
+{
+  ruleId: "TELECOM_001",
+  category: "telecom",
+  severity: "high",
+  score: 30,
+  confidence: "medium-confidence",
+  pattern: /\bsim\b/i
+},
+{
+  ruleId: "TELECOM_002",
+  category: "telecom",
+  severity: "high",
+  score: 25,
+  confidence: "medium-confidence",
+  pattern: /\btelecom\b/i
+},
+{
+  ruleId: "TELECOM_003",
+  category: "telecom",
+  severity: "high",
+  score: 25,
+  confidence: "medium-confidence",
+  pattern: /\bdeactivate\b/i
+},
+{
+  ruleId: "AUTHORITY_001",
+  category: "authority",
+  severity: "critical",
+  score: 35,
+  confidence: "critical-confidence",
+  pattern: /\bpolice\b/i
+},
+{
+  ruleId: "AUTHORITY_002",
+  category: "authority",
+  severity: "critical",
+  score: 35,
+  confidence: "critical-confidence",
+  pattern: /\barrest\b/i
+},
+{
+  ruleId: "AUTHORITY_003",
+  category: "authority",
+  severity: "critical",
+  score: 35,
+  confidence: "critical-confidence",
+  pattern: /\blegal action\b/i
+},
+{
+  ruleId: "PAYMENT_001",
+  category: "payment",
+  severity: "high",
+  score: 25,
+  confidence: "high-confidence",
+  pattern: /\bpayment failed\b/i
+},
+{
+  ruleId: "PAYMENT_002",
+  category: "payment",
+  severity: "high",
+  score: 25,
+  confidence: "high-confidence",
+  pattern: /\bpending payment\b/i
+},
+{
+  ruleId: "REMOTE_001",
+  category: "remote-access",
+  severity: "critical",
+  score: 40,
+  confidence: "critical-confidence",
+  pattern: /\bremote access\b/i
+},
+{
+  ruleId: "REMOTE_002",
+  category: "remote-access",
+  severity: "critical",
+  score: 40,
+  confidence: "critical-confidence",
+  pattern: /\bscreen share\b/i
+},
+{
+  ruleId: "REMOTE_003",
+  category: "remote-access",
+  severity: "critical",
+  score: 40,
+  confidence: "critical-confidence",
+  pattern: /\banydesk\b/i
+},
+{
+  ruleId: "REMOTE_004",
+  category: "remote-access",
+  severity: "critical",
+  score: 40,
+  confidence: "critical-confidence",
+  pattern: /\bteamviewer\b/i
+},
+{
+  ruleId: "IMPERSONATION_001",
+  category: "impersonation",
+  severity: "high",
+  score: 30,
+  confidence: "high-confidence",
+  pattern: /\brbi\b/i
+},
+{
+  ruleId: "IMPERSONATION_002",
+  category: "impersonation",
+  severity: "high",
+  score: 30,
+  confidence: "high-confidence",
+  pattern: /\bgov(?:ernment)? subsidy\b/i
+},
+{
+  ruleId: "SCAM_006",
+  category: "scam",
+  severity: "high",
+  score: 35,
+  confidence: "high-confidence",
+  pattern:
+    /\bclaim\s+now\b/i
+},
+{
+  ruleId: "SCAM_007",
+  category: "scam",
+  severity: "high",
+  score: 35,
+  confidence: "high-confidence",
+  pattern:
+    /\bwinner\s+selected\b/i
+},
+{
+  ruleId: "PHISHING_006",
+  category: "phishing",
+  severity: "critical",
+  score: 45,
+  confidence: "critical-confidence",
+  pattern:
+    /\baccount\s+blocked\b/i
+},
+{
+  ruleId: "PHISHING_007",
+  category: "phishing",
+  severity: "critical",
+  score: 45,
+  confidence: "critical-confidence",
+  pattern:
+    /\baccount\s+frozen\b/i
+},
+{
+  ruleId: "PHISHING_008",
+  category: "phishing",
+  severity: "critical",
+  score: 45,
+  confidence: "critical-confidence",
+  pattern:
+    /\bverify\s+kyc\b/i
+},
+{
+  ruleId: "APK_004",
+  category: "apk-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\binstall\s+.*apk\b/i
+},
+{
+  ruleId: "IDENTITY_001",
+  category: "identity-threat",
+  severity: "high",
+  score: 40,
+  confidence: "high-confidence",
+  pattern:
+    /\bverification\s+required\b/i
+},
+{
+  ruleId: "IDENTITY_002",
+  category: "identity-threat",
+  severity: "high",
+  score: 45,
+  confidence: "high-confidence",
+  pattern:
+    /\bconfirm\s+identity\b/i
+},
+{
+  ruleId: "IDENTITY_003",
+  category: "identity-threat",
+  severity: "critical",
+  score: 55,
+  confidence: "critical-confidence",
+  pattern:
+    /\bupdate\s+pan\b/i
+},
+{
+  ruleId: "IDENTITY_004",
+  category: "identity-threat",
+  severity: "critical",
+  score: 60,
+  confidence: "critical-confidence",
+  pattern:
+    /\bkyc\s+expired\b/i
+},
+{
+  ruleId: "IDENTITY_005",
+  category: "identity-threat",
+  severity: "critical",
+  score: 55,
+  confidence: "critical-confidence",
+  pattern:
+    /\bbanking\s+verification\b/i
+},
+{
+  ruleId: "IDENTITY_006",
+  category: "identity-threat",
+  severity: "high",
+  score: 45,
+  confidence: "high-confidence",
+  pattern:
+    /\bverification\s+pending\b/i
+},
+{
+  ruleId: "REMOTE_001",
+  category: "remote-access-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\bshare\s+screen\b/i
+},
+{
+  ruleId: "REMOTE_002",
+  category: "remote-access-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\baccessibility\s+permissions\b/i
+},
+{
+  ruleId: "REMOTE_003",
+  category: "remote-access-threat",
+  severity: "critical",
+  score: 65,
+  confidence: "critical-confidence",
+  pattern:
+    /\bunknown\s+source\b/i
+},
+{
+  ruleId: "REMOTE_004",
+  category: "remote-access-threat",
+  severity: "critical",
+  score: 65,
+  confidence: "critical-confidence",
+  pattern:
+    /\bremote\s+support\b/i
+},
+{
+  ruleId: "WALLET_001",
+  category: "wallet-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\bseed\s+phrase\b/i
+},
+{
+  ruleId: "WALLET_002",
+  category: "wallet-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\brecovery\s+phrase\b/i
+},
+{
+  ruleId: "WALLET_003",
+  category: "wallet-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\bwallet\s+compromised\b/i
+},
+{
+  ruleId: "WALLET_004",
+  category: "wallet-threat",
+  severity: "critical",
+  score: 65,
+  confidence: "critical-confidence",
+  pattern:
+    /\bwallet\s+synchronization\b/i
+},
+{
+  ruleId: "WALLET_005",
+  category: "wallet-threat",
+  severity: "critical",
+  score: 85,
+  confidence: "critical-confidence",
+  pattern:
+    /\bimport\s+crypto\s+wallet\b/i
+},
+{
+  ruleId: "MALWARE_001",
+  category: "malware-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\bopen\s+attachment\b/i
+},
+{
+  ruleId: "MALWARE_002",
+  category: "malware-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\bsecurity\s+patch\b/i
+},
+{
+  ruleId: "MALWARE_003",
+  category: "malware-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\banti-virus\s+setup\b/i
+},
+{
+  ruleId: "MALWARE_004",
+  category: "malware-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\binstall\s+cleaner\b/i
+},
+{
+  ruleId: "PAYMENT_003",
+  category: "payment-threat",
+  severity: "high",
+  score: 50,
+  confidence: "high-confidence",
+  pattern:
+    /\bcustoms\s+fee\b/i
+},
+{
+  ruleId: "PAYMENT_004",
+  category: "payment-threat",
+  severity: "high",
+  score: 50,
+  confidence: "high-confidence",
+  pattern:
+    /\bemi\s+overdue\b/i
+},
+{
+  ruleId: "PAYMENT_005",
+  category: "payment-threat",
+  severity: "high",
+  score: 45,
+  confidence: "medium-confidence",
+  pattern:
+    /\brecharge\s+available\b/i
+},
+{
+  ruleId: "VERIFY_001",
+  category: "verification-threat",
+  severity: "high",
+  score: 55,
+  confidence: "high-confidence",
+  pattern:
+    /\bsend\s+verification\s+code\b/i
+},
+{
+  ruleId: "VERIFY_002",
+  category: "verification-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\bcomplete\s+verification\b/i
+},
+{
+  ruleId: "VERIFY_003",
+  category: "verification-threat",
+  severity: "critical",
+  score: 65,
+  confidence: "critical-confidence",
+  pattern:
+    /\bmandatory\s+telecom\s+verification\b/i
+},
+{
+  ruleId: "VERIFY_004",
+  category: "verification-threat",
+  severity: "critical",
+  score: 70,
+  confidence: "critical-confidence",
+  pattern:
+    /\bupdate\s+mobile\s+banking\s+credentials\b/i
+},
+{
+  ruleId: "VERIFY_005",
+  category: "verification-threat",
+  severity: "critical",
+  score: 65,
+  confidence: "critical-confidence",
+  pattern:
+    /\breset\s+transaction\s+pin\b/i
+},
+{
+  ruleId: "CRYPTO_010",
+  category: "crypto-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\bcrypto\s+investment\b/i
+},
+{
+  ruleId: "CRYPTO_011",
+  category: "crypto-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\bguaranteed\s+returns\b/i
+},
+{
+  ruleId: "CRYPTO_012",
+  category: "crypto-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\bfree\s+nft\s+mint\b/i
+},
+{
+  ruleId: "CRYPTO_013",
+  category: "crypto-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\bwallet\s+breach\s+detected\b/i
+},
+{
+  ruleId: "MALWARE_010",
+  category: "malware-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\bdownload\s+invoice\.js\b/i
+},
+{
+  ruleId: "MALWARE_011",
+  category: "malware-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\bdownload\s+secure\s+patch\.bat\b/i
+},
+{
+  ruleId: "MALWARE_012",
+  category: "malware-threat",
+  severity: "critical",
+  score: 80,
+  confidence: "critical-confidence",
+  pattern:
+    /\banti-virus\s+setup\.exe\b/i
+},
+{
+  ruleId: "MALWARE_013",
+  category: "malware-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\bupdate\s+browser\s+extension\b/i
+},
+{
+  ruleId: "MALWARE_014",
+  category: "malware-threat",
+  severity: "critical",
+  score: 75,
+  confidence: "critical-confidence",
+  pattern:
+    /\bchrome\s+security\s+update\b/i
+},
+{
+  ruleId: "REMOTE_010",
+  category: "remote-access-threat",
+  severity: "critical",
+  score: 85,
+  confidence: "critical-confidence",
+  pattern:
+    /\binstall\s+accessibility\s+helper\b/i
+},
+{
+  ruleId: "SOCIAL_001",
+  category: "social-engineering",
+  severity: "high",
+  score: 60,
+  confidence: "high-confidence",
+  pattern:
+    /\bclaim\s+educational\s+subsidy\b/i
+},
+{
+  ruleId: "SOCIAL_002",
+  category: "social-engineering",
+  severity: "high",
+  score: 60,
+  confidence: "high-confidence",
+  pattern:
+    /\bcovid\s+relief\s+fund\b/i
+},
+{
+  ruleId: "SOCIAL_003",
+  category: "social-engineering",
+  severity: "high",
+  score: 65,
+  confidence: "high-confidence",
+  pattern:
+    /\bmedical\s+insurance\s+activation\b/i
+},
+{
+  ruleId: "SOCIAL_004",
+  category: "social-engineering",
+  severity: "high",
+  score: 60,
+  confidence: "high-confidence",
+  pattern:
+    /\bimmigration\s+issue\b/i
+},
+{
+  ruleId: "MALWARE_020",
+  category: "dangerous-file",
+  severity: "critical",
+  score: 85,
+  confidence: "critical-confidence",
+  pattern:
+    /\banti-?virus\s+setup\.exe\b/i
+},
+{
+  ruleId: "BANK_020",
+  category: "banking",
+  severity: "high",
+  score: 65,
+  confidence: "high-confidence",
+  pattern:
+    /\bsecure\s+banking\s+shield\b/i
+}
+  ];
+
+  private readonly allowlistRules:
+    AllowlistRule[] = [
+    {
+      ruleId: "ALLOWLIST_001",
+      pattern:
+        /\baccount\s+statement\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_002",
+      pattern:
+        /\bmonthly\s+statement\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_003",
+      pattern:
+        /\bfamily\s+dinner\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_004",
+      pattern:
+        /\bvacation\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_005",
+      pattern:
+        /\byour\s+otp\s+for\s+swiggy\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_006",
+      pattern:
+        /\byour\s+otp\s+for\s+zomato\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_007",
+      pattern:
+        /\byour\s+otp\s+for\s+uber\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_008",
+      pattern:
+        /\blogin\s+otp\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_009",
+      pattern:
+        /\bdelivery\s+partner\b/i
+    },
+    {
+      ruleId: "ALLOWLIST_010",
+      pattern:
+        /\border\s+confirmation\b/i
+    }
+  ];
+
+  public evaluate(
+    content: string
+  ): RuleMatch[] {
+    if (
+      this.isAllowlisted(content)
+    ) {
+      return [];
+    }
+
+    const matches: RuleMatch[] = [];
+
+    for (const rule of this.rules) {
+      const result =
+        content.match(rule.pattern);
+
+      if (result) {
+        matches.push({
+          ruleId: rule.ruleId,
+          category: rule.category,
+          severity: rule.severity,
+          score: rule.score,
+          confidence:
+            rule.confidence,
+          matchedText: result[0]
+        });
+      }
+    }
+
+    return matches;
+  }
+
+  private isAllowlisted(
+    content: string
+  ): boolean {
+    for (const rule of this.allowlistRules) {
+      if (
+        rule.pattern.test(content)
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public calculateRiskScore(
+    matches: RuleMatch[]
+  ): number {
+    return matches.reduce(
+      (total, match) =>
+        total + match.score,
+      0
+    );
+  }
+
+  public containsBlockedKeyword(
+    content: string
+  ): boolean {
+    return (
+      this.evaluate(content)
+        .length > 0
+    );
+  }
+}
+
+===== ./src/scanners/urlScanner.ts =====
+
+export interface UrlScanMatch {
+  type: string;
+  value: string;
+  score: number;
+}
+
+export class UrlScanner {
+  private readonly suspiciousDomains: string[] = [
+    "bit.ly",
+    "tinyurl.com",
+    "goo.gl",
+    "t.co",
+    "is.gd",
+    "rebrand.ly"
+  ];
+
+  private readonly suspiciousExtensions: string[] = [
+    ".exe",
+    ".apk",
+    ".bat",
+    ".scr",
+    ".js",
+    ".vbs"
+  ];
+
+  private readonly urlRegex: RegExp =
+    /(https?:\/\/[^\s]+)|(www\.[^\s]+)/gi;
+
+  private readonly ipUrlRegex: RegExp =
+    /(?:https?:\/\/)?(?:\d{1,3}\.){3}\d{1,3}/i;
+
+  private readonly punycodeRegex: RegExp =
+    /\bxn--[a-z0-9-]+\b/i;
+
+  public extractUrls(content: string): string[] {
+    const matches = content.match(this.urlRegex);
+
+    if (!matches) {
+      return [];
+    }
+
+    return matches;
+  }
+
+  private calculateEntropyScore(
+    value: string
+  ): number {
+    const uniqueCharacters =
+      new Set(value).size;
+
+    return (
+      uniqueCharacters /
+      value.length
+    );
+  }
+
+  public scan(content: string): string[] {
+    const findings: string[] = [];
+
+    const normalizedContent =
+      content.toLowerCase();
+
+    const urls =
+      this.extractUrls(content);
+
+    for (const url of urls) {
+      const normalizedUrl =
+        url.toLowerCase();
+
+      for (const domain of this.suspiciousDomains) {
+        if (normalizedUrl.includes(domain)) {
+          findings.push(domain);
+        }
+      }
+
+      for (const extension of this.suspiciousExtensions) {
+        if (normalizedUrl.includes(extension)) {
+          findings.push(extension);
+        }
+      }
+
+      if (normalizedUrl.includes("@")) {
+        findings.push("credential-pattern");
+      }
+
+      if (normalizedUrl.includes("http://")) {
+        findings.push("insecure-http");
+      }
+
+      if (this.ipUrlRegex.test(normalizedUrl)) {
+        findings.push("ip-address-url");
+      }
+
+      if (this.punycodeRegex.test(normalizedUrl)) {
+        findings.push("punycode-domain");
+      }
+
+      const entropy =
+        this.calculateEntropyScore(
+          normalizedUrl
+        );
+
+      if (entropy > 0.6) {
+        findings.push(
+          "high-entropy-url"
+        );
+      }
+
+      const subdomainCount =
+        (
+          normalizedUrl.match(/\./g) || []
+        ).length;
+
+      if (subdomainCount >= 4) {
+        findings.push(
+          "excessive-subdomains"
+        );
+      }
+
+      const queryParameterCount =
+        (
+          normalizedUrl.match(/=/g) || []
+        ).length;
+
+      if (queryParameterCount >= 3) {
+        findings.push(
+          "parameter-obfuscation"
+        );
+      }
+
+      if (
+        /paypal|bank|upi|account/.test(
+          normalizedUrl
+        ) &&
+        /secure|verify|login|update/.test(
+          normalizedUrl
+        )
+      ) {
+        findings.push(
+          "brand-impersonation"
+        );
+      }
+    }
+
+    if (this.ipUrlRegex.test(content)) {
+      findings.push("ip-address-url");
+    }
+
+    if (/\bloan\b/i.test(normalizedContent)) {
+      findings.push("loan");
+    }
+
+    if (/\bwin(?:ner|nings)?\b/i.test(normalizedContent)) {
+      findings.push("win");
+    }
+
+    if (/[^\x00-\x7F]/.test(content)) {
+      findings.push("mixed-unicode");
+    }
+
+    const symbolMatches =
+      content.match(/[!@#$%^&*]/g);
+
+    if (symbolMatches && symbolMatches.length >= 4) {
+      findings.push("symbol-spam");
+    }
+
+    const uppercaseCharacters =
+      content.replace(/[^A-Z]/g, "").length;
+
+    const alphabeticCharacters =
+      content.replace(/[^a-zA-Z]/g, "").length;
+
+    if (
+      alphabeticCharacters > 0 &&
+      uppercaseCharacters /
+        alphabeticCharacters >
+        0.7
+    ) {
+      findings.push("excessive-caps");
+    }
+
+    return [...new Set(findings)];
+  }
+
+  public evaluate(content: string): UrlScanMatch[] {
+    const matches: UrlScanMatch[] = [];
+
+    const findings = this.scan(content);
+
+    for (const finding of findings) {
+      if (finding === "bit.ly") {
+        matches.push({
+          type: "shortened-url",
+          value: finding,
+          score: 40
+        });
+      } else if (finding === "insecure-http") {
+        matches.push({
+          type: "insecure-protocol",
+          value: finding,
+          score: 25
+        });
+      } else if (
+        this.suspiciousExtensions.includes(finding)
+      ) {
+        matches.push({
+          type: "dangerous-file",
+          value: finding,
+          score: 50
+        });
+      } else if (finding === "credential-pattern") {
+        matches.push({
+          type: "credential-risk",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "ip-address-url") {
+        matches.push({
+          type: "network-risk",
+          value: finding,
+          score: 40
+        });
+      } else if (finding === "punycode-domain") {
+        matches.push({
+          type: "domain-obfuscation",
+          value: finding,
+          score: 45
+        });
+      } else if (finding === "mixed-unicode") {
+        matches.push({
+          type: "unicode-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "symbol-spam") {
+        matches.push({
+          type: "spam-pattern",
+          value: finding,
+          score: 20
+        });
+      } else if (finding === "excessive-caps") {
+        matches.push({
+          type: "social-engineering",
+          value: finding,
+          score: 20
+        });
+      } else if (finding === "high-entropy-url") {
+        matches.push({
+          type: "url-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "excessive-subdomains") {
+        matches.push({
+          type: "domain-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "parameter-obfuscation") {
+        matches.push({
+          type: "parameter-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "brand-impersonation") {
+        matches.push({
+          type: "brand-impersonation",
+          value: finding,
+          score: 50
+        });
+      } else {
+        matches.push({
+          type: "suspicious-keyword",
+          value: finding,
+          score: 20
+        });
+      }
+    }
+
+    return matches;
+  }
+
+  public hasSuspiciousUrl(content: string): boolean {
+    return this.scan(content).length > 0;
+  }
+}
+
+===== ./src/calls/robocallDetector.ts =====
+
+import {
+  CallMetadata,
+  TelecomFraudSignal
+} from "./telecomFraudRules";
+
+export class RobocallDetector {
+  private readonly shortCallThreshold = 5;
+
+  private readonly robocallBurstThreshold = 8;
+
+  private readonly burstWindowMs =
+    3 * 60 * 1000;
+
+  private readonly repeatedRetryThreshold = 5;
+
+  private readonly unansweredThreshold = 6;
+
+  public analyze(
+    currentCall: CallMetadata,
+    historicalCalls: CallMetadata[]
+  ): TelecomFraudSignal[] {
+    const signals:
+      TelecomFraudSignal[] = [];
+
+    const relatedCalls =
+      historicalCalls.filter(
+        (call) =>
+          call.phoneNumber ===
+          currentCall.phoneNumber
+      );
+
+    const recentCalls =
+      relatedCalls.filter(
+        (call) =>
+          currentCall.timestamp -
+            call.timestamp <=
+          this.burstWindowMs
+      );
+
+    const shortDurationCalls =
+      recentCalls.filter(
+        (call) =>
+          call.durationSeconds <=
+          this.shortCallThreshold
+      );
+
+    if (
+      shortDurationCalls.length >=
+      this.robocallBurstThreshold
+    ) {
+      signals.push({
+        category:
+          "robocall-burst-pattern",
+        reason:
+          "High-frequency short-duration robocall pattern detected",
+        score: 70,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    const unansweredCalls =
+      recentCalls.filter(
+        (call) =>
+          !call.wasAnswered
+      );
+
+    if (
+      unansweredCalls.length >=
+      this.unansweredThreshold
+    ) {
+      signals.push({
+        category:
+          "persistent-unanswered-calling",
+        reason:
+          "Repeated unanswered call persistence detected",
+        score: 45,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const rejectedCalls =
+      recentCalls.filter(
+        (call) =>
+          call.wasRejected
+      );
+
+    if (
+      rejectedCalls.length >=
+      this.repeatedRetryThreshold
+    ) {
+      signals.push({
+        category:
+          "repeated-retry-cadence",
+        reason:
+          "Repeated retry cadence after rejection detected",
+        score: 55,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const averageDuration =
+      this.calculateAverageDuration(
+        recentCalls
+      );
+
+    if (
+      recentCalls.length >= 6 &&
+      averageDuration <= 4
+    ) {
+      signals.push({
+        category:
+          "automated-dial-pattern",
+        reason:
+          "Automated dialer duration profile detected",
+        score: 60,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const evenlySpaced =
+      this.hasEvenlySpacedCadence(
+        recentCalls
+      );
+
+    if (evenlySpaced) {
+      signals.push({
+        category:
+          "automated-cadence-pattern",
+        reason:
+          "Deterministic evenly-spaced robocall cadence detected",
+        score: 65,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    return signals;
+  }
+
+  private calculateAverageDuration(
+    calls: CallMetadata[]
+  ): number {
+    if (calls.length === 0) {
+      return 0;
+    }
+
+    const total =
+      calls.reduce(
+        (sum, call) =>
+          sum +
+          call.durationSeconds,
+        0
+      );
+
+    return total / calls.length;
+  }
+
+  private hasEvenlySpacedCadence(
+    calls: CallMetadata[]
+  ): boolean {
+    if (calls.length < 5) {
+      return false;
+    }
+
+    const sortedCalls =
+      [...calls].sort(
+        (a, b) =>
+          a.timestamp -
+          b.timestamp
+      );
+
+    const intervals: number[] =
+      [];
+
+    for (
+      let i = 1;
+      i < sortedCalls.length;
+      i++
+    ) {
+      intervals.push(
+        sortedCalls[i]
+          .timestamp -
+          sortedCalls[i - 1]
+            .timestamp
+      );
+    }
+
+    const baseline =
+      intervals[0];
+
+    let matchingIntervals = 0;
+
+    for (
+      const interval of intervals
+    ) {
+      const difference =
+        Math.abs(
+          interval - baseline
+        );
+
+      if (
+        difference <= 5000
+      ) {
+        matchingIntervals++;
+      }
+    }
+
+    return (
+      matchingIntervals >=
+      intervals.length - 1
+    );
+  }
+}
+
+===== ./src/calls/telecomFraudRules.ts =====
+
+export interface TelecomFraudSignal {
+  category: string;
+  reason: string;
+  score: number;
+  confidence:
+    | "low-confidence"
+    | "medium-confidence"
+    | "high-confidence"
+    | "critical-confidence";
+}
+
+export interface CallMetadata {
+  phoneNumber: string;
+  timestamp: number;
+  durationSeconds: number;
+  wasRejected: boolean;
+  wasAnswered: boolean;
+  userTaggedCategories?: string[];
+}
+
+export class TelecomFraudRules {
+  private readonly shortCallThreshold = 5;
+
+  private readonly burstWindowMs =
+    3 * 60 * 1000;
+
+  private readonly lateNightStartHour = 0;
+
+  private readonly lateNightEndHour = 5;
+
+  private readonly suspiciousRetryThreshold = 5;
+
+  private readonly highBurstThreshold = 10;
+
+  private readonly spoofRotationPrefixLength = 6;
+
+  public evaluateCallPattern(
+    currentCall: CallMetadata,
+    historicalCalls: CallMetadata[]
+  ): TelecomFraudSignal[] {
+    const signals:
+      TelecomFraudSignal[] = [];
+
+    const relatedCalls =
+      historicalCalls.filter(
+        (call) =>
+          call.phoneNumber ===
+          currentCall.phoneNumber
+      );
+
+    const recentBurstCalls =
+      relatedCalls.filter(
+        (call) =>
+          currentCall.timestamp -
+            call.timestamp <=
+          this.burstWindowMs
+      );
+
+    if (
+      currentCall.durationSeconds > 0 &&
+      currentCall.durationSeconds <=
+        this.shortCallThreshold
+    ) {
+      signals.push({
+        category: "robocall-pattern",
+        reason:
+          "Repeated short-duration call behavior detected",
+        score: 25,
+        confidence:
+          "medium-confidence"
+      });
+    }
+
+    if (
+      recentBurstCalls.length >=
+      this.highBurstThreshold
+    ) {
+      signals.push({
+        category: "burst-calling",
+        reason:
+          "High-frequency burst calling behavior detected",
+        score: 60,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    const rejectedRetryCalls =
+      recentBurstCalls.filter(
+        (call) =>
+          call.wasRejected
+      );
+
+    if (
+      rejectedRetryCalls.length >=
+      this.suspiciousRetryThreshold
+    ) {
+      signals.push({
+        category:
+          "coercive-retry-pattern",
+        reason:
+          "Persistent retry behavior after rejection detected",
+        score: 50,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const callHour =
+      new Date(
+        currentCall.timestamp
+      ).getHours();
+
+    if (
+      callHour >=
+        this.lateNightStartHour &&
+      callHour <=
+        this.lateNightEndHour &&
+      recentBurstCalls.length >= 3
+    ) {
+      signals.push({
+        category:
+          "late-night-persistence",
+        reason:
+          "Repeated late-night calling behavior detected",
+        score: 45,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const rotatingPrefixCalls =
+      historicalCalls.filter(
+        (call) =>
+          call.phoneNumber.slice(
+            0,
+            this
+              .spoofRotationPrefixLength
+          ) ===
+            currentCall.phoneNumber.slice(
+              0,
+              this
+                .spoofRotationPrefixLength
+            ) &&
+          call.phoneNumber !==
+            currentCall.phoneNumber
+      );
+
+    if (
+      rotatingPrefixCalls.length >= 4
+    ) {
+      signals.push({
+        category:
+          "spoof-like-rotation",
+        reason:
+          "Rotating number-prefix behavior detected",
+        score: 55,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    if (
+      currentCall.userTaggedCategories
+    ) {
+      for (
+        const tag of
+        currentCall
+          .userTaggedCategories
+      ) {
+        if (
+          tag ===
+          "remote-access-scam"
+        ) {
+          signals.push({
+            category:
+              "remote-access-scam",
+            reason:
+              "User-local remote access scam label detected",
+            score: 80,
+            confidence:
+              "critical-confidence"
+          });
+        }
+
+        if (
+          tag ===
+          "otp-coercion"
+        ) {
+          signals.push({
+            category:
+              "otp-coercion",
+            reason:
+              "User-local OTP coercion label detected",
+            score: 85,
+            confidence:
+              "critical-confidence"
+          });
+        }
+
+        if (
+          tag ===
+          "government-impersonation"
+        ) {
+          signals.push({
+            category:
+              "government-impersonation",
+            reason:
+              "User-local authority impersonation label detected",
+            score: 90,
+            confidence:
+              "critical-confidence"
+          });
+        }
+
+        if (
+          tag ===
+          "robocall"
+        ) {
+          signals.push({
+            category:
+              "robocall",
+            reason:
+              "User-local robocall label detected",
+            score: 65,
+            confidence:
+              "high-confidence"
+          });
+        }
+      }
+    }
+
+    return signals;
+  }
+}
+
+===== ./src/calls/callAnalyzer.ts =====
+
+import {
+  BehavioralCallMemory
+} from "./behavioralCallMemory";
+
+import {
+  CallerReputation
+} from "./callerReputation";
+
+import {
+  CoercionDetector
+} from "./coercionDetector";
+
+import {
+  RobocallDetector
+} from "./robocallDetector";
+
+import {
+  CallMetadata,
+  TelecomFraudRules,
+  TelecomFraudSignal
+} from "./telecomFraudRules";
+
+export interface CallAnalysisExplanation {
+  source: string;
+  reason: string;
+  score: number;
+}
+
+export interface CallForensicEvidence {
+  type: string;
+  value: string;
+  confidence: string;
+  score: number;
+}
+
+export interface CallForensicCorrelation {
+  source: string;
+  reason: string;
+  score: number;
+}
+
+export interface CallForensicVerdict {
+  severity: string;
+  summary: string;
+}
+
+export interface CallAnalysisResult {
+  isSuspicious: boolean;
+  riskScore: number;
+  severity: string;
+  categories: string[];
+  explanations:
+    CallAnalysisExplanation[];
+  forensic: {
+    evidence:
+      CallForensicEvidence[];
+    correlations:
+      CallForensicCorrelation[];
+    verdict:
+      CallForensicVerdict;
+  };
+}
+
+export class CallAnalyzer {
+  private readonly memory:
+    BehavioralCallMemory;
+
+  private readonly reputation:
+    CallerReputation;
+
+  private readonly telecomFraudRules:
+    TelecomFraudRules;
+
+  private readonly robocallDetector:
+    RobocallDetector;
+
+  private readonly coercionDetector:
+    CoercionDetector;
+
+  constructor() {
+    this.memory =
+      new BehavioralCallMemory();
+
+    this.reputation =
+      new CallerReputation();
+
+    this.telecomFraudRules =
+      new TelecomFraudRules();
+
+    this.robocallDetector =
+      new RobocallDetector();
+
+    this.coercionDetector =
+      new CoercionDetector();
+  }
+
+  public analyzeCall(
+    call: CallMetadata
+  ): CallAnalysisResult {
+    const historicalCalls =
+      this.memory.getAllCalls();
+
+    const signals:
+      TelecomFraudSignal[] = [];
+
+    signals.push(
+      ...this
+        .telecomFraudRules
+        .evaluateCallPattern(
+          call,
+          historicalCalls
+        )
+    );
+
+    signals.push(
+      ...this
+        .robocallDetector
+        .analyze(
+          call,
+          historicalCalls
+        )
+    );
+
+    signals.push(
+      ...this
+        .coercionDetector
+        .analyze(
+          call,
+          historicalCalls
+        )
+    );
+
+    const reputationEntry =
+      this.reputation
+        .updateReputation(
+          call.phoneNumber,
+          signals,
+          call
+            .userTaggedCategories
+        );
+
+    this.memory.recordCall(
+      call
+    );
+
+    const categories =
+      [...new Set(
+        signals.map(
+          (signal) =>
+            signal.category
+        )
+      )];
+
+    const explanations:
+      CallAnalysisExplanation[] =
+      [];
+
+    const evidence:
+      CallForensicEvidence[] =
+      [];
+
+    const correlations:
+      CallForensicCorrelation[] =
+      [];
+
+    let riskScore = 0;
+
+    for (const signal of signals) {
+      riskScore +=
+        signal.score;
+
+      explanations.push({
+        source:
+          signal.category,
+        reason:
+          signal.reason,
+        score:
+          signal.score
+      });
+
+      evidence.push({
+        type:
+          signal.category,
+        value:
+          signal.reason,
+        confidence:
+          signal.confidence,
+        score:
+          signal.score
+      });
+    }
+
+    if (
+      reputationEntry
+        .reputationScore >= 300
+    ) {
+      riskScore += 60;
+
+      correlations.push({
+        source:
+          "local-reputation-engine",
+        reason:
+          "Locally established malicious behavioral reputation detected",
+        score: 60
+      });
+    }
+
+    if (
+      reputationEntry.labels.includes(
+        "trusted"
+      ) ||
+      reputationEntry.labels.includes(
+        "family"
+      )
+    ) {
+      riskScore -= 80;
+
+      correlations.push({
+        source:
+          "local-legitimacy-engine",
+        reason:
+          "Trusted local caller suppression activated",
+        score: -80
+      });
+    }
+
+    if (riskScore < 0) {
+      riskScore = 0;
+    }
+
+    const severity =
+      this.calculateSeverity(
+        riskScore
+      );
+
+    const summary =
+      this.generateSummary(
+        severity,
+        categories
+      );
+
+    return {
+      isSuspicious:
+        severity !== "safe",
+      riskScore,
+      severity,
+      categories,
+      explanations,
+      forensic: {
+        evidence,
+        correlations,
+        verdict: {
+          severity,
+          summary
+        }
+      }
+    };
+  }
+
+  private calculateSeverity(
+    score: number
+  ): string {
+    if (score >= 250) {
+      return "critical";
+    }
+
+    if (score >= 160) {
+      return "high-risk";
+    }
+
+    if (score >= 90) {
+      return "suspicious";
+    }
+
+    if (score >= 40) {
+      return "caution";
+    }
+
+    return "safe";
+  }
+
+  private generateSummary(
+    severity: string,
+    categories: string[]
+  ): string {
+    if (
+      categories.includes(
+        "government-impersonation"
+      )
+    ) {
+      return (
+        severity +
+        " government impersonation pattern detected"
+      );
+    }
+
+    if (
+      categories.includes(
+        "remote-access-scam"
+      )
+    ) {
+      return (
+        severity +
+        " remote access fraud pattern detected"
+      );
+    }
+
+    if (
+      categories.includes(
+        "robocall-burst-pattern"
+      )
+    ) {
+      return (
+        severity +
+        " robocall activity detected"
+      );
+    }
+
+    return (
+      severity +
+      " suspicious call behavior detected"
+    );
+  }
+}
+
+===== ./src/calls/behavioralCallMemory.ts =====
+
+import {
+  CallMetadata
+} from "./telecomFraudRules";
+
+export class BehavioralCallMemory {
+  private readonly calls:
+    CallMetadata[] = [];
+
+  private readonly retentionWindowMs =
+    7 * 24 * 60 * 60 * 1000;
+
+  public recordCall(
+    call: CallMetadata
+  ): void {
+    this.calls.push(call);
+
+    this.pruneExpiredCalls();
+  }
+
+  public getCallsForNumber(
+    phoneNumber: string
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    return this.calls.filter(
+      (call) =>
+        call.phoneNumber ===
+        phoneNumber
+    );
+  }
+
+  public getRecentCalls(
+    windowMs: number
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    const now = Date.now();
+
+    return this.calls.filter(
+      (call) =>
+        now - call.timestamp <=
+        windowMs
+    );
+  }
+
+  public getAllCalls():
+    CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    return [...this.calls];
+  }
+
+  public getCallsByPrefix(
+    prefix: string
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    return this.calls.filter(
+      (call) =>
+        call.phoneNumber.startsWith(
+          prefix
+        )
+    );
+  }
+
+  public getRejectedCallsForNumber(
+    phoneNumber: string
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    return this.calls.filter(
+      (call) =>
+        call.phoneNumber ===
+          phoneNumber &&
+        call.wasRejected
+    );
+  }
+
+  public getShortDurationCalls(
+    maxDurationSeconds: number
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    return this.calls.filter(
+      (call) =>
+        call.durationSeconds <=
+        maxDurationSeconds
+    );
+  }
+
+  public getBurstCalls(
+    phoneNumber: string,
+    burstWindowMs: number
+  ): CallMetadata[] {
+    this.pruneExpiredCalls();
+
+    const now = Date.now();
+
+    return this.calls.filter(
+      (call) =>
+        call.phoneNumber ===
+          phoneNumber &&
+        now - call.timestamp <=
+          burstWindowMs
+    );
+  }
+
+  public clear(): void {
+    this.calls.length = 0;
+  }
+
+  private pruneExpiredCalls():
+    void {
+    const now = Date.now();
+
+    const retainedCalls =
+      this.calls.filter(
+        (call) =>
+          now - call.timestamp <=
+          this.retentionWindowMs
+      );
+
+    this.calls.length = 0;
+
+    this.calls.push(
+      ...retainedCalls
+    );
+  }
+}
+
+===== ./src/calls/callerReputation.ts =====
+
+import {
+  TelecomFraudSignal
+} from "./telecomFraudRules";
+
+export interface CallerReputationEntry {
+  phoneNumber: string;
+  reputationScore: number;
+  labels: string[];
+  suspiciousCallCount: number;
+  benignCallCount: number;
+  lastUpdated: number;
+}
+
+export class CallerReputation {
+  private readonly entries:
+    CallerReputationEntry[] = [];
+
+  private readonly minimumScore = 0;
+
+  private readonly maximumScore = 1000;
+
+  public updateReputation(
+    phoneNumber: string,
+    signals: TelecomFraudSignal[],
+    userLabels?: string[]
+  ): CallerReputationEntry {
+    let entry =
+      this.entries.find(
+        (existing) =>
+          existing.phoneNumber ===
+          phoneNumber
+      );
+
+    if (!entry) {
+      entry = {
+        phoneNumber,
+        reputationScore: 0,
+        labels: [],
+        suspiciousCallCount: 0,
+        benignCallCount: 0,
+        lastUpdated:
+          Date.now()
+      };
+
+      this.entries.push(entry);
+    }
+
+    let adjustment = 0;
+
+    for (const signal of signals) {
+      adjustment += signal.score;
+    }
+
+    if (signals.length > 0) {
+      entry.suspiciousCallCount += 1;
+    } else {
+      entry.benignCallCount += 1;
+
+      adjustment -= 15;
+    }
+
+    if (userLabels) {
+      for (const label of userLabels) {
+        if (
+          !entry.labels.includes(
+            label
+          )
+        ) {
+          entry.labels.push(label);
+        }
+
+        if (
+          label === "trusted"
+        ) {
+          adjustment -= 80;
+        }
+
+        if (
+          label === "family"
+        ) {
+          adjustment -= 100;
+        }
+
+        if (
+          label === "delivery"
+        ) {
+          adjustment -= 40;
+        }
+
+        if (
+          label === "spam"
+        ) {
+          adjustment += 80;
+        }
+
+        if (
+          label ===
+          "robocall"
+        ) {
+          adjustment += 90;
+        }
+
+        if (
+          label ===
+          "otp-scam"
+        ) {
+          adjustment += 120;
+        }
+
+        if (
+          label ===
+          "government-impersonation"
+        ) {
+          adjustment += 140;
+        }
+      }
+    }
+
+    entry.reputationScore +=
+      adjustment;
+
+    if (
+      entry.reputationScore <
+      this.minimumScore
+    ) {
+      entry.reputationScore =
+        this.minimumScore;
+    }
+
+    if (
+      entry.reputationScore >
+      this.maximumScore
+    ) {
+      entry.reputationScore =
+        this.maximumScore;
+    }
+
+    entry.lastUpdated =
+      Date.now();
+
+    return {
+      ...entry
+    };
+  }
+
+  public getReputation(
+    phoneNumber: string
+  ): CallerReputationEntry | null {
+    const entry =
+      this.entries.find(
+        (existing) =>
+          existing.phoneNumber ===
+          phoneNumber
+      );
+
+    if (!entry) {
+      return null;
+    }
+
+    return {
+      ...entry
+    };
+  }
+
+  public isKnownThreat(
+    phoneNumber: string
+  ): boolean {
+    const entry =
+      this.getReputation(
+        phoneNumber
+      );
+
+    if (!entry) {
+      return false;
+    }
+
+    return (
+      entry.reputationScore >=
+      300
+    );
+  }
+
+  public isKnownBenign(
+    phoneNumber: string
+  ): boolean {
+    const entry =
+      this.getReputation(
+        phoneNumber
+      );
+
+    if (!entry) {
+      return false;
+    }
+
+    return (
+      entry.reputationScore <=
+        20 &&
+      entry.benignCallCount >= 3
+    );
+  }
+
+  public clear(): void {
+    this.entries.length = 0;
+  }
+}
+
+===== ./src/calls/coercionDetector.ts =====
+
+import {
+  CallMetadata,
+  TelecomFraudSignal
+} from "./telecomFraudRules";
+
+export class CoercionDetector {
+  private readonly coerciveBurstWindowMs =
+    5 * 60 * 1000;
+
+  private readonly aggressiveRetryThreshold = 7;
+
+  private readonly lateNightThreshold = 3;
+
+  public analyze(
+    currentCall: CallMetadata,
+    historicalCalls: CallMetadata[]
+  ): TelecomFraudSignal[] {
+    const signals:
+      TelecomFraudSignal[] = [];
+
+    const relatedCalls =
+      historicalCalls.filter(
+        (call) =>
+          call.phoneNumber ===
+          currentCall.phoneNumber
+      );
+
+    const recentCalls =
+      relatedCalls.filter(
+        (call) =>
+          currentCall.timestamp -
+            call.timestamp <=
+          this.coerciveBurstWindowMs
+      );
+
+    if (
+      recentCalls.length >=
+      this.aggressiveRetryThreshold
+    ) {
+      signals.push({
+        category:
+          "aggressive-persistence",
+        reason:
+          "Aggressive repeated call persistence detected",
+        score: 55,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const rejectedCalls =
+      recentCalls.filter(
+        (call) =>
+          call.wasRejected
+      );
+
+    if (
+      rejectedCalls.length >= 5
+    ) {
+      signals.push({
+        category:
+          "post-rejection-escalation",
+        reason:
+          "Repeated retry escalation after rejection detected",
+        score: 65,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    const unansweredCalls =
+      recentCalls.filter(
+        (call) =>
+          !call.wasAnswered
+      );
+
+    if (
+      unansweredCalls.length >= 6
+    ) {
+      signals.push({
+        category:
+          "unanswered-pressure-pattern",
+        reason:
+          "Repeated unanswered pressure-calling behavior detected",
+        score: 45,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const lateNightCalls =
+      recentCalls.filter(
+        (call) => {
+          const hour =
+            new Date(
+              call.timestamp
+            ).getHours();
+
+          return (
+            hour >= 0 &&
+            hour <= 5
+          );
+        }
+      );
+
+    if (
+      lateNightCalls.length >=
+      this.lateNightThreshold
+    ) {
+      signals.push({
+        category:
+          "late-night-coercion",
+        reason:
+          "Late-night coercive retry behavior detected",
+        score: 60,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    const userLabels =
+      currentCall
+        .userTaggedCategories ||
+      [];
+
+    if (
+      userLabels.includes(
+        "otp-coercion"
+      )
+    ) {
+      signals.push({
+        category:
+          "otp-coercion",
+        reason:
+          "User-local OTP coercion label detected",
+        score: 90,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    if (
+      userLabels.includes(
+        "bank-impersonation"
+      )
+    ) {
+      signals.push({
+        category:
+          "bank-impersonation",
+        reason:
+          "User-local bank impersonation label detected",
+        score: 80,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    if (
+      userLabels.includes(
+        "government-impersonation"
+      )
+    ) {
+      signals.push({
+        category:
+          "government-impersonation",
+        reason:
+          "User-local authority impersonation label detected",
+        score: 95,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    if (
+      userLabels.includes(
+        "refund-scam"
+      )
+    ) {
+      signals.push({
+        category:
+          "refund-scam",
+        reason:
+          "User-local refund scam label detected",
+        score: 75,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    if (
+      userLabels.includes(
+        "remote-access-scam"
+      )
+    ) {
+      signals.push({
+        category:
+          "remote-access-scam",
+        reason:
+          "User-local remote access scam label detected",
+        score: 100,
+        confidence:
+          "critical-confidence"
+      });
+    }
+
+    return signals;
+  }
+}
+
+===== ./src/crypto/jwt.ts =====
+
+import jwt, { JwtPayload } from "jsonwebtoken";
+
+export class JwtService {
+  public verifyToken(
+    token: string,
+    secret: string
+  ): JwtPayload | string {
+    return jwt.verify(token, secret, {
+      algorithms: ["HS256"]
+    });
+  }
+
+  public decodeToken(
+    token: string
+  ): JwtPayload | string | null {
+    return jwt.decode(token);
+  }
+}
+
+===== ./src/events/eventBus.ts =====
+
+import { EventEmitter } from "events";
+
+export class EventBus extends EventEmitter {
+  public emitThreatDetected(message: string): void {
+    this.emit("threatDetected", message);
+  }
+
+  public onThreatDetected(listener: (message: string) => void): void {
+    this.on("threatDetected", listener);
+  }
+}
+
+===== ./src/engine/detectionEngine.ts =====
+
+import {
+  BasicRules,
+  RuleMatch,
+  EvidenceConfidence
+} from "../rules/basicRules";
+
+import {
+  UrlScanner,
+  UrlScanMatch
+} from "../scanners/urlScanner";
+
+import { EventBus } from "../events/eventBus";
+import { Logger } from "../utils/logger";
+
+export interface DetectionExplanation {
+  engine?: string;
+  source: string;
+  reason: string;
+  score: number;
+}
+
+export interface ForensicEvidence {
+  type: string;
+  value: string;
+  confidence: string;
+  score: number;
+}
+
+export interface ForensicSignal {
+  category: string;
+  reason: string;
+  confidence: string;
+}
+
+export interface ForensicCorrelation {
+  source: string;
+  reason: string;
+  score: number;
+}
+
+export interface ForensicSuppression {
+  source: string;
+  reason: string;
+  scoreAdjustment: number;
+}
+
+export interface ForensicVerdict {
+  severity: string;
+  summary: string;
+}
+
+export interface ForensicAnalysis {
+  rawEvidence: ForensicEvidence[];
+  interpretedSignals: ForensicSignal[];
+  correlations: ForensicCorrelation[];
+  suppressions: ForensicSuppression[];
+  verdict: ForensicVerdict;
+}
+
+export interface DetectionResult {
+  isSuspicious: boolean;
+  matchedPatterns: string[];
+  riskScore: number;
+  categories: string[];
+  severity: string;
+  explanations: DetectionExplanation[];
+  forensic: ForensicAnalysis;
+}
+
+interface CorrelationRule {
+  categories: string[];
+  score: number;
+  reason: string;
+}
+
+interface BehavioralEvent {
+  timestamp: number;
+  sender?: string;
+  categories: string[];
+  score: number;
+}
+
+interface ConversationState {
+  sender: string;
+  stages: string[];
+  lastUpdated: number;
+}
+
+interface AnalyzeOptions {
+  sender?: string;
+}
+
+export class DetectionEngine {
+  private readonly rules: BasicRules;
+  private readonly scanner: UrlScanner;
+  private readonly eventBus: EventBus;
+  private readonly logger: Logger;
+
+  private readonly suspiciousThreshold: number = 40;
+
+  private readonly behavioralWindowMs =
+    10 * 60 * 1000;
+
+  private readonly conversationWindowMs =
+    30 * 60 * 1000;
+
+  private readonly behavioralEvents:
+    BehavioralEvent[] = [];
+
+  private readonly conversationStates:
+    ConversationState[] = [];
+
+  private readonly trustedSenders:
+    string[] = [
+    "uber",
+    "zomato",
+    "swiggy",
+    "amazon",
+    "hdfc",
+    "icici",
+    "sbi",
+    "axisbank",
+    "flipkart"
+  ];
+
+  private readonly confidenceWeights:
+    Record<
+      EvidenceConfidence,
+      number
+    > = {
+      "low-confidence": 0.5,
+      "medium-confidence": 1,
+      "high-confidence": 1.5,
+      "critical-confidence": 2
+    };
+
+  private readonly maliciousImperatives:
+    RegExp[] = [
+    /\bshare\s+otp\b/i,
+    /\bverify\s+account\b/i,
+    /\binstall\s+apk\b/i,
+    /\bclick\s+link\b/i,
+    /\blogin\s+now\b/i,
+    /\bact\s+now\b/i
+  ];
+
+  private readonly compoundThreatRules: {
+  patterns: RegExp[];
+  bonus: number;
+  reason: string;
+}[] = [
+  {
+    patterns: [
+      /\botp\b/i,
+      /\bcvv\b/i
+    ],
+    bonus: 60,
+    reason:
+      "Credential theft compound pattern"
+  },
+  {
+    patterns: [
+      /\bapk\b/i,
+      /\binstall\b/i
+    ],
+    bonus: 70,
+    reason:
+      "APK installation compound threat"
+  },
+  {
+    patterns: [
+      /\bcrypto\b/i,
+      /\btransfer\b/i
+    ],
+    bonus: 55,
+    reason:
+      "Crypto transfer scam pattern"
+  },
+  {
+    patterns: [
+      /\bverify\b/i,
+      /\baccount\b/i
+    ],
+    bonus: 45,
+    reason:
+      "Account verification phishing pattern"
+  },
+  {
+    patterns: [
+      /\burgent\b/i,
+      /\bclick\b/i
+    ],
+    bonus: 40,
+    reason:
+      "Urgent click coercion pattern"
+  },
+  {
+    patterns: [
+      /\bpassword\b/i,
+      /\breset\b/i
+    ],
+    bonus: 50,
+    reason:
+      "Password reset phishing pattern"
+  },
+  {
+    patterns: [
+      /\bremote\b/i,
+      /\baccess\b/i
+    ],
+    bonus: 80,
+    reason:
+      "Remote access takeover pattern"
+  },
+  {
+  patterns: [
+    /\bcrypto\b/i,
+    /\b(giveaway|free|reward|bonus)\b/i
+  ],
+  bonus: 55,
+  reason:
+    "Crypto giveaway scam pattern"
+},
+{
+  patterns: [
+    /\b(win|winner|prize)\b/i,
+    /\b(free|claim|reward)\b/i
+  ],
+  bonus: 45,
+  reason:
+    "Prize scam compound pattern"
+},
+{
+  patterns: [
+    /\bverify\b/i,
+    /\b(password|otp|account)\b/i
+  ],
+  bonus: 60,
+  reason:
+    "Credential phishing compound pattern"
+}
+];
+
+  private readonly protectiveAdvisories:
+    RegExp[] = [
+    /\bnever\s+share\s+otp\b/i,
+    /\bdo\s+not\s+share\s+otp\b/i,
+    /\bavoid\s+suspicious\s+links\b/i,
+    /\bdo\s+not\s+install\s+apk\b/i,
+    /\bignore\s+scam\b/i,
+    /\bdo\s+not\s+click\b/i
+  ];
+
+  private readonly correlationRules:
+    CorrelationRule[] = [
+    {
+      categories: [
+        "phishing",
+        "banking"
+      ],
+      score: 40,
+      reason:
+        "Banking credential phishing correlation detected"
+    },
+    {
+      categories: [
+        "phishing",
+        "social-engineering"
+      ],
+      score: 35,
+      reason:
+        "Urgency-based phishing correlation detected"
+    },
+    {
+      categories: [
+        "apk-threat",
+        "social-engineering"
+      ],
+      score: 45,
+      reason:
+        "APK social-engineering attack correlation detected"
+    }
+  ];
+
+  private readonly escalationPatterns:
+    {
+      pattern: RegExp;
+      score: number;
+    }[] = [
+    {
+      pattern:
+        /\b(account|bank|verify|otp)\b/i,
+      score: 20
+    },
+    {
+      pattern:
+        /\b(click|urgent|immediately)\b/i,
+      score: 15
+    },
+    {
+      pattern:
+        /\b(refund|cashback|reward)\b/i,
+      score: 20
+    },
+    {
+      pattern:
+        /\b(apk|install|download)\b/i,
+      score: 25
+    },
+    {
+      pattern:
+        /\b(police|arrest|legal)\b/i,
+      score: 30
+    },
+    {
+      pattern:
+        /\b(parcel|delivery|shipment)\b/i,
+      score: 15
+    },
+    {
+  pattern:
+    /\b(win|prize|reward)\b/i,
+  score: 25
+},
+{
+  pattern:
+    /\b(otp|password|verify)\b/i,
+  score: 30
+},
+{
+  pattern:
+    /\b(bit\.ly|tinyurl|goo\.gl)\b/i,
+  score: 35
+},
+{
+  pattern:
+    /\b(suspended|blocked|deactivated)\b/i,
+  score: 25
+},
+{
+  pattern:
+    /\bapk\b/i,
+  score: 45
+},
+{
+  pattern:
+    /\bcvv\b/i,
+  score: 45
+},
+{
+  pattern:
+    /\btransfer\b/i,
+  score: 30
+}
+  ];
+
+  constructor() {
+    this.rules = new BasicRules();
+    this.scanner = new UrlScanner();
+    this.eventBus = new EventBus();
+    this.logger = new Logger();
+  }
+
+  public analyze(
+    content: string,
+    options?: AnalyzeOptions
+  ): DetectionResult {
+    const normalizedContent =
+      this.normalizeContent(content);
+
+const trustedSender = Boolean(
+  options?.sender &&
+  this.trustedSenders.some(
+    (entry) =>
+      options.sender!
+        .toLowerCase()
+        .includes(entry)
+  )
+);
+
+const trustedOperationalMessage =
+  trustedSender &&
+  (
+    /\botp\b/i.test(content) ||
+    /\bauthentication\b/i.test(content) ||
+    /\blogin\b/i.test(content) ||
+    /\bverification\s+code\b/i.test(content)
+  )
+  &&
+  !/\bclick\b/i.test(content)
+  &&
+  !/\bhttp\b/i.test(content)
+  &&
+  !/\binstall\b/i.test(content)
+  &&
+  !/\bapk\b/i.test(content)
+  &&
+  !/\bremote\b/i.test(content)
+  &&
+  !/\bpassword\b/i.test(content)
+  &&
+  !/\bcvv\b/i.test(content)
+  &&
+  !/\bscreen\s*share\b/i.test(content)
+  &&
+  !/\bverify\s+account\b/i.test(content);
+
+const benignOtpMessage =
+  /\botp\b/i.test(content)
+  &&
+  /\blogin\b/i.test(content)
+  &&
+  !/\bshare\b/i.test(content)
+  &&
+  !/\bverify\b/i.test(content)
+  &&
+  !/\bclick\b/i.test(content)
+  &&
+  !/\bhttp\b/i.test(content)
+  &&
+  !/\binstall\b/i.test(content)
+  &&
+  !/\bapk\b/i.test(content)
+  &&
+  !/\bcvv\b/i.test(content);
+
+
+console.log({
+  trustedSender,
+  trustedOperationalMessage,
+  content
+});
+
+if (trustedOperationalMessage) {
+  return {
+    isSuspicious: false,
+    matchedPatterns: [],
+    riskScore: 0,
+    categories: [],
+    severity: "safe",
+    explanations: [
+      {
+        source:
+          "trusted-operational-engine",
+        reason:
+          "Trusted operational authentication message",
+        score: -999
+      }
+    ],
+    forensic: {
+      rawEvidence: [],
+      interpretedSignals: [
+        {
+          category:
+            "trusted-operational",
+          reason:
+            "Trusted sender authentication workflow detected",
+          confidence:
+            "high-confidence"
+        }
+      ],
+      correlations: [],
+      suppressions: [
+        {
+          source:
+            "trusted-operational-engine",
+          reason:
+            "Operational OTP suppression activated",
+          scoreAdjustment:
+            -999
+        }
+      ],
+      verdict: {
+        severity: "safe",
+        summary:
+          "Trusted operational message"
+      }
+    }
+  };
+}
+
+const ruleMatches: RuleMatch[] =
+  this.rules.evaluate(normalizedContent);
+
+    const urlMatches: UrlScanMatch[] =
+      this.scanner.evaluate(content);
+
+    const matchedPatterns: string[] = [
+      ...ruleMatches.map(
+        (match) => match.matchedText
+      ),
+      ...urlMatches.map(
+        (match) => match.value
+      )
+    ];
+
+    const categories: string[] = [
+      ...ruleMatches.map(
+        (match) => match.category
+      ),
+      ...urlMatches.map(
+        (match) => match.type
+      )
+    ];
+
+    const uniqueCategories =
+      [...new Set(categories)];
+
+    const explanations:
+      DetectionExplanation[] = [];
+
+    const rawEvidence:
+      ForensicEvidence[] = [];
+
+    const interpretedSignals:
+      ForensicSignal[] = [];
+
+    const correlations:
+      ForensicCorrelation[] = [];
+
+    const suppressions:
+      ForensicSuppression[] = [];
+
+    for (const match of ruleMatches) {
+      explanations.push({
+        source: match.ruleId,
+        reason:
+          `Detected ${match.category} keyword: ${match.matchedText}`,
+        score: match.score
+      });
+
+      rawEvidence.push({
+        type: "rule-match",
+        value: match.matchedText,
+        confidence:
+          match.confidence,
+        score: match.score
+      });
+
+      interpretedSignals.push({
+        category: match.category,
+        reason:
+          `Detected ${match.category} behavior`,
+        confidence:
+          match.confidence
+      });
+    }
+
+    for (const match of urlMatches) {
+      explanations.push({
+        source: match.type,
+        reason:
+          `Detected ${match.type} indicator`,
+        score: match.score
+      });
+
+      rawEvidence.push({
+        type: "url-indicator",
+        value: match.value,
+        confidence:
+          "high-confidence",
+        score: match.score
+      });
+
+      interpretedSignals.push({
+        category: match.type,
+        reason:
+          `Detected ${match.type} infrastructure`,
+        confidence:
+          "high-confidence"
+      });
+    }
+
+    let confidenceDominantScore = 0;
+
+    for (const match of ruleMatches) {
+      const weightedScore =
+        match.score *
+        this.confidenceWeights[
+          match.confidence
+        ];
+
+      confidenceDominantScore +=
+        weightedScore;
+    }
+
+    for (const match of urlMatches) {
+      confidenceDominantScore +=
+        match.score;
+    }
+
+    let riskScore =
+      Math.round(
+        confidenceDominantScore
+      );
+
+        let escalationScore = 0;
+
+    for (
+      const escalation of
+      this.escalationPatterns
+    ) {
+      if (
+        escalation.pattern.test(
+          normalizedContent
+        )
+      ) {
+        escalationScore +=
+          escalation.score;
+      }
+    }
+
+    if (
+  escalationScore > 0 &&
+  !trustedOperationalMessage &&
+  !benignOtpMessage
+ ){
+      riskScore +=
+        escalationScore;
+
+      correlations.push({
+        source:
+          "semantic-escalation-engine",
+        reason:
+          "Deterministic semantic escalation triggered",
+        score:
+          escalationScore
+      });
+    }
+
+    for (
+      const compoundRule of
+      this.compoundThreatRules
+    ) {
+      const matched =
+        compoundRule.patterns.every(
+          (pattern) =>
+            pattern.test(
+              normalizedContent
+            )
+        );
+
+      if (
+  matched &&
+  !trustedOperationalMessage
+) {
+        riskScore +=
+          compoundRule.bonus;
+
+        correlations.push({
+          source:
+            "compound-threat-engine",
+          reason:
+           compoundRule.reason,
+          score:
+            compoundRule.bonus
+        });
+      }
+    }
+
+    const semanticAdjustment =
+      this.calculateSemanticPolarityAdjustment(
+        normalizedContent,
+        suppressions,
+        correlations
+      );
+
+    riskScore +=
+      semanticAdjustment;
+    
+    const benignAdjustment =
+  this.calculateBenignContextAdjustment(
+    normalizedContent
+  );
+
+riskScore +=
+  benignAdjustment;
+
+if (benignAdjustment < 0) {
+  suppressions.push({
+    source:
+      "benign-context-engine",
+    reason:
+      "Benign contextual language detected",
+    scoreAdjustment:
+      benignAdjustment
+  });
+
+  explanations.push({
+    engine:
+      "benign-context-engine",
+    source:
+      "benign-context-engine",
+    reason:
+      "Benign contextual language detected",
+    score:
+      benignAdjustment
+  });
+}
+
+    for (
+      const correlationRule of
+      this.correlationRules
+    ) {
+      const matched =
+        correlationRule.categories.every(
+          (category) =>
+            uniqueCategories.includes(
+              category
+            )
+        );
+
+      if (matched) {
+        riskScore +=
+          correlationRule.score;
+
+        correlations.push({
+          source: "correlation-engine",
+          reason:
+            correlationRule.reason,
+          score:
+            correlationRule.score
+        });
+      }
+    }
+
+    const sequencingScore =
+      this.calculateSequencingScore(
+        normalizedContent,
+        uniqueCategories,
+        options?.sender
+      );
+
+    if (sequencingScore > 0) {
+      riskScore +=
+        sequencingScore;
+
+      correlations.push({
+          source: "correlation-engine",
+        reason:
+          "Adversarial multi-stage sequencing detected",
+        score:
+          sequencingScore
+      });
+    }
+
+    const behavioralScore =
+      this.calculateBehavioralScore(
+        uniqueCategories,
+        riskScore
+      );
+
+    if (
+  behavioralScore > 0 &&
+  !trustedOperationalMessage
+) {
+      riskScore +=
+        behavioralScore;
+
+      correlations.push({
+        source: "behavioral-engine",
+        reason:
+          "Repeated suspicious behavioral pattern detected",
+        score:
+          behavioralScore
+      });
+
+      explanations.push({
+        engine: "behavioral-engine",
+        source:
+          "behavioral-engine",
+        reason:
+          "Repeated suspicious behavioral pattern detected",
+        score:
+          behavioralScore
+      });
+    }
+
+    const senderAdjustment =
+      this.calculateSenderTrustAdjustment(
+  options?.sender,
+  uniqueCategories,
+  trustedOperationalMessage
+);
+
+    if (senderAdjustment !== 0) {
+      riskScore +=
+        senderAdjustment;
+
+      suppressions.push({
+        source: "sender-trust-engine",
+        reason:
+          "Trusted sender legitimacy adjustment applied",
+        scoreAdjustment:
+          senderAdjustment
+      });
+
+      explanations.push({
+        engine: "sender-trust-engine",
+        source:
+          "sender-trust-engine",
+        reason:
+          "Trusted sender legitimacy adjustment applied",
+        score:
+          senderAdjustment
+      });
+    }
+
+    if (riskScore < 0) {
+      riskScore = 0;
+    }
+
+    if (!trustedOperationalMessage) {
+  this.recordBehavioralEvent(
+    uniqueCategories,
+    riskScore
+  );
+}
+
+
+let severity =
+  this.calculateSeverity(
+    riskScore
+  );
+
+
+    const verdictSummary =
+      this.generateVerdictSummary(
+        severity,
+        uniqueCategories
+      );
+
+    const forensic:
+      ForensicAnalysis = {
+      rawEvidence,
+      interpretedSignals,
+      correlations,
+      suppressions,
+      verdict: {
+        severity,
+        summary:
+          verdictSummary
+      }
+    };
+
+    const isSuspicious =
+      severity !== "safe";
+
+    if (isSuspicious) {
+      this.logger.info(
+        `Suspicious content detected with severity ${severity} and score ${riskScore}`
+      );
+
+      this.eventBus.emitThreatDetected(
+        content
+      );
+    }
+
+    return {
+      isSuspicious,
+      matchedPatterns:
+        [...new Set(matchedPatterns)],
+      riskScore,
+      categories:
+        uniqueCategories,
+      severity,
+      explanations,
+      forensic
+    };
+  }
+
+  private calculateBenignContextAdjustment(
+  content: string
+): number {
+  const benignPatterns = [
+    /updated successfully/i,
+    /processed successfully/i,
+    /generated successfully/i,
+    /created successfully/i,
+    /completed successfully/i,
+    /salary credited/i,
+    /bank statement/i,
+    /meeting attendance/i,
+    /lecture notes/i,
+    /conference registration/i,
+    /invoice for groceries/i,
+    /travel itinerary/i,
+    /gym membership/i,
+    /presentation uploaded/i,
+    /photos uploaded/i,
+    /movie tonight/i,
+    /family dinner/i,
+    /class starts/i,
+    /exam results/i,
+    /electricity bill paid/i,
+    /package shipped/i,
+    /appointment confirmed/i,
+    /research paper/i,
+    /market analysis/i,
+    /vacation starts/i
+  ];
+
+  let adjustment = 0;
+
+  for (const pattern of benignPatterns) {
+    if (pattern.test(content)) {
+      adjustment -= 60;
+    }
+  }
+
+  return adjustment;
+}
+
+  private calculateSemanticPolarityAdjustment(
+    content: string,
+    suppressions:
+      ForensicSuppression[],
+    correlations:
+      ForensicCorrelation[]
+  ): number {
+    for (
+      const advisory of
+      this.protectiveAdvisories
+    ) {
+      if (
+        advisory.test(content)
+      ) {
+        suppressions.push({
+        source: "semantic-polarity-engine",
+          reason:
+            "Protective security advisory detected",
+          scoreAdjustment:
+            -60
+        });
+
+        return -30;
+      }
+    }
+
+    for (
+      const imperative of
+      this.maliciousImperatives
+    ) {
+      if (
+        imperative.test(content)
+      ) {
+        correlations.push({
+          source: "correlation-engine",
+          reason:
+            "Malicious imperative instruction detected",
+          score: 40
+        });
+
+        return 40;
+      }
+    }
+
+    return 0;
+  }
+
+  private calculateSequencingScore(
+    content: string,
+    categories: string[],
+    sender?: string
+  ): number {
+    if (!sender) {
+      return 0;
+    }
+
+    const normalizedSender =
+      sender.toLowerCase();
+
+    const now = Date.now();
+
+    const existingState =
+      this.conversationStates.find(
+        (state) =>
+          state.sender ===
+            normalizedSender &&
+          now -
+            state.lastUpdated <=
+            this.conversationWindowMs
+      );
+
+    const stages: string[] = [];
+
+    if (
+      /\bhello\b|\bhi\b|\bdear\b/i.test(
+        content
+      )
+    ) {
+      stages.push(
+        "trust-building"
+      );
+    }
+
+    if (
+      categories.includes(
+        "social-engineering"
+      )
+    ) {
+      stages.push("urgency");
+    }
+
+    if (
+      categories.includes(
+        "phishing"
+      ) ||
+      categories.includes(
+        "banking"
+      )
+    ) {
+      stages.push(
+        "credential-targeting"
+      );
+    }
+
+    if (
+      categories.includes(
+        "apk-threat"
+      ) ||
+      categories.includes(
+        "dangerous-file"
+      )
+    ) {
+      stages.push("payload-delivery");
+    }
+
+    if (!existingState) {
+      this.conversationStates.push({
+        sender:
+          normalizedSender,
+        stages,
+        lastUpdated: now
+      });
+
+      return 0;
+    }
+
+    for (const stage of stages) {
+      if (
+        !existingState.stages.includes(
+          stage
+        )
+      ) {
+        existingState.stages.push(
+          stage
+        );
+      }
+    }
+
+    existingState.lastUpdated =
+      now;
+
+    const progression =
+      existingState.stages;
+
+    if (
+      progression.includes(
+        "trust-building"
+      ) &&
+      progression.includes(
+        "urgency"
+      ) &&
+      progression.includes(
+        "credential-targeting"
+      ) &&
+      progression.includes(
+        "payload-delivery"
+      )
+    ) {
+      return 80;
+    }
+
+    if (
+      progression.includes(
+        "urgency"
+      ) &&
+      progression.includes(
+        "credential-targeting"
+      ) &&
+      progression.includes(
+        "payload-delivery"
+      )
+    ) {
+      return 60;
+    }
+
+    if (
+      progression.includes(
+        "urgency"
+      ) &&
+      progression.includes(
+        "credential-targeting"
+      )
+    ) {
+      return 35;
+    }
+
+    return 0;
+  }
+
+  private generateVerdictSummary(
+    severity: string,
+    categories: string[]
+  ): string {
+    if (
+      categories.includes(
+        "apk-threat"
+      )
+    ) {
+      return `${severity} APK delivery threat detected`;
+    }
+
+    if (
+      categories.includes(
+        "phishing"
+      )
+    ) {
+      return `${severity} phishing activity detected`;
+    }
+
+    return `${severity} suspicious activity detected`;
+  }
+
+  private calculateSenderTrustAdjustment(
+  sender: string | undefined,
+  categories: string[],
+  trustedOperationalMessage: boolean
+): number {
+    if (!sender) {
+      return 0;
+    }
+
+    const normalizedSender =
+      sender.toLowerCase();
+
+    const trusted =
+      this.trustedSenders.some(
+        (entry) =>
+          normalizedSender.includes(
+            entry
+          )
+      );
+
+    if (!trusted) {
+      return 0;
+    }
+
+    const severeThreat =
+      categories.includes(
+        "apk-threat"
+      ) ||
+      categories.includes(
+        "dangerous-file"
+      );
+
+    if (trustedOperationalMessage) {
+  return 0;
+}
+
+if (severeThreat) {
+  return 0;
+}
+
+return -80;
+  }
+
+  private calculateBehavioralScore(
+    categories: string[],
+    currentScore: number
+  ): number {
+    const now = Date.now();
+
+    const recentEvents =
+      this.behavioralEvents.filter(
+        (event) =>
+          now - event.timestamp <=
+          this.behavioralWindowMs
+      );
+
+    let repeatedMatches = 0;
+
+    for (const event of recentEvents) {
+      const overlap =
+        event.categories.some(
+          (category) =>
+            categories.includes(
+              category
+            )
+        );
+
+      if (overlap) {
+        repeatedMatches++;
+      }
+    }
+
+    if (
+      repeatedMatches >= 5 &&
+      currentScore >= 80
+    ) {
+      return 60;
+    }
+
+    if (
+      repeatedMatches >= 3 &&
+      currentScore >= 50
+    ) {
+      return 35;
+    }
+
+    return 0;
+  }
+
+  private recordBehavioralEvent(
+    categories: string[],
+    score: number
+  ): void {
+    const now = Date.now();
+
+    this.behavioralEvents.push({
+      timestamp: now,
+      categories,
+      score
+    });
+
+    const validEvents =
+      this.behavioralEvents.filter(
+        (event) =>
+          now - event.timestamp <=
+          this.behavioralWindowMs
+      );
+
+    this.behavioralEvents.length = 0;
+
+    this.behavioralEvents.push(
+      ...validEvents
+    );
+  }
+
+  private calculateSeverity(
+    score: number
+  ): string {
+    if (score >= 180) {
+      return "critical";
+    }
+
+    if (score >= 120) {
+      return "high-risk";
+    }
+
+    if (score >= 70) {
+      return "suspicious";
+    }
+
+    if (score >= 40) {
+      return "caution";
+    }
+
+    return "safe";
+  }
+
+  private normalizeContent(
+    content: string
+  ): string {
+    let normalized =
+      content.normalize("NFKC");
+
+    normalized =
+      normalized.toLowerCase();
+
+    normalized =
+      normalized
+        .replace(/hxxp/gi, "http")
+        .replace(/b1t/gi, "bit")
+        .replace(/cvv/gi, "cvv")
+        .replace(/0tp/gi, "otp")
+        .replace(/crypt0/gi, "crypto")
+        .replace(/tr4nsfer/gi, "transfer")
+        .replace(/rew4rd/gi, "reward")
+        .replace(/apk/gi, "apk")
+        .replace(/cl1ck/gi, "click")
+        .replace(/ver1fy/gi, "verify")
+        .replace(/acc0unt/gi, "account")
+        .replace(/pr1z3/gi, "prize")
+        .replace(/crypt0/gi, "crypto")
+        .replace(/\[dot\]/gi, ".")
+        .replace(/\(dot\)/gi, ".")
+        .replace(/\s*\.\s*/g, ".")
+        .replace(/\s*\/\s*/g, "/");
+
+    normalized =
+      normalized
+        .replace(/\bw1n\b/g, "win")
+        .replace(/\bfr33\b/g, "free")
+        .replace(/\bpr1z3\b/g, "prize")
+        .replace(/\bcl1ck\b/g, "click")
+        .replace(/\bv3r1fy\b/g, "verify")
+        .replace(/\bacc0unt\b/g, "account")
+        .replace(/\bcrypt0\b/g, "crypto")
+        .replace(/\binst4ll\b/g, "install")
+        .replace(/\bn0w\b/g, "now")
+        .replace(/\b0tp\b/g, "otp");
+
+    normalized =
+      normalized
+        .replace(/0/g, "o")
+        .replace(/1/g, "i")
+        .replace(/2/g, "z")
+        .replace(/3/g, "e")
+        .replace(/4/g, "a")
+        .replace(/5/g, "s")
+        .replace(/6/g, "g")
+        .replace(/7/g, "t")
+        .replace(/8/g, "b")
+        .replace(/9/g, "g")
+        .replace(/\$/g, "s")
+        .replace(/@/g, "a")
+        .replace(/!/g, "i");
+
+    normalized =
+      normalized.replace(
+        /(.)\1{2,}/g,
+        "$1"
+      );
+
+    normalized =
+      normalized.replace(
+        /\s+/g,
+        " "
+      );
+
+    normalized =
+      normalized.replace(
+        /[^a-z0-9.:/\s]/gi,
+        ""
+      );
+      
+    return normalized.trim();
+  }
+
+  public getEventBus(): EventBus {
+    return this.eventBus;
+  }
+}
+
+===== ./tests/engine.test.ts =====
+
+import { DetectionEngine } from "../src/engine/detectionEngine";
+
+describe("DetectionEngine", () => {
+  let engine: DetectionEngine;
+
+  beforeEach(() => {
+    engine = new DetectionEngine();
+  });
+
+  test("should detect insecure http phishing link", () => {
+    const result = engine.analyze(
+      "URGENT verify your account at http://bit.ly/reset-password"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+
+    expect(result.matchedPatterns).toContain(
+      "bit.ly"
+    );
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+  });
+
+  test("should detect dangerous executable download", () => {
+    const result = engine.analyze(
+      "Download update from http://malware-site.com/update.exe"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.matchedPatterns).toContain(
+      ".exe"
+    );
+
+    expect(result.categories).toContain(
+      "dangerous-file"
+    );
+  });
+
+  test("should detect financial scam keywords", () => {
+    const result = engine.analyze(
+      "Win free crypto loan now"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+
+    expect(result.categories).toContain(
+      "financial"
+    );
+
+    expect(result.categories).toContain(
+      "crypto"
+    );
+  });
+
+  test("should detect contextual phishing attempt", () => {
+    const result = engine.analyze(
+      "Share OTP immediately to verify your bank account"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+
+    expect(result.categories).toContain(
+      "banking"
+    );
+  });
+
+  test("should detect obfuscated phishing keywords", () => {
+    const result = engine.analyze(
+      "W1N fr33 cr3dit cl1ck now"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+  });
+
+  test("should normalize repeated character spam", () => {
+    const result = engine.analyze(
+      "WIIIIIIIN FREEEEEE PRIZEEEE"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "scam"
+    );
+  });
+
+  test("should detect punycode phishing domain", () => {
+    const result = engine.analyze(
+      "Visit http://xn--paypal-security.com/login"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "domain-obfuscation"
+    );
+  });
+
+  test("should detect IP address phishing URL", () => {
+    const result = engine.analyze(
+      "Login at http://192.168.1.20/verify"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "network-risk"
+    );
+  });
+
+  test("should detect unicode obfuscation", () => {
+    const result = engine.analyze(
+      "Verify bіt.ly account"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "unicode-obfuscation"
+    );
+  });
+
+  test("should detect excessive caps and symbol spam", () => {
+    const result = engine.analyze(
+      "URGENT!!!!! VERIFY ACCOUNT NOW!!!!!"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "spam-pattern"
+    );
+
+    expect(result.categories).toContain(
+      "social-engineering"
+    );
+  });
+
+  test("should assign critical severity", () => {
+    const result = engine.analyze(
+      "URGENT verify password account loan win free crypto http://bit.ly/reset.exe"
+    );
+
+    expect(result.severity).toBe(
+      "critical"
+    );
+  });
+
+  test("should suppress excessive duplicate scoring", () => {
+    const result = engine.analyze(
+      "win win win win win free free free"
+    );
+
+    expect(result.riskScore).toBeLessThan(
+      500
+    );
+  });
+
+  test("should provide explainability metadata", () => {
+    const result = engine.analyze(
+      "Verify account password immediately"
+    );
+
+    expect(
+      result.explanations.length
+    ).toBeGreaterThan(0);
+  });
+
+  test("should allow benign banking statement message", () => {
+    const result = engine.analyze(
+      "Your monthly account statement is available"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should allow trusted OTP context", () => {
+    const result = engine.analyze(
+      "Your OTP for Uber login is 456789"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should detect APK installation scam", () => {
+    const result = engine.analyze(
+      "Install APK from unknown sources immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "apk-threat"
+    );
+  });
+
+  test("should detect phone coercion scam", () => {
+    const result = engine.analyze(
+      "Call now and share OTP immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phone-scam"
+    );
+  });
+
+test("should escalate repeated phishing attempts", () => {
+  for (let index = 0; index < 4; index++) {
+    engine.analyze(
+      "Verify your account immediately"
+    );
+  }
+
+  const result = engine.analyze(
+    "Verify your account immediately"
+  );
+
+  expect(result.isSuspicious)
+    .toBe(true);
+
+  expect(result.riskScore)
+    .toBeGreaterThanOrEqual(100);
+
+  expect(result.severity)
+    .toBe("critical");
+
+  expect(
+    result.forensic.correlations.some(
+      (entry) =>
+        entry.source ===
+        "behavioral-engine"
+    )
+  ).toBe(true);
+});
+
+  test("should not trigger on safe conversation", () => {
+    const result = engine.analyze(
+      "Family dinner tonight at home"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+
+    expect(result.riskScore).toBe(0);
+
+    expect(result.matchedPatterns).toEqual([]);
+  });
+
+  test("should avoid false positive for winter", () => {
+    const result = engine.analyze(
+      "Winter vacation starts tomorrow"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+
+    expect(result.matchedPatterns).not.toContain(
+      "win"
+    );
+  });
+
+  test("should detect banking phishing attempt", () => {
+    const result = engine.analyze(
+      "Verify your bank account password immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "banking"
+    );
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+  });
+});
+
+test("should reduce risk for trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Your OTP for Uber login is 123456",
+    {
+      sender: "Uber"
+    }
+  );
+
+  expect(result.isSuspicious)
+    .toBe(false);
+
+  expect(result.severity)
+    .toBe("safe");
+
+  expect(result.riskScore)
+    .toBe(0);
+
+  expect(
+    result.forensic.suppressions.some(
+      (entry: any) =>
+        entry.source ===
+        "trusted-operational-engine"
+    )
+  ).toBe(true);
+});
+
+test("should not suppress dangerous APK threat from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Install APK from unknown sources immediately",
+    {
+      sender: "Amazon"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "apk-threat"
+  );
+});
+
+test("should not suppress executable phishing link from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "URGENT verify account now http://bit.ly/reset.exe",
+    {
+      sender: "HDFC"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "dangerous-file"
+  );
+});
+
+===== ./tests/corpus/largeCorpus.test.ts =====
+
+import { DetectionEngine } from "../../src/engine/detectionEngine";
+
+describe("Large Deterministic Threat Corpus", () => {
+  const engine = new DetectionEngine();
+
+  const missedSamples: string[] = [];
+  const maliciousCorpus: string[] = [
+    "URGENT verify your account immediately",
+    "Click http://bit.ly/reset-password now",
+    "Your OTP is required to avoid suspension",
+    "Download update.exe immediately",
+    "Install secure-update.apk to continue",
+    "You won free crypto giveaway",
+    "Verify KYC or account blocked",
+    "Send bank password immediately",
+    "BTC investment guaranteed returns",
+    "Claim prize now urgent",
+    "Call support immediately for refund",
+    "Your account suspended click here",
+    "Verify PAN and OTP immediately",
+    "Install.apk to receive reward",
+    "http://192.168.1.10/login",
+    "http://xn--paypal-security.com",
+    "FREE FREE FREE WINNER!!!",
+    "Transfer crypto urgently",
+    "Password reset required immediately",
+    "Click tinyurl.com/free-gift",
+    "Provide CVV and OTP now",
+    "Your bank account frozen",
+    "URGENT action required now",
+    "Send verification code now",
+    "Prize money waiting claim now",
+    "Install remote support APK",
+    "Enable accessibility permissions",
+    "Share screen for KYC verification",
+    "Download secure banking app.apk",
+    "Click to avoid deactivation",
+    "Verify Aadhaar immediately to avoid suspension",
+"Your SBI account has been blocked",
+"Reset password using attached link",
+"Click http://goo.gl/free-money",
+"Install latest banking security APK",
+"Enable remote access for refund",
+"Send OTP to continue verification",
+"Urgent tax refund pending",
+"Your KYC expired update now",
+"Free iPhone winner selected",
+"Claim lottery reward immediately",
+"Download invoice.js now",
+"Payment failed verify account",
+"Crypto investment guaranteed 10x",
+"Limited time free BTC airdrop",
+"Your debit card suspended",
+"Update PAN card urgently",
+"Call support to avoid account freeze",
+"Install AnyDesk for support",
+"Install TeamViewer QuickSupport",
+"Verify identity within 24 hours",
+"Win cash reward instantly",
+"Click now for free recharge",
+"Your WhatsApp account will expire",
+"Verify UPI immediately",
+"Reset netbanking password now",
+"Account locked due to suspicious activity",
+"Immediate verification required",
+"Your parcel is held click here",
+"Customs fee pending payment",
+"Provide CVV for refund",
+"Install app from unknown source",
+"APK security update required",
+"Download reward coupon.scr",
+"Open attachment payment.exe",
+"Click to claim insurance refund",
+"Bank alert verify mobile number",
+"Government subsidy pending",
+"Income tax refund available",
+"Update mobile banking credentials",
+"Provide OTP for cancellation",
+"Reward expires tonight",
+"Act now limited opportunity",
+"Congratulations selected winner",
+"Secure your wallet immediately",
+"Free NFT mint available",
+"Wallet synchronization required",
+"Import crypto wallet phrase",
+"Your wallet compromised",
+"Recovery phrase verification required",
+"Verify biometric KYC now",
+"Click to unblock account",
+"Security alert account breach",
+"Reset transaction PIN now",
+"Emergency banking verification",
+"Complete verification to avoid ban",
+"PhonePe verification pending",
+"Google Pay blocked verify",
+"Paytm wallet suspended",
+"Urgent RBI compliance update",
+"Install RBI secure app.apk",
+"W1N FR33 PR1ZE NOW",
+"Cl1ck hxxp://b1t.ly/free",
+"0TP requ1red immediately",
+"Bank acc0unt suspended",
+"Fr33 recharge available",
+"Verify now to avoid arrest",
+"Police complaint pending payment",
+"Your SIM will deactivate",
+"Re-KYC required immediately",
+"Mandatory telecom verification",
+"Click link to avoid service block",
+"Netflix payment failed verify",
+"Amazon account suspended",
+"Flipkart refund pending",
+"Download secure patch.bat",
+"Execute update.vbs immediately",
+"Provide remote desktop access",
+"Share screen for support",
+"Install accessibility helper",
+"Click to enable permissions",
+"Your EMI overdue pay now",
+"Final warning verify immediately",
+"Account termination notice",
+"Confirm identity to continue",
+"Gift card reward waiting",
+"Click now for cashback",
+"Your child scholarship approved",
+"Claim educational subsidy",
+"Urgent family verification required",
+"COVID relief fund pending",
+"Medical insurance activation required",
+"Verify passport immediately",
+"Immigration issue resolve now",
+"Install mandatory security patch",
+"Update browser extension now",
+"Chrome security update required",
+"Device infected click immediately",
+"Virus detected install cleaner",
+"Download anti-virus setup.exe",
+"Urgent crypto liquidation alert",
+"Wallet breach detected",
+"Send seed phrase for recovery",
+"Activate secure banking shield",
+"Card disabled verify identity"
+  ];
+
+  const benignCorpus: string[] = [
+    "Family dinner tonight",
+    "Meeting moved to tomorrow",
+    "Please submit assignment",
+    "Happy birthday have a great year",
+    "Lets watch a movie tonight",
+    "Project discussion at office",
+    "Dinner at 8 PM",
+    "Travel itinerary attached",
+    "Invoice for groceries",
+    "Weather is pleasant today",
+    "Bank statement generated successfully",
+    "OTP for login is 123456",
+    "Crypto research paper published",
+    "Winter vacation starts tomorrow",
+    "Call me when free",
+    "Electricity bill paid successfully",
+    "Your package shipped today",
+    "Team meeting completed",
+    "Exam results announced",
+    "Lunch at restaurant tomorrow",
+    "Please review document",
+    "Your salary credited",
+    "Class starts at 10 AM",
+    "Train arrives at 6 PM",
+    "Happy anniversary",
+    "Presentation uploaded successfully",
+    "Photos from trip attached",
+    "Gym membership renewed",
+    "Medicine reminder for evening",
+    "Conference registration completed",
+    "Your OTP for login is 482991",
+"Bank statement ready for download",
+"Crypto conference starts tomorrow",
+"BTC market analysis attached",
+"Discuss blockchain research paper",
+"Please verify meeting attendance",
+"Account successfully created",
+"Password updated successfully",
+"Your refund has been processed",
+"Please click save document",
+"Download lecture notes pdf",
+"Family vacation photos uploaded",
+"Gym trainer appointment confirmed",
+"Classroom access enabled",
+"Electricity payment completed",
+"Monthly salary credited",
+"Tax filing appointment tomorrow",
+"Movie tickets booked successfully",
+"Amazon package delivered",
+"Netflix subscription renewed",
+"Your exam hall ticket available",
+"Railway ticket confirmed",
+"Doctor appointment scheduled",
+"Office VPN credentials updated",
+"Research grant approved",
+"University portal maintenance tonight",
+"Library membership renewed",
+"Call me after class",
+"Attached meeting agenda",
+"Presentation for seminar ready",
+"Review attached thesis draft",
+"Invoice generated successfully",
+"Dinner reservation confirmed",
+"Photos synced to cloud",
+"Project repository updated",
+"Docker container deployed",
+"Node server restarted",
+"API integration completed",
+"Please update README",
+"Banking seminar next week",
+"Cybersecurity workshop registration completed",
+"Cryptography lecture postponed",
+"Research collaboration discussion tomorrow",
+"OTP-based authentication implemented",
+"Password hashing module completed",
+"JWT verification integrated",
+"Package installation successful",
+"Your order has shipped",
+"Package out for delivery",
+"Happy wedding anniversary",
+"Good morning have a nice day",
+"Take medicines after dinner",
+"Reminder for yoga session",
+"Electric bill generated",
+"Conference room booked",
+"Train delayed by 10 minutes",
+"Airport pickup confirmed",
+"Please submit lab report",
+"Assignment deadline extended",
+"Results published on portal",
+"Team lunch tomorrow",
+"Coffee meeting at 5 PM",
+"Attached architecture diagram",
+"Discuss Prisma migration tomorrow",
+"Backend deployment completed",
+"Frontend testing successful",
+"Family group video call tonight",
+"Car service appointment booked",
+"Pet vaccination reminder",
+"Your internet bill is generated",
+"Maintenance scheduled tonight",
+"Office closed tomorrow",
+"Happy birthday professor",
+"Workshop certificate generated",
+"Research paper accepted",
+"Manuscript revisions completed",
+"Please check attached spreadsheet",
+"Code review completed",
+"System update installed successfully",
+"University fee payment received",
+"Hotel reservation confirmed",
+"Flight boarding starts at 8 PM",
+"Security seminar registration completed",
+"UPI payment received successfully",
+"Aadhaar update completed successfully",
+"Passport renewal appointment booked",
+"Insurance premium paid",
+"Your reimbursement is approved",
+"Medical report available",
+"Your support ticket was resolved",
+"Please restart your laptop",
+"Seminar postponed to Friday",
+"Weekly sprint completed",
+"Thank you for your help",
+"Meeting recording uploaded",
+"See you tomorrow",
+"Take care and drive safely",
+"Your attendance has been marked",
+"Research dataset uploaded",
+"Presentation slides finalized",
+"Conference paper camera-ready submitted"
+  ];
+
+  test("should detect malicious corpus with high recall", () => {
+    let detected = 0;
+
+    for (const sample of maliciousCorpus) {
+  const result =
+    engine.analyze(sample);
+
+  if (result.isSuspicious) {
+    detected += 1;
+  } else {
+  missedSamples.push(sample);
+
+  console.log(
+    "[MISSED MALICIOUS]",
+    sample,
+    result
+  );
+}
+}
+
+console.log(
+    "MISSED SAMPLES:",
+    missedSamples
+  );
+
+    const recall =
+      detected / maliciousCorpus.length;
+
+      console.log(
+        "Recall:",
+            recall,
+        "Detected:",
+            detected,
+        "Total:",
+            maliciousCorpus.length
+        );
+
+    expect(recall).toBeGreaterThanOrEqual(0.90);
+  });
+
+  test("should avoid false positives on benign corpus", () => {
+    let falsePositives = 0;
+
+    for (const sample of benignCorpus) {
+      const result = engine.analyze(sample);
+
+      if (result.isSuspicious) {
+        falsePositives += 1;
+      }
+    }
+
+    const falsePositiveRate =
+      falsePositives / benignCorpus.length;
+
+    expect(falsePositiveRate)
+      .toBeLessThanOrEqual(0.20);
+  });
+
+  test("should maintain deterministic scoring", () => {
+    const sample =
+      "URGENT verify account http://bit.ly/reset.exe";
+
+    const first =
+      engine.analyze(sample);
+
+    const second =
+      engine.analyze(sample);
+
+    expect(first.riskScore)
+      .toBe(second.riskScore);
+
+    expect(first.severity)
+      .toBe(second.severity);
+
+    expect(first.categories)
+      .toEqual(second.categories);
+  });
+
+  test("should maintain acceptable precision on mixed corpus", () => {
+  const mixedCorpus = [
+    ...maliciousCorpus,
+    ...benignCorpus
+  ];
+
+  let truePositives = 0;
+  let falsePositives = 0;
+
+
+  for (const sample of maliciousCorpus) {
+    const result = engine.analyze(sample);
+
+    if (result.isSuspicious) {
+      truePositives += 1;
+    }
+  }
+
+  for (const sample of benignCorpus) {
+    const result = engine.analyze(sample);
+
+    if (result.isSuspicious) {
+      falsePositives += 1;
+    }
+  }
+
+  const precision =
+    truePositives /
+    (truePositives + falsePositives);
+
+  expect(precision)
+    .toBeGreaterThanOrEqual(0.80);
+});
+
+  test("should resist obfuscated attacks", () => {
+    const adversarialCorpus = [
+      "W1N fr33 pr1z3 now",
+      "V3r1fy acc0unt immediately",
+      "Cl1ck b1t.ly/reset",
+      "Fr33 crypt0 giveaway",
+      "Inst4ll APK n0w"
+    ];
+
+    for (const sample of adversarialCorpus) {
+      const result =
+        engine.analyze(sample);
+
+      if (!result.isSuspicious) {
+  console.log(
+    "[MISSED OBFUSCATED]",
+    sample,
+    result
+  );
+}
+
+expect(result.isSuspicious)
+  .toBe(true);
+    }
+  });
+});
+===== ./tests/calls/callAnalyzer.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Integrated Call Analyzer",
+  () => {
+    test(
+      "escalates repeated malicious behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 12;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919191919191",
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919191919191",
+            timestamp:
+              baseTimestamp +
+              180000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(200);
+
+        expect(
+          result.severity
+        ).toBe("critical");
+      }
+    );
+
+    test(
+      "maintains trusted caller suppression",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918181818181",
+            timestamp:
+              Date.now(),
+            durationSeconds: 180,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "family",
+              "trusted"
+            ]
+          });
+
+        expect(
+          result.isSuspicious
+        ).toBe(false);
+
+        expect(
+          result.riskScore
+        ).toBe(0);
+      }
+    );
+
+    test(
+      "produces deterministic forensic correlations",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 8;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917171717171",
+            timestamp:
+              baseTimestamp +
+              i * 12000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917171717171",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+
+        expect(
+          result.forensic
+            .correlations.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .evidence.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.categories
+        ).toContain(
+          "remote-access-scam"
+        );
+      }
+    );
+
+    test(
+      "detects spoof rotation escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        const numbers = [
+          "+914444440001",
+          "+914444440002",
+          "+914444440003",
+          "+914444440004",
+          "+914444440005"
+        ];
+
+        for (
+          let i = 0;
+          i < numbers.length;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              numbers[i],
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+914444440099",
+            timestamp:
+              baseTimestamp +
+              120000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "spoof-like-rotation"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+  }
+);
+
+===== ./tests/calls/telecomFraudCorpus.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Telecom Fraud Corpus",
+  () => {
+    test(
+      "detects government impersonation label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000001",
+            timestamp:
+              Date.now(),
+            durationSeconds: 180,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "government-impersonation"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "government-impersonation"
+        );
+
+        expect(
+          result.severity
+        ).toBe("high-risk");
+      }
+    );
+
+    test(
+      "detects otp coercion label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000002",
+            timestamp:
+              Date.now(),
+            durationSeconds: 240,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "otp-coercion"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(80);
+      }
+    );
+
+    test(
+      "detects remote access scam label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000003",
+            timestamp:
+              Date.now(),
+            durationSeconds: 300,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "remote-access-scam"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "detects spoof-like rotating prefix behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        const rotatingNumbers = [
+          "+911234560001",
+          "+911234560002",
+          "+911234560003",
+          "+911234560004",
+          "+911234560005"
+        ];
+
+        for (
+          let i = 0;
+          i < rotatingNumbers.length;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              rotatingNumbers[i],
+            timestamp:
+              baseTimestamp +
+              i * 20000,
+            durationSeconds: 3,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234560099",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "spoof-like-rotation"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(50);
+      }
+    );
+  }
+);
+
+===== ./tests/calls/behavioralCallPatterns.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Behavioral Call Pattern Detection",
+  () => {
+    test(
+      "detects robocall burst behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234567890",
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234567890",
+            timestamp:
+              baseTimestamp +
+              120000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.isSuspicious
+        ).toBe(true);
+
+        expect(
+          result.categories
+        ).toContain(
+          "robocall-burst-pattern"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(100);
+      }
+    );
+
+    test(
+      "detects coercive retry escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 8;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919876543210",
+            timestamp:
+              baseTimestamp +
+              i * 15000,
+            durationSeconds: 4,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919876543210",
+            timestamp:
+              baseTimestamp +
+              150000,
+            durationSeconds: 3,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "post-rejection-escalation"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "suppresses trusted family caller",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919999999999",
+            timestamp:
+              Date.now(),
+            durationSeconds: 120,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "family"
+            ]
+          });
+
+        expect(
+          result.riskScore
+        ).toBe(0);
+
+        expect(
+          result.severity
+        ).toBe("safe");
+      }
+    );
+  }
+);
+
+===== ./tests/calls/robocallCorpus.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Robocall Corpus",
+  () => {
+    test(
+      "detects deterministic robocall cadence",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 12;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918888888888",
+            timestamp:
+              baseTimestamp +
+              i * 30000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918888888888",
+            timestamp:
+              baseTimestamp +
+              360000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "automated-cadence-pattern"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "detects unanswered persistence escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 9;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917777777777",
+            timestamp:
+              baseTimestamp +
+              i * 15000,
+            durationSeconds: 3,
+            wasRejected: false,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917777777777",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: false,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "persistent-unanswered-calling"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(80);
+      }
+    );
+
+    test(
+      "detects repeated retry cadence",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+916666666666",
+            timestamp:
+              baseTimestamp +
+              i * 12000,
+            durationSeconds: 1,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+916666666666",
+            timestamp:
+              baseTimestamp +
+              180000,
+            durationSeconds: 1,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "repeated-retry-cadence"
+        );
+
+        expect(
+          result.categories
+        ).toContain(
+          "robocall-burst-pattern"
+        );
+      }
+    );
+
+    test(
+      "produces forensic explanations",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+915555555555",
+            timestamp:
+              Date.now(),
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "suspicious"
+            ]
+          });
+
+        expect(
+          result.explanations
+            .length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .evidence.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .verdict.summary
+        ).toContain(
+          "suspicious"
+        );
+      }
+    );
+  }
+);

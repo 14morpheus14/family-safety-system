@@ -1,0 +1,1508 @@
+
+===== ./tests/engine.test.ts =====
+
+import { DetectionEngine } from "../src/engine/detectionEngine";
+
+describe("DetectionEngine", () => {
+  let engine: DetectionEngine;
+
+  beforeEach(() => {
+    engine = new DetectionEngine();
+  });
+
+  test("should detect insecure http phishing link", () => {
+    const result = engine.analyze(
+      "URGENT verify your account at http://bit.ly/reset-password"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+
+    expect(result.matchedPatterns).toContain(
+      "bit.ly"
+    );
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+  });
+
+  test("should detect dangerous executable download", () => {
+    const result = engine.analyze(
+      "Download update from http://malware-site.com/update.exe"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.matchedPatterns).toContain(
+      ".exe"
+    );
+
+    expect(result.categories).toContain(
+      "dangerous-file"
+    );
+  });
+
+  test("should detect financial scam keywords", () => {
+    const result = engine.analyze(
+      "Win free crypto loan now"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+
+    expect(result.categories).toContain(
+      "financial"
+    );
+
+    expect(result.categories).toContain(
+      "crypto"
+    );
+  });
+
+  test("should detect contextual phishing attempt", () => {
+    const result = engine.analyze(
+      "Share OTP immediately to verify your bank account"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+
+    expect(result.categories).toContain(
+      "banking"
+    );
+  });
+
+  test("should detect obfuscated phishing keywords", () => {
+    const result = engine.analyze(
+      "W1N fr33 cr3dit cl1ck now"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.riskScore).toBeGreaterThanOrEqual(40);
+  });
+
+  test("should normalize repeated character spam", () => {
+    const result = engine.analyze(
+      "WIIIIIIIN FREEEEEE PRIZEEEE"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "scam"
+    );
+  });
+
+  test("should detect punycode phishing domain", () => {
+    const result = engine.analyze(
+      "Visit http://xn--paypal-security.com/login"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "domain-obfuscation"
+    );
+  });
+
+  test("should detect IP address phishing URL", () => {
+    const result = engine.analyze(
+      "Login at http://192.168.1.20/verify"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "network-risk"
+    );
+  });
+
+  test("should detect unicode obfuscation", () => {
+    const result = engine.analyze(
+      "Verify bіt.ly account"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "unicode-obfuscation"
+    );
+  });
+
+  test("should detect excessive caps and symbol spam", () => {
+    const result = engine.analyze(
+      "URGENT!!!!! VERIFY ACCOUNT NOW!!!!!"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "spam-pattern"
+    );
+
+    expect(result.categories).toContain(
+      "social-engineering"
+    );
+  });
+
+  test("should assign critical severity", () => {
+    const result = engine.analyze(
+      "URGENT verify password account loan win free crypto http://bit.ly/reset.exe"
+    );
+
+    expect(result.severity).toBe(
+      "critical"
+    );
+  });
+
+  test("should suppress excessive duplicate scoring", () => {
+    const result = engine.analyze(
+      "win win win win win free free free"
+    );
+
+    expect(result.riskScore).toBeLessThan(
+      500
+    );
+  });
+
+  test("should provide explainability metadata", () => {
+    const result = engine.analyze(
+      "Verify account password immediately"
+    );
+
+    expect(
+      result.explanations.length
+    ).toBeGreaterThan(0);
+  });
+
+  test("should allow benign banking statement message", () => {
+    const result = engine.analyze(
+      "Your monthly account statement is available"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should allow trusted OTP context", () => {
+    const result = engine.analyze(
+      "Your OTP for Uber login is 456789"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should detect APK installation scam", () => {
+    const result = engine.analyze(
+      "Install APK from unknown sources immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "apk-threat"
+    );
+  });
+
+  test("should detect phone coercion scam", () => {
+    const result = engine.analyze(
+      "Call now and share OTP immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phone-scam"
+    );
+  });
+
+test("should escalate repeated phishing attempts", () => {
+  for (let index = 0; index < 4; index++) {
+    engine.analyze(
+      "Verify your account immediately"
+    );
+  }
+
+  const result = engine.analyze(
+    "Verify your account immediately"
+  );
+
+  expect(result.isSuspicious)
+    .toBe(true);
+
+  expect(result.riskScore)
+    .toBeGreaterThanOrEqual(100);
+
+  expect(result.severity)
+    .toBe("critical");
+
+  expect(
+    result.forensic.correlations.some(
+      (entry) =>
+        entry.source ===
+        "behavioral-engine"
+    )
+  ).toBe(true);
+});
+
+  test("should not trigger on safe conversation", () => {
+    const result = engine.analyze(
+      "Family dinner tonight at home"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+
+    expect(result.riskScore).toBe(0);
+
+    expect(result.matchedPatterns).toEqual([]);
+  });
+
+  test("should avoid false positive for winter", () => {
+    const result = engine.analyze(
+      "Winter vacation starts tomorrow"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+
+    expect(result.matchedPatterns).not.toContain(
+      "win"
+    );
+  });
+
+  test("should detect banking phishing attempt", () => {
+    const result = engine.analyze(
+      "Verify your bank account password immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "banking"
+    );
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+  });
+});
+
+test("should reduce risk for trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Your OTP for Uber login is 123456",
+    {
+      sender: "Uber"
+    }
+  );
+
+  expect(result.isSuspicious)
+    .toBe(false);
+
+  expect(result.severity)
+    .toBe("safe");
+
+  expect(result.riskScore)
+    .toBe(0);
+
+  expect(
+    result.forensic.suppressions.some(
+      (entry: any) =>
+        entry.source ===
+        "trusted-operational-engine"
+    )
+  ).toBe(true);
+});
+
+test("should not suppress dangerous APK threat from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Install APK from unknown sources immediately",
+    {
+      sender: "Amazon"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "apk-threat"
+  );
+});
+
+test("should not suppress executable phishing link from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "URGENT verify account now http://bit.ly/reset.exe",
+    {
+      sender: "HDFC"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "dangerous-file"
+  );
+});
+
+===== ./tests/corpus/largeCorpus.test.ts =====
+
+import { DetectionEngine } from "../../src/engine/detectionEngine";
+
+describe("Large Deterministic Threat Corpus", () => {
+  const engine = new DetectionEngine();
+
+  const missedSamples: string[] = [];
+  const maliciousCorpus: string[] = [
+    "URGENT verify your account immediately",
+    "Click http://bit.ly/reset-password now",
+    "Your OTP is required to avoid suspension",
+    "Download update.exe immediately",
+    "Install secure-update.apk to continue",
+    "You won free crypto giveaway",
+    "Verify KYC or account blocked",
+    "Send bank password immediately",
+    "BTC investment guaranteed returns",
+    "Claim prize now urgent",
+    "Call support immediately for refund",
+    "Your account suspended click here",
+    "Verify PAN and OTP immediately",
+    "Install.apk to receive reward",
+    "http://192.168.1.10/login",
+    "http://xn--paypal-security.com",
+    "FREE FREE FREE WINNER!!!",
+    "Transfer crypto urgently",
+    "Password reset required immediately",
+    "Click tinyurl.com/free-gift",
+    "Provide CVV and OTP now",
+    "Your bank account frozen",
+    "URGENT action required now",
+    "Send verification code now",
+    "Prize money waiting claim now",
+    "Install remote support APK",
+    "Enable accessibility permissions",
+    "Share screen for KYC verification",
+    "Download secure banking app.apk",
+    "Click to avoid deactivation",
+    "Verify Aadhaar immediately to avoid suspension",
+"Your SBI account has been blocked",
+"Reset password using attached link",
+"Click http://goo.gl/free-money",
+"Install latest banking security APK",
+"Enable remote access for refund",
+"Send OTP to continue verification",
+"Urgent tax refund pending",
+"Your KYC expired update now",
+"Free iPhone winner selected",
+"Claim lottery reward immediately",
+"Download invoice.js now",
+"Payment failed verify account",
+"Crypto investment guaranteed 10x",
+"Limited time free BTC airdrop",
+"Your debit card suspended",
+"Update PAN card urgently",
+"Call support to avoid account freeze",
+"Install AnyDesk for support",
+"Install TeamViewer QuickSupport",
+"Verify identity within 24 hours",
+"Win cash reward instantly",
+"Click now for free recharge",
+"Your WhatsApp account will expire",
+"Verify UPI immediately",
+"Reset netbanking password now",
+"Account locked due to suspicious activity",
+"Immediate verification required",
+"Your parcel is held click here",
+"Customs fee pending payment",
+"Provide CVV for refund",
+"Install app from unknown source",
+"APK security update required",
+"Download reward coupon.scr",
+"Open attachment payment.exe",
+"Click to claim insurance refund",
+"Bank alert verify mobile number",
+"Government subsidy pending",
+"Income tax refund available",
+"Update mobile banking credentials",
+"Provide OTP for cancellation",
+"Reward expires tonight",
+"Act now limited opportunity",
+"Congratulations selected winner",
+"Secure your wallet immediately",
+"Free NFT mint available",
+"Wallet synchronization required",
+"Import crypto wallet phrase",
+"Your wallet compromised",
+"Recovery phrase verification required",
+"Verify biometric KYC now",
+"Click to unblock account",
+"Security alert account breach",
+"Reset transaction PIN now",
+"Emergency banking verification",
+"Complete verification to avoid ban",
+"PhonePe verification pending",
+"Google Pay blocked verify",
+"Paytm wallet suspended",
+"Urgent RBI compliance update",
+"Install RBI secure app.apk",
+"W1N FR33 PR1ZE NOW",
+"Cl1ck hxxp://b1t.ly/free",
+"0TP requ1red immediately",
+"Bank acc0unt suspended",
+"Fr33 recharge available",
+"Verify now to avoid arrest",
+"Police complaint pending payment",
+"Your SIM will deactivate",
+"Re-KYC required immediately",
+"Mandatory telecom verification",
+"Click link to avoid service block",
+"Netflix payment failed verify",
+"Amazon account suspended",
+"Flipkart refund pending",
+"Download secure patch.bat",
+"Execute update.vbs immediately",
+"Provide remote desktop access",
+"Share screen for support",
+"Install accessibility helper",
+"Click to enable permissions",
+"Your EMI overdue pay now",
+"Final warning verify immediately",
+"Account termination notice",
+"Confirm identity to continue",
+"Gift card reward waiting",
+"Click now for cashback",
+"Your child scholarship approved",
+"Claim educational subsidy",
+"Urgent family verification required",
+"COVID relief fund pending",
+"Medical insurance activation required",
+"Verify passport immediately",
+"Immigration issue resolve now",
+"Install mandatory security patch",
+"Update browser extension now",
+"Chrome security update required",
+"Device infected click immediately",
+"Virus detected install cleaner",
+"Download anti-virus setup.exe",
+"Urgent crypto liquidation alert",
+"Wallet breach detected",
+"Send seed phrase for recovery",
+"Activate secure banking shield",
+"Card disabled verify identity"
+  ];
+
+  const benignCorpus: string[] = [
+    "Family dinner tonight",
+    "Meeting moved to tomorrow",
+    "Please submit assignment",
+    "Happy birthday have a great year",
+    "Lets watch a movie tonight",
+    "Project discussion at office",
+    "Dinner at 8 PM",
+    "Travel itinerary attached",
+    "Invoice for groceries",
+    "Weather is pleasant today",
+    "Bank statement generated successfully",
+    "OTP for login is 123456",
+    "Crypto research paper published",
+    "Winter vacation starts tomorrow",
+    "Call me when free",
+    "Electricity bill paid successfully",
+    "Your package shipped today",
+    "Team meeting completed",
+    "Exam results announced",
+    "Lunch at restaurant tomorrow",
+    "Please review document",
+    "Your salary credited",
+    "Class starts at 10 AM",
+    "Train arrives at 6 PM",
+    "Happy anniversary",
+    "Presentation uploaded successfully",
+    "Photos from trip attached",
+    "Gym membership renewed",
+    "Medicine reminder for evening",
+    "Conference registration completed",
+    "Your OTP for login is 482991",
+"Bank statement ready for download",
+"Crypto conference starts tomorrow",
+"BTC market analysis attached",
+"Discuss blockchain research paper",
+"Please verify meeting attendance",
+"Account successfully created",
+"Password updated successfully",
+"Your refund has been processed",
+"Please click save document",
+"Download lecture notes pdf",
+"Family vacation photos uploaded",
+"Gym trainer appointment confirmed",
+"Classroom access enabled",
+"Electricity payment completed",
+"Monthly salary credited",
+"Tax filing appointment tomorrow",
+"Movie tickets booked successfully",
+"Amazon package delivered",
+"Netflix subscription renewed",
+"Your exam hall ticket available",
+"Railway ticket confirmed",
+"Doctor appointment scheduled",
+"Office VPN credentials updated",
+"Research grant approved",
+"University portal maintenance tonight",
+"Library membership renewed",
+"Call me after class",
+"Attached meeting agenda",
+"Presentation for seminar ready",
+"Review attached thesis draft",
+"Invoice generated successfully",
+"Dinner reservation confirmed",
+"Photos synced to cloud",
+"Project repository updated",
+"Docker container deployed",
+"Node server restarted",
+"API integration completed",
+"Please update README",
+"Banking seminar next week",
+"Cybersecurity workshop registration completed",
+"Cryptography lecture postponed",
+"Research collaboration discussion tomorrow",
+"OTP-based authentication implemented",
+"Password hashing module completed",
+"JWT verification integrated",
+"Package installation successful",
+"Your order has shipped",
+"Package out for delivery",
+"Happy wedding anniversary",
+"Good morning have a nice day",
+"Take medicines after dinner",
+"Reminder for yoga session",
+"Electric bill generated",
+"Conference room booked",
+"Train delayed by 10 minutes",
+"Airport pickup confirmed",
+"Please submit lab report",
+"Assignment deadline extended",
+"Results published on portal",
+"Team lunch tomorrow",
+"Coffee meeting at 5 PM",
+"Attached architecture diagram",
+"Discuss Prisma migration tomorrow",
+"Backend deployment completed",
+"Frontend testing successful",
+"Family group video call tonight",
+"Car service appointment booked",
+"Pet vaccination reminder",
+"Your internet bill is generated",
+"Maintenance scheduled tonight",
+"Office closed tomorrow",
+"Happy birthday professor",
+"Workshop certificate generated",
+"Research paper accepted",
+"Manuscript revisions completed",
+"Please check attached spreadsheet",
+"Code review completed",
+"System update installed successfully",
+"University fee payment received",
+"Hotel reservation confirmed",
+"Flight boarding starts at 8 PM",
+"Security seminar registration completed",
+"UPI payment received successfully",
+"Aadhaar update completed successfully",
+"Passport renewal appointment booked",
+"Insurance premium paid",
+"Your reimbursement is approved",
+"Medical report available",
+"Your support ticket was resolved",
+"Please restart your laptop",
+"Seminar postponed to Friday",
+"Weekly sprint completed",
+"Thank you for your help",
+"Meeting recording uploaded",
+"See you tomorrow",
+"Take care and drive safely",
+"Your attendance has been marked",
+"Research dataset uploaded",
+"Presentation slides finalized",
+"Conference paper camera-ready submitted"
+  ];
+
+  test("should detect malicious corpus with high recall", () => {
+    let detected = 0;
+
+    for (const sample of maliciousCorpus) {
+  const result =
+    engine.analyze(sample);
+
+  if (result.isSuspicious) {
+    detected += 1;
+  } else {
+  missedSamples.push(sample);
+
+  console.log(
+    "[MISSED MALICIOUS]",
+    sample,
+    result
+  );
+}
+}
+
+console.log(
+    "MISSED SAMPLES:",
+    missedSamples
+  );
+
+    const recall =
+      detected / maliciousCorpus.length;
+
+      console.log(
+        "Recall:",
+            recall,
+        "Detected:",
+            detected,
+        "Total:",
+            maliciousCorpus.length
+        );
+
+    expect(recall).toBeGreaterThanOrEqual(0.90);
+  });
+
+  test("should avoid false positives on benign corpus", () => {
+    let falsePositives = 0;
+
+    for (const sample of benignCorpus) {
+      const result = engine.analyze(sample);
+
+      if (result.isSuspicious) {
+        falsePositives += 1;
+      }
+    }
+
+    const falsePositiveRate =
+      falsePositives / benignCorpus.length;
+
+    expect(falsePositiveRate)
+      .toBeLessThanOrEqual(0.20);
+  });
+
+  test("should maintain deterministic scoring", () => {
+    const sample =
+      "URGENT verify account http://bit.ly/reset.exe";
+
+    const first =
+      engine.analyze(sample);
+
+    const second =
+      engine.analyze(sample);
+
+    expect(first.riskScore)
+      .toBe(second.riskScore);
+
+    expect(first.severity)
+      .toBe(second.severity);
+
+    expect(first.categories)
+      .toEqual(second.categories);
+  });
+
+  test("should maintain acceptable precision on mixed corpus", () => {
+  const mixedCorpus = [
+    ...maliciousCorpus,
+    ...benignCorpus
+  ];
+
+  let truePositives = 0;
+  let falsePositives = 0;
+
+
+  for (const sample of maliciousCorpus) {
+    const result = engine.analyze(sample);
+
+    if (result.isSuspicious) {
+      truePositives += 1;
+    }
+  }
+
+  for (const sample of benignCorpus) {
+    const result = engine.analyze(sample);
+
+    if (result.isSuspicious) {
+      falsePositives += 1;
+    }
+  }
+
+  const precision =
+    truePositives /
+    (truePositives + falsePositives);
+
+  expect(precision)
+    .toBeGreaterThanOrEqual(0.80);
+});
+
+  test("should resist obfuscated attacks", () => {
+    const adversarialCorpus = [
+      "W1N fr33 pr1z3 now",
+      "V3r1fy acc0unt immediately",
+      "Cl1ck b1t.ly/reset",
+      "Fr33 crypt0 giveaway",
+      "Inst4ll APK n0w"
+    ];
+
+    for (const sample of adversarialCorpus) {
+      const result =
+        engine.analyze(sample);
+
+      if (!result.isSuspicious) {
+  console.log(
+    "[MISSED OBFUSCATED]",
+    sample,
+    result
+  );
+}
+
+expect(result.isSuspicious)
+  .toBe(true);
+    }
+  });
+});
+===== ./tests/calls/callAnalyzer.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Integrated Call Analyzer",
+  () => {
+    test(
+      "escalates repeated malicious behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 12;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919191919191",
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919191919191",
+            timestamp:
+              baseTimestamp +
+              180000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(200);
+
+        expect(
+          result.severity
+        ).toBe("critical");
+      }
+    );
+
+    test(
+      "maintains trusted caller suppression",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918181818181",
+            timestamp:
+              Date.now(),
+            durationSeconds: 180,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "family",
+              "trusted"
+            ]
+          });
+
+        expect(
+          result.isSuspicious
+        ).toBe(false);
+
+        expect(
+          result.riskScore
+        ).toBe(0);
+      }
+    );
+
+    test(
+      "produces deterministic forensic correlations",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 8;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917171717171",
+            timestamp:
+              baseTimestamp +
+              i * 12000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917171717171",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+
+        expect(
+          result.forensic
+            .correlations.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .evidence.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.categories
+        ).toContain(
+          "remote-access-scam"
+        );
+      }
+    );
+
+    test(
+      "detects spoof rotation escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        const numbers = [
+          "+914444440001",
+          "+914444440002",
+          "+914444440003",
+          "+914444440004",
+          "+914444440005"
+        ];
+
+        for (
+          let i = 0;
+          i < numbers.length;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              numbers[i],
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+914444440099",
+            timestamp:
+              baseTimestamp +
+              120000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "spoof-like-rotation"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+  }
+);
+
+===== ./tests/calls/telecomFraudCorpus.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Telecom Fraud Corpus",
+  () => {
+    test(
+      "detects government impersonation label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000001",
+            timestamp:
+              Date.now(),
+            durationSeconds: 180,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "government-impersonation"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "government-impersonation"
+        );
+
+        expect(
+          result.severity
+        ).toBe("high-risk");
+      }
+    );
+
+    test(
+      "detects otp coercion label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000002",
+            timestamp:
+              Date.now(),
+            durationSeconds: 240,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "otp-coercion"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "otp-coercion"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(80);
+      }
+    );
+
+    test(
+      "detects remote access scam label",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911100000003",
+            timestamp:
+              Date.now(),
+            durationSeconds: 300,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "remote-access-scam"
+            ]
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "remote-access-scam"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "detects spoof-like rotating prefix behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        const rotatingNumbers = [
+          "+911234560001",
+          "+911234560002",
+          "+911234560003",
+          "+911234560004",
+          "+911234560005"
+        ];
+
+        for (
+          let i = 0;
+          i < rotatingNumbers.length;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              rotatingNumbers[i],
+            timestamp:
+              baseTimestamp +
+              i * 20000,
+            durationSeconds: 3,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234560099",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "spoof-like-rotation"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(50);
+      }
+    );
+  }
+);
+
+===== ./tests/calls/behavioralCallPatterns.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Behavioral Call Pattern Detection",
+  () => {
+    test(
+      "detects robocall burst behavior",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234567890",
+            timestamp:
+              baseTimestamp +
+              i * 10000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+911234567890",
+            timestamp:
+              baseTimestamp +
+              120000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.isSuspicious
+        ).toBe(true);
+
+        expect(
+          result.categories
+        ).toContain(
+          "robocall-burst-pattern"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(100);
+      }
+    );
+
+    test(
+      "detects coercive retry escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 8;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919876543210",
+            timestamp:
+              baseTimestamp +
+              i * 15000,
+            durationSeconds: 4,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919876543210",
+            timestamp:
+              baseTimestamp +
+              150000,
+            durationSeconds: 3,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "post-rejection-escalation"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "suppresses trusted family caller",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+919999999999",
+            timestamp:
+              Date.now(),
+            durationSeconds: 120,
+            wasRejected: false,
+            wasAnswered: true,
+            userTaggedCategories: [
+              "family"
+            ]
+          });
+
+        expect(
+          result.riskScore
+        ).toBe(0);
+
+        expect(
+          result.severity
+        ).toBe("safe");
+      }
+    );
+  }
+);
+
+===== ./tests/calls/robocallCorpus.test.ts =====
+
+import {
+  CallAnalyzer
+} from "../../src/calls/callAnalyzer";
+
+describe(
+  "Robocall Corpus",
+  () => {
+    test(
+      "detects deterministic robocall cadence",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 12;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918888888888",
+            timestamp:
+              baseTimestamp +
+              i * 30000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+918888888888",
+            timestamp:
+              baseTimestamp +
+              360000,
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "automated-cadence-pattern"
+        );
+
+        expect(
+          result.severity
+        ).not.toBe("safe");
+      }
+    );
+
+    test(
+      "detects unanswered persistence escalation",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 9;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917777777777",
+            timestamp:
+              baseTimestamp +
+              i * 15000,
+            durationSeconds: 3,
+            wasRejected: false,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+917777777777",
+            timestamp:
+              baseTimestamp +
+              200000,
+            durationSeconds: 2,
+            wasRejected: false,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "persistent-unanswered-calling"
+        );
+
+        expect(
+          result.riskScore
+        ).toBeGreaterThan(80);
+      }
+    );
+
+    test(
+      "detects repeated retry cadence",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const baseTimestamp =
+          Date.now();
+
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+916666666666",
+            timestamp:
+              baseTimestamp +
+              i * 12000,
+            durationSeconds: 1,
+            wasRejected: true,
+            wasAnswered: false
+          });
+        }
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+916666666666",
+            timestamp:
+              baseTimestamp +
+              180000,
+            durationSeconds: 1,
+            wasRejected: true,
+            wasAnswered: false
+          });
+
+        expect(
+          result.categories
+        ).toContain(
+          "repeated-retry-cadence"
+        );
+
+        expect(
+          result.categories
+        ).toContain(
+          "robocall-burst-pattern"
+        );
+      }
+    );
+
+    test(
+      "produces forensic explanations",
+      () => {
+        const analyzer =
+          new CallAnalyzer();
+
+        const result =
+          analyzer.analyzeCall({
+            phoneNumber:
+              "+915555555555",
+            timestamp:
+              Date.now(),
+            durationSeconds: 2,
+            wasRejected: true,
+            wasAnswered: false,
+            userTaggedCategories: [
+              "suspicious"
+            ]
+          });
+
+        expect(
+          result.explanations
+            .length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .evidence.length
+        ).toBeGreaterThan(0);
+
+        expect(
+          result.forensic
+            .verdict.summary
+        ).toContain(
+          "suspicious"
+        );
+      }
+    );
+  }
+);
+
+===== ./tests/output.txt =====
+
+
+> protection-engine@1.0.0 test
+> jest
+
