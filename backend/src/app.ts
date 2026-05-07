@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import env from "./config/env";
 import protectionRoutes from "./modules/protection/protection.routes";
 import paymentRoutes from "./modules/payment/payment.routes";
+import familyRoutes from "./modules/family/family.routes";
 
 import { authMiddleware } from "./middleware/auth.middleware";
 import { validate } from "./middleware/validate.middleware";
@@ -16,11 +17,6 @@ import {
   register,
   login
 } from "./modules/auth/auth.controller";
-
-import {
-  createFamily,
-  getFamily
-} from "./modules/family/family.controller";
 
 import {
   createAlert,
@@ -55,6 +51,11 @@ app.use(
 );
 
 app.use(
+  "/family",
+  familyRoutes
+);
+
+app.use(
   "/payments",
   paymentRoutes
 );
@@ -82,18 +83,6 @@ app.get("/profile", authMiddleware, (_req, res) => {
     message: "Protected profile route accessed"
   });
 });
-
-app.post(
-  "/family/create",
-  authMiddleware,
-  createFamily
-);
-
-app.get(
-  "/family",
-  authMiddleware,
-  getFamily
-);
 
 app.post(
   "/alerts/create",
