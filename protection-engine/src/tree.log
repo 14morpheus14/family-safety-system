@@ -1,0 +1,16 @@
+.
+├── crypto
+│   └── jwt.ts
+├── engine
+│   └── detectionEngine.ts
+├── events
+│   └── eventBus.ts
+├── rules
+│   └── basicRules.ts
+├── scanners
+│   └── urlScanner.ts
+├── tree.log
+└── utils
+    └── logger.ts
+
+7 directories, 7 files

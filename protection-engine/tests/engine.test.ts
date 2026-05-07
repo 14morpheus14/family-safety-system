@@ -59,6 +59,22 @@ describe("DetectionEngine", () => {
     );
   });
 
+  test("should detect contextual phishing attempt", () => {
+    const result = engine.analyze(
+      "Share OTP immediately to verify your bank account"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phishing"
+    );
+
+    expect(result.categories).toContain(
+      "banking"
+    );
+  });
+
   test("should detect obfuscated phishing keywords", () => {
     const result = engine.analyze(
       "W1N fr33 cr3dit cl1ck now"
@@ -133,6 +149,105 @@ describe("DetectionEngine", () => {
     );
   });
 
+  test("should assign critical severity", () => {
+    const result = engine.analyze(
+      "URGENT verify password account loan win free crypto http://bit.ly/reset.exe"
+    );
+
+    expect(result.severity).toBe(
+      "critical"
+    );
+  });
+
+  test("should suppress excessive duplicate scoring", () => {
+    const result = engine.analyze(
+      "win win win win win free free free"
+    );
+
+    expect(result.riskScore).toBeLessThan(
+      500
+    );
+  });
+
+  test("should provide explainability metadata", () => {
+    const result = engine.analyze(
+      "Verify account password immediately"
+    );
+
+    expect(
+      result.explanations.length
+    ).toBeGreaterThan(0);
+  });
+
+  test("should allow benign banking statement message", () => {
+    const result = engine.analyze(
+      "Your monthly account statement is available"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should allow trusted OTP context", () => {
+    const result = engine.analyze(
+      "Your OTP for Uber login is 456789"
+    );
+
+    expect(result.isSuspicious).toBe(false);
+  });
+
+  test("should detect APK installation scam", () => {
+    const result = engine.analyze(
+      "Install APK from unknown sources immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "apk-threat"
+    );
+  });
+
+  test("should detect phone coercion scam", () => {
+    const result = engine.analyze(
+      "Call now and share OTP immediately"
+    );
+
+    expect(result.isSuspicious).toBe(true);
+
+    expect(result.categories).toContain(
+      "phone-scam"
+    );
+  });
+
+test("should escalate repeated phishing attempts", () => {
+  for (let index = 0; index < 4; index++) {
+    engine.analyze(
+      "Verify your account immediately"
+    );
+  }
+
+  const result = engine.analyze(
+    "Verify your account immediately"
+  );
+
+  expect(result.isSuspicious)
+    .toBe(true);
+
+  expect(result.riskScore)
+    .toBeGreaterThanOrEqual(100);
+
+  expect(result.severity)
+    .toBe("critical");
+
+  expect(
+    result.forensic.correlations.some(
+      (entry) =>
+        entry.source ===
+        "behavioral-engine"
+    )
+  ).toBe(true);
+});
+
   test("should not trigger on safe conversation", () => {
     const result = engine.analyze(
       "Family dinner tonight at home"
@@ -172,4 +287,66 @@ describe("DetectionEngine", () => {
       "phishing"
     );
   });
+});
+
+test("should reduce risk for trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Your OTP for Uber login is 123456",
+    {
+      sender: "Uber"
+    }
+  );
+
+  expect(result.isSuspicious)
+    .toBe(false);
+
+  expect(result.severity)
+    .toBe("safe");
+
+  expect(result.riskScore)
+    .toBe(0);
+
+  expect(
+    result.forensic.suppressions.some(
+      (entry: any) =>
+        entry.source ===
+        "trusted-operational-engine"
+    )
+  ).toBe(true);
+});
+
+test("should not suppress dangerous APK threat from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "Install APK from unknown sources immediately",
+    {
+      sender: "Amazon"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "apk-threat"
+  );
+});
+
+test("should not suppress executable phishing link from trusted sender", () => {
+  const engine = new DetectionEngine();
+
+  const result = engine.analyze(
+    "URGENT verify account now http://bit.ly/reset.exe",
+    {
+      sender: "HDFC"
+    }
+  );
+
+  expect(result.isSuspicious).toBe(true);
+
+  expect(result.categories).toContain(
+    "dangerous-file"
+  );
 });

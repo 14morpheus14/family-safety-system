@@ -42,6 +42,18 @@ export class UrlScanner {
     return matches;
   }
 
+  private calculateEntropyScore(
+    value: string
+  ): number {
+    const uniqueCharacters =
+      new Set(value).size;
+
+    return (
+      uniqueCharacters /
+      value.length
+    );
+  }
+
   public scan(content: string): string[] {
     const findings: string[] = [];
 
@@ -81,6 +93,52 @@ export class UrlScanner {
 
       if (this.punycodeRegex.test(normalizedUrl)) {
         findings.push("punycode-domain");
+      }
+
+      const entropy =
+        this.calculateEntropyScore(
+          normalizedUrl
+        );
+
+      if (entropy > 0.6) {
+        findings.push(
+          "high-entropy-url"
+        );
+      }
+
+      const subdomainCount =
+        (
+          normalizedUrl.match(/\./g) || []
+        ).length;
+
+      if (subdomainCount >= 4) {
+        findings.push(
+          "excessive-subdomains"
+        );
+      }
+
+      const queryParameterCount =
+        (
+          normalizedUrl.match(/=/g) || []
+        ).length;
+
+      if (queryParameterCount >= 3) {
+        findings.push(
+          "parameter-obfuscation"
+        );
+      }
+
+      if (
+        /paypal|bank|upi|account/.test(
+          normalizedUrl
+        ) &&
+        /secure|verify|login|update/.test(
+          normalizedUrl
+        )
+      ) {
+        findings.push(
+          "brand-impersonation"
+        );
       }
     }
 
@@ -186,6 +244,30 @@ export class UrlScanner {
           type: "social-engineering",
           value: finding,
           score: 20
+        });
+      } else if (finding === "high-entropy-url") {
+        matches.push({
+          type: "url-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "excessive-subdomains") {
+        matches.push({
+          type: "domain-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "parameter-obfuscation") {
+        matches.push({
+          type: "parameter-obfuscation",
+          value: finding,
+          score: 35
+        });
+      } else if (finding === "brand-impersonation") {
+        matches.push({
+          type: "brand-impersonation",
+          value: finding,
+          score: 50
         });
       } else {
         matches.push({

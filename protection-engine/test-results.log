@@ -1,0 +1,6708 @@
+
+> protection-engine@1.0.0 test
+> jest
+
+PASS tests/engine.test.ts
+  ● Console
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify your account at http://bit.ly/reset-password'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 478
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download update from http://malware-site.com/update.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Win free crypto loan now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 265
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Share OTP immediately to verify your bank account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 553
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'W1N fr33 cr3dit cl1ck now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 175
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'WIIIIIIIN FREEEEEE PRIZEEEE'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Visit http://xn--paypal-security.com/login'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 120
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Login at http://192.168.1.20/verify'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 180
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify bіt.ly account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 285
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT!!!!! VERIFY ACCOUNT NOW!!!!!'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 365
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify password account loan win free crypto http://bit.ly/reset.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 843
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'win win win win win free free free'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify account password immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 498
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your monthly account statement is available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your OTP for Uber login is 456789'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install APK from unknown sources immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 673
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call now and share OTP immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 405
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 405
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 405
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 405
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 440
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 440
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family dinner tonight at home'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Winter vacation starts tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify your bank account password immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 458
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: true,
+        trustedOperationalMessage: true,
+        content: 'Your OTP for Uber login is 123456'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: true,
+        trustedOperationalMessage: false,
+        content: 'Install APK from unknown sources immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 673
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: true,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify account now http://bit.ly/reset.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 515
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+PASS tests/corpus/largeCorpus.test.ts
+  ● Console
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 430
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click http://bit.ly/reset-password now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 175
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your OTP is required to avoid suspension'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download update.exe immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 93
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install secure-update.apk to continue'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 280
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'You won free crypto giveaway'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify KYC or account blocked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 455
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send bank password immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 240
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'BTC investment guaranteed returns'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 180
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim prize now urgent'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 155
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call support immediately for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your account suspended click here'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 208
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify PAN and OTP immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 363
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install.apk to receive reward'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'http://192.168.1.10/login'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'http://xn--paypal-security.com'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'FREE FREE FREE WINNER!!!'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Transfer crypto urgently'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password reset required immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 295
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click tinyurl.com/free-gift'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide CVV and OTP now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 275
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your bank account frozen'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 235
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT action required now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send verification code now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 83
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Prize money waiting claim now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install remote support APK'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 410
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Enable accessibility permissions'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Share screen for KYC verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download secure banking app.apk'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to avoid deactivation'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify Aadhaar immediately to avoid suspension'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your SBI account has been blocked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset password using attached link'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click http://goo.gl/free-money'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install latest banking security APK'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 280
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Enable remote access for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send OTP to continue verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent tax refund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your KYC expired update now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 120
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Free iPhone winner selected'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 233
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim lottery reward immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 173
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download invoice.js now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Payment failed verify account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 388
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto investment guaranteed 10x'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 205
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Limited time free BTC airdrop'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your debit card suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 98
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update PAN card urgently'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call support to avoid account freeze'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install AnyDesk for support'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install TeamViewer QuickSupport'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify identity within 24 hours'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Win cash reward instantly'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click now for free recharge'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your WhatsApp account will expire'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify UPI immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset netbanking password now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account locked due to suspicious activity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Immediate verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 60
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your parcel is held click here'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Customs fee pending payment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 113
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide CVV for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 130
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install app from unknown source'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 190
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'APK security update required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download reward coupon.scr'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Open attachment payment.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to claim insurance refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank alert verify mobile number'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Government subsidy pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Income tax refund available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update mobile banking credentials'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide OTP for cancellation'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reward expires tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Act now limited opportunity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Congratulations selected winner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Secure your wallet immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Free NFT mint available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 245
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Wallet synchronization required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 130
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Import crypto wallet phrase'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 250
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your wallet compromised'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Recovery phrase verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 280
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify biometric KYC now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to unblock account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Security alert account breach'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset transaction PIN now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 130
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Emergency banking verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Complete verification to avoid ban'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 175
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'PhonePe verification pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Google Pay blocked verify'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 165
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Paytm wallet suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 98
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent RBI compliance update'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install RBI secure app.apk'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 385
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'W1N FR33 PR1ZE NOW'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cl1ck hxxp://b1t.ly/free'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 160
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: '0TP requ1red immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 273
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank acc0unt suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 168
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Fr33 recharge available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify now to avoid arrest'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 240
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Police complaint pending payment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 173
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your SIM will deactivate'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 55
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Re-KYC required immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Mandatory telecom verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click link to avoid service block'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Netflix payment failed verify'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 178
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Amazon account suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 168
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Flipkart refund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download secure patch.bat'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Execute update.vbs immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide remote desktop access'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 80
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Share screen for support'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 175
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install accessibility helper'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 255
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to enable permissions'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your EMI overdue pay now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 75
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Final warning verify immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account termination notice'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Confirm identity to continue'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gift card reward waiting'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click now for cashback'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your child scholarship approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [MISSED MALICIOUS] Your child scholarship approved {
+        isSuspicious: false,
+        matchedPatterns: [],
+        riskScore: 0,
+        categories: [],
+        severity: 'safe',
+        explanations: [],
+        forensic: {
+          rawEvidence: [],
+          interpretedSignals: [],
+          correlations: [],
+          suppressions: [],
+          verdict: { severity: 'safe', summary: 'safe suspicious activity detected' }
+        }
+      }
+
+      at Object.<anonymous> (tests/corpus/largeCorpus.test.ts:291:11)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim educational subsidy'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent family verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 160
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'COVID relief fund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medical insurance activation required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 158
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify passport immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Immigration issue resolve now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install mandatory security patch'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update browser extension now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Chrome security update required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Device infected click immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Virus detected install cleaner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 225
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download anti-virus setup.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 195
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent crypto liquidation alert'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Wallet breach detected'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send seed phrase for recovery'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 195
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Activate secure banking shield'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 158
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Card disabled verify identity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      MISSED SAMPLES: [ 'Your child scholarship approved' ]
+
+      at Object.<anonymous> (tests/corpus/largeCorpus.test.ts:299:9)
+
+    console.log
+      Recall: 0.9925925925925926 Detected: 134 Total: 135
+
+      at Object.<anonymous> (tests/corpus/largeCorpus.test.ts:307:15)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family dinner tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Meeting moved to tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please submit assignment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy birthday have a great year'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Lets watch a movie tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Project discussion at office'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Dinner at 8 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Travel itinerary attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Invoice for groceries'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Weather is pleasant today'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank statement generated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'OTP for login is 123456'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto research paper published'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Winter vacation starts tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call me when free'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electricity bill paid successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your package shipped today'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Team meeting completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Exam results announced'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Lunch at restaurant tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please review document'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your salary credited'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Class starts at 10 AM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Train arrives at 6 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy anniversary'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation uploaded successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Photos from trip attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gym membership renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medicine reminder for evening'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your OTP for login is 482991'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank statement ready for download'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto conference starts tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'BTC market analysis attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Discuss blockchain research paper'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please verify meeting attendance'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account successfully created'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password updated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your refund has been processed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please click save document'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download lecture notes pdf'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family vacation photos uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gym trainer appointment confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Classroom access enabled'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electricity payment completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Monthly salary credited'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Tax filing appointment tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Movie tickets booked successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Amazon package delivered'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Netflix subscription renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your exam hall ticket available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Railway ticket confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Doctor appointment scheduled'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Office VPN credentials updated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research grant approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'University portal maintenance tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Library membership renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call me after class'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Attached meeting agenda'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation for seminar ready'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Review attached thesis draft'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Invoice generated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Dinner reservation confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Photos synced to cloud'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Project repository updated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Docker container deployed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Node server restarted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'API integration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please update README'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Banking seminar next week'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cybersecurity workshop registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cryptography lecture postponed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research collaboration discussion tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'OTP-based authentication implemented'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password hashing module completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 143
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'JWT verification integrated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Package installation successful'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your order has shipped'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Package out for delivery'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy wedding anniversary'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Good morning have a nice day'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Take medicines after dinner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reminder for yoga session'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electric bill generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference room booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Train delayed by 10 minutes'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Airport pickup confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please submit lab report'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Assignment deadline extended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Results published on portal'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Team lunch tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Coffee meeting at 5 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Attached architecture diagram'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Discuss Prisma migration tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Backend deployment completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Frontend testing successful'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family group video call tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Car service appointment booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Pet vaccination reminder'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your internet bill is generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Maintenance scheduled tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Office closed tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy birthday professor'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Workshop certificate generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research paper accepted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Manuscript revisions completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please check attached spreadsheet'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Code review completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'System update installed successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'University fee payment received'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Hotel reservation confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Flight boarding starts at 8 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Security seminar registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'UPI payment received successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Aadhaar update completed successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Passport renewal appointment booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Insurance premium paid'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your reimbursement is approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medical report available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your support ticket was resolved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please restart your laptop'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Seminar postponed to Friday'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Weekly sprint completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Thank you for your help'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Meeting recording uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'See you tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Take care and drive safely'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your attendance has been marked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research dataset uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation slides finalized'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference paper camera-ready submitted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify account http://bit.ly/reset.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 575
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify account http://bit.ly/reset.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 575
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT verify your account immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 490
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click http://bit.ly/reset-password now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 235
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your OTP is required to avoid suspension'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download update.exe immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install secure-update.apk to continue'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 315
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'You won free crypto giveaway'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 213
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify KYC or account blocked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 515
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send bank password immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 265
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'BTC investment guaranteed returns'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 240
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim prize now urgent'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 180
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call support immediately for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 178
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your account suspended click here'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 208
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify PAN and OTP immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 363
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install.apk to receive reward'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 185
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'http://192.168.1.10/login'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 160
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'http://xn--paypal-security.com'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 165
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'FREE FREE FREE WINNER!!!'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Transfer crypto urgently'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 165
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password reset required immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 295
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click tinyurl.com/free-gift'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide CVV and OTP now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 275
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your bank account frozen'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 235
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'URGENT action required now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send verification code now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 143
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Prize money waiting claim now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install remote support APK'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 470
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Enable accessibility permissions'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Share screen for KYC verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download secure banking app.apk'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to avoid deactivation'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify Aadhaar immediately to avoid suspension'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your SBI account has been blocked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset password using attached link'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click http://goo.gl/free-money'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install latest banking security APK'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 340
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Enable remote access for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 270
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send OTP to continue verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent tax refund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your KYC expired update now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 180
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Free iPhone winner selected'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 233
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim lottery reward immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 173
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download invoice.js now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 245
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Payment failed verify account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 388
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto investment guaranteed 10x'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 230
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Limited time free BTC airdrop'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your debit card suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 98
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update PAN card urgently'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call support to avoid account freeze'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install AnyDesk for support'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install TeamViewer QuickSupport'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 165
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify identity within 24 hours'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Win cash reward instantly'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click now for free recharge'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 100
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your WhatsApp account will expire'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify UPI immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset netbanking password now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 193
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account locked due to suspicious activity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Immediate verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your parcel is held click here'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Customs fee pending payment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 173
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide CVV for refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 155
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install app from unknown source'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'APK security update required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download reward coupon.scr'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 70
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Open attachment payment.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to claim insurance refund'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank alert verify mobile number'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Government subsidy pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Income tax refund available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update mobile banking credentials'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide OTP for cancellation'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reward expires tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Act now limited opportunity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Congratulations selected winner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Secure your wallet immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Free NFT mint available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 245
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Wallet synchronization required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 190
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Import crypto wallet phrase'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 250
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your wallet compromised'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Recovery phrase verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 280
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify biometric KYC now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to unblock account'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Security alert account breach'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reset transaction PIN now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 190
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Emergency banking verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 170
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Complete verification to avoid ban'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'PhonePe verification pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Google Pay blocked verify'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 165
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Paytm wallet suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 98
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent RBI compliance update'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 145
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install RBI secure app.apk'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 385
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'W1N FR33 PR1ZE NOW'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cl1ck hxxp://b1t.ly/free'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 160
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: '0TP requ1red immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 273
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank acc0unt suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 168
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Fr33 recharge available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify now to avoid arrest'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 240
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Police complaint pending payment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 198
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your SIM will deactivate'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 55
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Re-KYC required immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Mandatory telecom verification'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 215
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click link to avoid service block'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Netflix payment failed verify'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 178
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Amazon account suspended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 168
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Flipkart refund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download secure patch.bat'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 245
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Execute update.vbs immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Provide remote desktop access'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 80
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Share screen for support'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 200
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install accessibility helper'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 255
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click to enable permissions'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your EMI overdue pay now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Final warning verify immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account termination notice'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Confirm identity to continue'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 103
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gift card reward waiting'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Click now for cashback'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 105
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your child scholarship approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Claim educational subsidy'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent family verification required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 160
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'COVID relief fund pending'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medical insurance activation required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 158
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Verify passport immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 243
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Immigration issue resolve now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 150
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Install mandatory security patch'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 235
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Update browser extension now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Chrome security update required'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Device infected click immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 153
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Virus detected install cleaner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 225
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download anti-virus setup.exe'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 230
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Urgent crypto liquidation alert'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Wallet breach detected'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 210
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Send seed phrase for recovery'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 220
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Activate secure banking shield'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 158
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Card disabled verify identity'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 140
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family dinner tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Meeting moved to tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please submit assignment'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy birthday have a great year'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Lets watch a movie tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Project discussion at office'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Dinner at 8 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Travel itinerary attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Invoice for groceries'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Weather is pleasant today'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank statement generated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'OTP for login is 123456'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto research paper published'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Winter vacation starts tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call me when free'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electricity bill paid successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your package shipped today'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Team meeting completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Exam results announced'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Lunch at restaurant tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please review document'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your salary credited'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Class starts at 10 AM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Train arrives at 6 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy anniversary'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation uploaded successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Photos from trip attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gym membership renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medicine reminder for evening'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your OTP for login is 482991'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 95
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Bank statement ready for download'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Crypto conference starts tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'BTC market analysis attached'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Discuss blockchain research paper'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please verify meeting attendance'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Account successfully created'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 45
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password updated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your refund has been processed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 85
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please click save document'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Download lecture notes pdf'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family vacation photos uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Gym trainer appointment confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Classroom access enabled'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electricity payment completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Monthly salary credited'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Tax filing appointment tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Movie tickets booked successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Amazon package delivered'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Netflix subscription renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your exam hall ticket available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Railway ticket confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Doctor appointment scheduled'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Office VPN credentials updated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research grant approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'University portal maintenance tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Library membership renewed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Call me after class'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Attached meeting agenda'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation for seminar ready'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Review attached thesis draft'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Invoice generated successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Dinner reservation confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Photos synced to cloud'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Project repository updated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Docker container deployed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Node server restarted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'API integration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please update README'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Banking seminar next week'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cybersecurity workshop registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cryptography lecture postponed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research collaboration discussion tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'OTP-based authentication implemented'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Password hashing module completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity high-risk and score 143
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'JWT verification integrated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Package installation successful'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your order has shipped'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Package out for delivery'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity caution and score 40
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy wedding anniversary'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Good morning have a nice day'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Take medicines after dinner'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Reminder for yoga session'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Electric bill generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference room booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Train delayed by 10 minutes'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Airport pickup confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please submit lab report'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Assignment deadline extended'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Results published on portal'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Team lunch tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Coffee meeting at 5 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Attached architecture diagram'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Discuss Prisma migration tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Backend deployment completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Frontend testing successful'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Family group video call tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Car service appointment booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Pet vaccination reminder'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your internet bill is generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Maintenance scheduled tonight'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Office closed tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Happy birthday professor'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Workshop certificate generated'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research paper accepted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Manuscript revisions completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please check attached spreadsheet'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Code review completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'System update installed successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'University fee payment received'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Hotel reservation confirmed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Flight boarding starts at 8 PM'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Security seminar registration completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'UPI payment received successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Aadhaar update completed successfully'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Passport renewal appointment booked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Insurance premium paid'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your reimbursement is approved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Medical report available'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your support ticket was resolved'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Please restart your laptop'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Seminar postponed to Friday'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Weekly sprint completed'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Thank you for your help'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Meeting recording uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'See you tomorrow'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Take care and drive safely'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Your attendance has been marked'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Research dataset uploaded'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Presentation slides finalized'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Conference paper camera-ready submitted'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'W1N fr33 pr1z3 now'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 195
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'V3r1fy acc0unt immediately'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 453
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Cl1ck b1t.ly/reset'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity suspicious and score 110
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Fr33 crypt0 giveaway'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 213
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+    console.log
+      {
+        trustedSender: false,
+        trustedOperationalMessage: false,
+        content: 'Inst4ll APK n0w'
+      }
+
+      at DetectionEngine.analyze (src/engine/detectionEngine.ts:428:9)
+
+    console.log
+      [INFO] Suspicious content detected with severity critical and score 500
+
+      at Logger.info (src/utils/logger.ts:3:13)
+
+
+Test Suites: 2 passed, 2 total
+Tests:       29 passed, 29 total
+Snapshots:   0 total
+Time:        3.489 s
+Ran all test suites.
