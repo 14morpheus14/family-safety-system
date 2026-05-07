@@ -306,6 +306,16 @@ export default function ProtectionScreen({
               (item) => (
                 <TouchableOpacity
                   key={item.id}
+                  onPress={() => {
+                    if (
+                      item.title ===
+                      'Link Safety'
+                    ) {
+                      navigation.navigate(
+                        'LinkSafety'
+                      );
+                    }
+                  }}
                   style={{
                     flexDirection:
                       'row',
@@ -466,9 +476,7 @@ export default function ProtectionScreen({
           >
             <Ionicons
               name="information-circle"
-
               size={moderateScale(16)}
-
               color="#5a8f73"
             />
 
