@@ -19,6 +19,8 @@ export interface FamilyMemberPayload {
 }
 
 export interface FamilySyncPayload {
+  version: string;
+
   familyId: string;
 
   members: FamilyMemberPayload[];

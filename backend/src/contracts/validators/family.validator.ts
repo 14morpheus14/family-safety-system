@@ -30,6 +30,7 @@ export const familyMemberSchema =
 
 export const familySyncSchema =
   z.object({
+    version: z.literal("1.0.0"),
     familyId: z.string(),
 
     members: z.array(

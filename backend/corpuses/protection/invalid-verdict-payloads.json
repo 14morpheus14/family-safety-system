@@ -1,0 +1,37 @@
+[
+  {
+    "source": 123,
+    "verdict": {}
+  },
+
+  {
+    "source": "member-app"
+  },
+
+  {
+    "source": "member-app",
+    "verdict": {
+      "threat": "yes",
+      "severity": "critical"
+    }
+  },
+
+  {
+    "source": "member-app",
+    "verdict": {
+      "threat": true,
+      "severity": "high"
+    }
+  },
+
+  {
+    "source": "",
+    "verdict": {
+      "threat": true,
+      "severity": "medium",
+      "category": "",
+      "summary": "",
+      "timestamp": ""
+    }
+  }
+]

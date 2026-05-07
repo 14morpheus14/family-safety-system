@@ -17,7 +17,6 @@ const router = Router();
 
 router.post(
   "/sync",
-  authMiddleware,
   syncFamilyState
 );
 

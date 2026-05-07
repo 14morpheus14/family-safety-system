@@ -1,14 +1,14 @@
 import { Router } from "express";
 
 import {
-  scanContent
+  ingestProtectionVerdict
 } from "./protection.controller";
 
 const router = Router();
 
 router.post(
-  "/scan",
-  scanContent
+  "/verdict",
+  ingestProtectionVerdict
 );
 
 export default router;
