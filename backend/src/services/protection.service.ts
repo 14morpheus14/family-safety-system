@@ -1,7 +1,6 @@
-export interface ScanResult {
-  threat: boolean;
-  reasons: string[];
-}
+import {
+  ThreatVerdict
+} from "../contracts/threat.contract";
 
 const suspiciousKeywords = [
   "loan",
@@ -13,7 +12,7 @@ const suspiciousKeywords = [
 
 export const scanText = (
   text: string
-): ScanResult => {
+): ThreatVerdict => {
   const reasons: string[] = [];
 
   const lowerText = text.toLowerCase();
@@ -28,6 +27,16 @@ export const scanText = (
 
   return {
     threat: reasons.length > 0,
-    reasons
+
+    severity:
+      reasons.length >= 3
+        ? "high"
+        : reasons.length > 0
+        ? "medium"
+        : "low",
+
+    reasons,
+
+    timestamp: new Date().toISOString()
   };
 };
