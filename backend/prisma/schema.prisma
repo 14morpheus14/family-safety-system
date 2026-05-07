@@ -33,3 +33,50 @@ model Alert {
   family      Family   @relation(fields: [familyId], references: [id])
   createdAt   DateTime @default(now())
 }
+model FamilySync {
+  id         String   @id @default(cuid())
+
+  familyId   String
+
+  updatedAt  DateTime
+
+  members    FamilyMember[]
+
+  createdAt  DateTime @default(now())
+}
+
+model FamilyMember {
+  id          String   @id @default(cuid())
+
+  memberId    String
+
+  memberName  String
+
+  role        String
+
+familySync FamilySync @relation(fields: [familySyncId], references: [id])
+
+  familySyncId String
+
+  devices     DeviceState[]
+
+  createdAt   DateTime @default(now())
+}
+
+model DeviceState {
+  id                  String   @id @default(cuid())
+
+  deviceId            String
+
+  deviceName          String
+
+  protectionEnabled   Boolean
+
+  lastSeen            DateTime
+
+familyMember FamilyMember @relation(fields: [familyMemberId], references: [id])
+
+  familyMemberId      String
+
+  createdAt           DateTime @default(now())
+}
