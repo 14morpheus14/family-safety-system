@@ -13,7 +13,11 @@ export const createOrder = async (
       currency: "INR",
       receipt: `receipt_${Date.now()}`
     };
-
+if (!razorpay) {
+  return res.status(503).json({
+    message: "Payment service unavailable"
+  });
+}
     const order = await razorpay.orders.create(options);
 
     return res.status(201).json({
