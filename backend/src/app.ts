@@ -4,6 +4,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import env from "./config/env";
 import protectionRoutes from "./modules/protection/protection.routes";
+import paymentRoutes from "./modules/payment/payment.routes";
 
 import { authMiddleware } from "./middleware/auth.middleware";
 import { validate } from "./middleware/validate.middleware";
@@ -51,6 +52,11 @@ app.use(express.json({
 app.use(
   "/protection",
   protectionRoutes
+);
+
+app.use(
+  "/payments",
+  paymentRoutes
 );
 
 app.get("/", (_req, res) => {
