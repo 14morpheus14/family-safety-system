@@ -7,18 +7,55 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Animated,
+  Switch,
 } from 'react-native';
 
 import {
   Ionicons,
-  MaterialIcons,
   Feather,
 } from '@expo/vector-icons';
 
+import {
+  moderateScale,
+  verticalModerateScale,
+  font,
+} from '../utils/responsive';
+
+const features = [
+  {
+    id: 1,
+    text: 'Blocks scam calls & spam',
+    icon: 'phone-call',
+  },
+
+  {
+    id: 2,
+    text:
+      'Blocks suspicious links & websites',
+
+    icon: 'link',
+  },
+
+  {
+    id: 3,
+    text:
+      'Warns before file downloads',
+
+    icon: 'download',
+  },
+
+  {
+    id: 4,
+    text:
+      'Extra protection for payments',
+
+    icon: 'credit-card',
+  },
+];
+
 export default function SafeModeScreen({
   navigation,
-}: any) {
+}) {
   const [enabled, setEnabled] =
     useState(true);
 
@@ -26,280 +63,360 @@ export default function SafeModeScreen({
     <View
       style={{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#f5f5f5',
       }}
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingTop: 58,
-          paddingHorizontal: 24,
-          paddingBottom: 50,
+          paddingTop:
+            verticalModerateScale(24),
+
+          paddingHorizontal:
+            moderateScale(16),
+
+          paddingBottom:
+            verticalModerateScale(20),
         }}
       >
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <TouchableOpacity
-            onPress={() =>
-              navigation.goBack()
-            }
-          >
-            <Ionicons
-              name="arrow-back"
-              size={22}
-              color="black"
-            />
-          </TouchableOpacity>
+            backgroundColor: 'white',
 
-          <Text
-            style={{
-              fontSize: 22,
-              fontWeight: '700',
-            }}
-          >
-            Safe Mode
-          </Text>
+            borderRadius:
+              moderateScale(28),
 
-          <Ionicons
-            name="information-circle-outline"
-            size={22}
-            color="#555"
-          />
-        </View>
+            padding:
+              moderateScale(18),
 
-        <View
-          style={{
-            alignItems: 'center',
-            marginTop: 34,
+            shadowColor: '#000',
+
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+
+            shadowOpacity: 0.04,
+            shadowRadius: 4,
+
+            elevation: 1,
           }}
         >
           <View
             style={{
-              width: 165,
-              height: 165,
-              borderRadius: 82.5,
-              backgroundColor: '#dff5ea',
-              justifyContent: 'center',
+              flexDirection: 'row',
+
+              justifyContent:
+                'space-between',
+
               alignItems: 'center',
+
+              marginBottom:
+                verticalModerateScale(
+                  8
+                ),
             }}
           >
-            <View
-              style={{
-                width: 138,
-                height: 138,
-                borderRadius: 69,
-                backgroundColor: '#0d6b4f',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
+            <TouchableOpacity
+              onPress={() =>
+                navigation.goBack()
+              }
             >
               <Ionicons
-                name="shield-checkmark"
-                size={62}
-                color="#9df3c4"
+                name="arrow-back"
+                size={moderateScale(20)}
+                color="#111"
               />
-            </View>
+            </TouchableOpacity>
+
+            <Text
+              style={{
+                fontSize: font(20),
+
+                fontWeight: '700',
+
+                color: '#111',
+              }}
+            >
+              Safe Mode
+            </Text>
+
+            <TouchableOpacity>
+              <Ionicons
+                name="information-circle-outline"
+                size={moderateScale(22)}
+                color="#555"
+              />
+            </TouchableOpacity>
           </View>
 
-          <Text
+          <View
             style={{
-              fontSize: 20,
-              fontWeight: '700',
-              marginTop: 24,
-              color: '#111',
-            }}
-          >
-            Safe Mode is ON
-          </Text>
-
-          <Text
-            style={{
-              textAlign: 'center',
-              color: '#666',
-              marginTop: 12,
-              fontSize: 16,
-              lineHeight: 24,
-              width: '78%',
-            }}
-          >
-            Strict protection is active
-            for all family members.
-          </Text>
-
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() =>
-              setEnabled(!enabled)
-            }
-            style={{
-              marginTop: 28,
-              width: 78,
-              height: 42,
-              borderRadius: 30,
-              backgroundColor: enabled
-                ? '#1c8c5e'
-                : '#d9d9d9',
-              justifyContent: 'center',
-              paddingHorizontal: 4,
+              alignItems: 'center',
             }}
           >
             <View
               style={{
-                width: 34,
-                height: 34,
-                borderRadius: 17,
-                backgroundColor: 'white',
-                alignSelf: enabled
-                  ? 'flex-end'
-                  : 'flex-start',
+                width:
+                  moderateScale(160),
 
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.15,
-                shadowRadius: 4,
+                height:
+                  moderateScale(160),
 
-                elevation: 4,
+                borderRadius:
+                  moderateScale(80),
+
+                backgroundColor:
+                  '#dff5ea',
+
+                justifyContent:
+                  'center',
+
+                alignItems:
+                  'center',
+
+                marginTop:
+                  verticalModerateScale(
+                    8
+                  ),
+
+                marginBottom:
+                  verticalModerateScale(
+                    16
+                  ),
               }}
-            />
+            >
+              <View
+                style={{
+                  width:
+                    moderateScale(128),
+
+                  height:
+                    moderateScale(128),
+
+                  borderRadius:
+                    moderateScale(64),
+
+                  backgroundColor:
+                    '#0f7d57',
+
+                  justifyContent:
+                    'center',
+
+                  alignItems:
+                    'center',
+                }}
+              >
+                <Ionicons
+                  name="shield-checkmark"
+
+                  size={moderateScale(64)}
+
+                  color="#b7ffd7"
+                />
+              </View>
+            </View>
+
+            <Text
+              style={{
+                fontSize: font(22),
+
+                fontWeight: '700',
+
+                color: '#111',
+              }}
+            >
+              Safe Mode is ON
+            </Text>
+
+            <Text
+              style={{
+                marginTop:
+                  verticalModerateScale(
+                    6
+                  ),
+
+                fontSize: font(13),
+
+                color: '#666',
+
+                textAlign: 'center',
+
+                lineHeight:
+                  moderateScale(20),
+
+                width: '85%',
+              }}
+            >
+              Strict protection is active for all family members.
+            </Text>
+
+            <TouchableOpacity
+              onPress={() =>
+                setEnabled(
+                  !enabled
+                )
+              }
+              activeOpacity={0.9}
+              style={{
+                marginTop:
+                  verticalModerateScale(
+                    18
+                  ),
+
+                marginBottom:
+                  verticalModerateScale(
+                    24
+                  ),
+
+                width:
+                  moderateScale(54),
+
+                height:
+                  moderateScale(32),
+
+                borderRadius:
+                  moderateScale(16),
+
+                backgroundColor:
+                  enabled
+                    ? '#0f7d57'
+                    : '#d9d9d9',
+
+                justifyContent:
+                  'center',
+
+                paddingHorizontal:
+                  moderateScale(3),
+              }}
+            >
+              <View
+                style={{
+                  width:
+                    moderateScale(26),
+
+                  height:
+                    moderateScale(26),
+
+                  borderRadius:
+                    moderateScale(13),
+
+                  backgroundColor:
+                    'white',
+
+                  transform: [
+                    {
+                      translateX:
+                        enabled
+                          ? moderateScale(
+                              22
+                            )
+                          : 0,
+                    },
+                  ],
+
+                  shadowColor:
+                    '#000',
+
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+
+                  shadowOpacity:
+                    0.15,
+
+                  shadowRadius: 2,
+
+                  elevation: 2,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {features.map((item) => (
+            <View
+              key={item.id}
+              style={{
+                flexDirection: 'row',
+
+                alignItems: 'center',
+
+                marginBottom:
+                  verticalModerateScale(
+                    20
+                  ),
+              }}
+            >
+              <View
+                style={{
+                  width:
+                    moderateScale(34),
+
+                  alignItems:
+                    'center',
+                }}
+              >
+                <Feather
+                  name={item.icon}
+                  size={moderateScale(18)}
+                  color="#1c8c5e"
+                />
+              </View>
+
+              <Text
+                style={{
+                  flex: 1,
+
+                  fontSize: font(13),
+
+                  color: '#333',
+
+                  fontWeight: '500',
+                }}
+              >
+                {item.text}
+              </Text>
+            </View>
+          ))}
+
+          <TouchableOpacity
+            style={{
+              marginTop:
+                verticalModerateScale(
+                  8
+                ),
+
+              borderWidth: 1.5,
+
+              borderColor:
+                '#8fd0ac',
+
+              borderRadius:
+                moderateScale(14),
+
+              paddingVertical:
+                verticalModerateScale(
+                  14
+                ),
+
+              alignItems:
+                'center',
+            }}
+          >
+            <Text
+              style={{
+                fontSize: font(14),
+
+                fontWeight: '700',
+
+                color: '#1c8c5e',
+              }}
+            >
+              Turn Off Safe Mode
+            </Text>
           </TouchableOpacity>
         </View>
-
-        <View
-          style={{
-            marginTop: 42,
-            paddingHorizontal: 4,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginBottom: 24,
-            }}
-          >
-            <MaterialIcons
-              name="phone-in-talk"
-              size={20}
-              color="#1c8c5e"
-            />
-
-            <Text
-              style={{
-                marginLeft: 16,
-                fontSize: 17,
-                color: '#333',
-                flexShrink: 1,
-              }}
-            >
-              Blocks scam calls & spam
-            </Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginBottom: 24,
-            }}
-          >
-            <Feather
-              name="link"
-              size={20}
-              color="#1c8c5e"
-            />
-
-            <Text
-              style={{
-                marginLeft: 16,
-                fontSize: 17,
-                color: '#333',
-                flexShrink: 1,
-              }}
-            >
-              Blocks suspicious links & websites
-            </Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginBottom: 24,
-            }}
-          >
-            <MaterialIcons
-              name="file-download"
-              size={20}
-              color="#1c8c5e"
-            />
-
-            <Text
-              style={{
-                marginLeft: 16,
-                fontSize: 17,
-                color: '#333',
-                flexShrink: 1,
-              }}
-            >
-              Warns before file downloads
-            </Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <Ionicons
-              name="shield-checkmark"
-              size={20}
-              color="#1c8c5e"
-            />
-
-            <Text
-              style={{
-                marginLeft: 16,
-                fontSize: 17,
-                color: '#333',
-                flexShrink: 1,
-              }}
-            >
-              Extra protection for payments
-            </Text>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={{
-            marginTop: 48,
-            borderWidth: 1.5,
-            borderColor: '#b7e4cf',
-            borderRadius: 16,
-            paddingVertical: 17,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'white',
-          }}
-        >
-          <Text
-            style={{
-              color: '#1c8c5e',
-              fontSize: 17,
-              fontWeight: '700',
-            }}
-          >
-            Turn Off Safe Mode
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );

@@ -3,18 +3,81 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
   Ionicons,
   MaterialIcons,
+  Feather,
 } from '@expo/vector-icons';
 
-export default function HomeScreen({
-  navigation,
-}: any) {
+import {
+  moderateScale,
+  verticalModerateScale,
+  font,
+} from '../utils/responsive';
+
+const stats = [
+  {
+    value: '5',
+    label: 'Family\nMembers',
+    color: '#111',
+  },
+
+  {
+    value: '0',
+    label: 'High\nRisks',
+    color: '#ff4d4f',
+  },
+
+  {
+    value: '2',
+    label: 'Low\nRisks',
+    color: '#666',
+  },
+
+  {
+    value: '24',
+    label: 'Actions\nTaken',
+    color: '#111',
+  },
+];
+
+const alerts = [
+  {
+    id: 1,
+    title: 'Scam Call Blocked',
+    subtitle: "Mom's phone",
+    time: '10:30 AM',
+    icon: 'call',
+    bg: '#e8f8ef',
+    color: '#1c8c5e',
+  },
+
+  {
+    id: 2,
+    title: 'Suspicious Link Detected',
+    subtitle: 'Riya (iPhone)',
+    time: '9:45 AM',
+    icon: 'link',
+    bg: '#fff4e5',
+    color: '#f5a623',
+  },
+
+  {
+    id: 3,
+    title: 'Safe Mode Enabled',
+    subtitle: "Dad's phone",
+    time: 'Yesterday',
+    icon: 'shield',
+    bg: '#e8f8ef',
+    color: '#1c8c5e',
+  },
+];
+
+export default function HomeScreen() {
   return (
     <View
       style={{
@@ -24,351 +87,355 @@ export default function HomeScreen({
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingTop: verticalModerateScale(40),
+          paddingHorizontal: moderateScale(16),
+          paddingBottom: verticalModerateScale(10),
+        }}
       >
         <View
           style={{
-            paddingTop: 60,
-            paddingHorizontal: 20,
-            paddingBottom: 30,
+            flexDirection: 'row',
+            justifyContent:
+              'space-between',
+            alignItems: 'center',
           }}
         >
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+              flex: 1,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: font(15),
+                fontWeight: '700',
+                color: '#111',
+              }}
+            >
+              Good Morning, Ankit 👋
+            </Text>
+
+            <Text
+              style={{
+                marginTop: 2,
+                fontSize: font(12),
+                color: '#777',
+              }}
+            >
+              Your family is protected
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            style={{
+              width: moderateScale(38),
+              height: moderateScale(38),
+              borderRadius: 19,
+              backgroundColor: 'white',
+              justifyContent: 'center',
               alignItems: 'center',
+
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.04,
+              shadowRadius: 3,
+
+              elevation: 1,
+            }}
+          >
+            <Ionicons
+              name="notifications"
+              size={17}
+              color="#111"
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            marginTop: verticalModerateScale(14),
+            backgroundColor: '#1c8c5e',
+            borderRadius: moderateScale(22),
+            padding: moderateScale(16),
+
+            shadowColor: '#1c8c5e',
+            shadowOffset: {
+              width: 0,
+              height: 5,
+            },
+            shadowOpacity: 0.15,
+            shadowRadius: 8,
+
+            elevation: 4,
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              opacity: 0.9,
+              fontSize: font(12),
+            }}
+          >
+            Overall Family Status
+          </Text>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent:
+                'space-between',
+              alignItems: 'center',
+              marginTop: verticalModerateScale(12),
             }}
           >
             <View>
               <Text
                 style={{
-                  fontSize: 28,
+                  color: 'white',
+                  fontSize: font(15),
+                  fontWeight: '700',
+                }}
+              >
+                All Safe
+              </Text>
+
+              <Text
+                style={{
+                  color: 'white',
+                  opacity: 0.9,
+                  marginTop: 4,
+                  fontSize: font(12),
+                }}
+              >
+                Great! No immediate risks
+              </Text>
+
+              <Text
+                style={{
+                  color: 'white',
+                  opacity: 0.7,
+                  marginTop: 3,
+                  fontSize: font(10),
+                }}
+              >
+                Last scanned: Just now
+              </Text>
+            </View>
+
+            <View
+              style={{
+                width: moderateScale(66),
+                height: moderateScale(66),
+                borderRadius: 33,
+                backgroundColor:
+                  'rgba(255,255,255,0.16)',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  width: moderateScale(50),
+                  height: moderateScale(50),
+                  borderRadius: 25,
+                  backgroundColor: 'white',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Ionicons
+                  name="checkmark"
+                  size={28}
+                  color="#1c8c5e"
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent:
+              'space-between',
+            marginTop: verticalModerateScale(12),
+          }}
+        >
+          {stats.map((item) => (
+            <View
+              key={item.label}
+              style={{
+                width: '23%',
+                backgroundColor: 'white',
+                borderRadius: moderateScale(14),
+                paddingVertical: verticalModerateScale(11),
+                alignItems: 'center',
+
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 1,
+                },
+                shadowOpacity: 0.03,
+                shadowRadius: 3,
+
+                elevation: 1,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: font(16),
+                  fontWeight: '700',
+                  color: item.color,
+                }}
+              >
+                {item.value}
+              </Text>
+
+              <Text
+                style={{
+                  marginTop: 3,
+                  textAlign: 'center',
+                  fontSize: font(10),
+                  color: '#777',
+                  lineHeight: 12,
+                }}
+              >
+                {item.label}
+              </Text>
+            </View>
+          ))}
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent:
+              'space-between',
+            alignItems: 'center',
+            marginTop: verticalModerateScale(18),
+            marginBottom: 10,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: font(15),
+              fontWeight: '700',
+              color: '#111',
+            }}
+          >
+            Recent Alerts
+          </Text>
+
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: '#777',
+                fontWeight: '600',
+                fontSize: font(12),
+              }}
+            >
+              View all
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {alerts.map((item) => (
+          <TouchableOpacity
+            key={item.id}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: moderateScale(16),
+              padding: moderateScale(12),
+              marginBottom: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.03,
+              shadowRadius: 3,
+
+              elevation: 1,
+            }}
+          >
+            <View
+              style={{
+                width: moderateScale(42),
+                height: moderateScale(42),
+                borderRadius: 13,
+                backgroundColor: item.bg,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {item.icon === 'call' ? (
+                <MaterialIcons
+                  name="phone-in-talk"
+                  size={18}
+                  color={item.color}
+                />
+              ) : item.icon ===
+                'link' ? (
+                <Feather
+                  name="link"
+                  size={18}
+                  color={item.color}
+                />
+              ) : (
+                <Ionicons
+                  name="shield-checkmark"
+                  size={18}
+                  color={item.color}
+                />
+              )}
+            </View>
+
+            <View
+              style={{
+                flex: 1,
+                marginLeft: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: font(12),
                   fontWeight: '700',
                   color: '#111',
                 }}
               >
-                Good Morning, Ankit 👋
+                {item.title}
               </Text>
 
               <Text
                 style={{
-                  marginTop: 8,
-                  color: '#666',
-                  fontSize: 15,
+                  marginTop: 2,
+                  color: '#777',
+                  fontSize: font(11),
                 }}
               >
-                Your family is protected
+                {item.subtitle}
               </Text>
             </View>
-
-            <Ionicons
-              name="notifications"
-              size={24}
-              color="black"
-            />
-          </View>
-
-          <View
-            style={{
-              backgroundColor: '#1c8c5e',
-              borderRadius: 20,
-              padding: 22,
-              marginTop: 30,
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 16,
-              }}
-            >
-              Overall Family Status
-            </Text>
 
             <Text
               style={{
-                color: 'white',
-                fontSize: 34,
-                fontWeight: '700',
-                marginTop: 10,
+                color: '#999',
+                fontSize: font(10),
+                fontWeight: '600',
               }}
             >
-              All Safe
+              {item.time}
             </Text>
-
-            <Text
-              style={{
-                color: 'white',
-                marginTop: 10,
-                opacity: 0.9,
-              }}
-            >
-              Great! No immediate risks
-            </Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 20,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: '23%',
-                borderRadius: 16,
-                padding: 14,
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontWeight: '700',
-                }}
-              >
-                5
-              </Text>
-
-              <Text
-                style={{
-                  textAlign: 'center',
-                  marginTop: 6,
-                  color: '#666',
-                }}
-              >
-                Family Members
-              </Text>
-            </View>
-
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: '23%',
-                borderRadius: 16,
-                padding: 14,
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: 'red',
-                }}
-              >
-                0
-              </Text>
-
-              <Text
-                style={{
-                  textAlign: 'center',
-                  marginTop: 6,
-                  color: '#666',
-                }}
-              >
-                High Risks
-              </Text>
-            </View>
-
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: '23%',
-                borderRadius: 16,
-                padding: 14,
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: '#f39c12',
-                }}
-              >
-                2
-              </Text>
-
-              <Text
-                style={{
-                  textAlign: 'center',
-                  marginTop: 6,
-                  color: '#666',
-                }}
-              >
-                Low Risks
-              </Text>
-            </View>
-
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: '23%',
-                borderRadius: 16,
-                padding: 14,
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontWeight: '700',
-                }}
-              >
-                24
-              </Text>
-
-              <Text
-                style={{
-                  textAlign: 'center',
-                  marginTop: 6,
-                  color: '#666',
-                }}
-              >
-                Actions
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              marginTop: 30,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: '700',
-                }}
-              >
-                Recent Alerts
-              </Text>
-
-              <Text
-                style={{
-                  color: '#1c8c5e',
-                  fontWeight: '600',
-                }}
-              >
-                View all
-              </Text>
-            </View>
-
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('ScamCall')
-              }
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 18,
-                padding: 18,
-                marginTop: 18,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  backgroundColor: '#e8f8ef',
-                  padding: 10,
-                  borderRadius: 12,
-                }}
-              >
-                <MaterialIcons
-                  name="phone-in-talk"
-                  size={24}
-                  color="#1c8c5e"
-                />
-              </View>
-
-              <View
-                style={{
-                  marginLeft: 14,
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: '600',
-                  }}
-                >
-                  Scam Call Blocked
-                </Text>
-
-                <Text
-                  style={{
-                    marginTop: 5,
-                    color: '#777',
-                  }}
-                >
-                  Mom's phone
-                </Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('LinkSafety')
-              }
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 18,
-                padding: 18,
-                marginTop: 18,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  backgroundColor: '#fff5e5',
-                  padding: 10,
-                  borderRadius: 12,
-                }}
-              >
-                <Ionicons
-                  name="link"
-                  size={24}
-                  color="#f39c12"
-                />
-              </View>
-
-              <View
-                style={{
-                  marginLeft: 14,
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: '600',
-                  }}
-                >
-                  Suspicious Link Detected
-                </Text>
-
-                <Text
-                  style={{
-                    marginTop: 5,
-                    color: '#777',
-                  }}
-                >
-                  Riya (iPhone)
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
