@@ -5,7 +5,8 @@ import {
 } from "./family.controller";
 
 import {
-  getFamilySyncState
+  getFamilySyncState,
+  getSingleFamilySyncState
 } from "./family.retrieve.controller";
 
 import {
@@ -24,6 +25,12 @@ router.get(
   "/sync",
   authMiddleware,
   getFamilySyncState
+);
+
+router.get(
+  "/:familyId/sync",
+  authMiddleware,
+  getSingleFamilySyncState
 );
 
 export default router;

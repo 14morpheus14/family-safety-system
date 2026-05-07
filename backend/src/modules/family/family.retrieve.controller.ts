@@ -35,3 +35,41 @@ export const getFamilySyncState =
         familySyncStates
     });
   };
+export const getSingleFamilySyncState =
+  async (
+    req: Request,
+    res: Response
+  ) => {
+    const familyId =
+      String(req.params.familyId);
+    const familySyncStates =
+      await prisma.familySync.findMany({
+        where: {
+          familyId
+        },
+
+        include: {
+          members: {
+            include: {
+              devices: true
+            }
+          }
+        },
+
+        orderBy: {
+          createdAt: "desc"
+        }
+      });
+
+    return res.status(200).json({
+      success: true,
+
+      familyId,
+
+      count:
+        familySyncStates.length,
+
+      data:
+        familySyncStates
+    });
+  };
