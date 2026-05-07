@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import env from "./config/env";
+import protectionRoutes from "./modules/protection/protection.routes";
 
 import { authMiddleware } from "./middleware/auth.middleware";
 import { validate } from "./middleware/validate.middleware";
@@ -46,6 +47,11 @@ app.use(loggerMiddleware);
 app.use(express.json({
   limit: "10kb"
 }));
+
+app.use(
+  "/protection",
+  protectionRoutes
+);
 
 app.get("/", (_req, res) => {
   res.json({
